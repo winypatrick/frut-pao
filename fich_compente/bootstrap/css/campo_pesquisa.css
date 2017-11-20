@@ -1,0 +1,92 @@
+
+
+  
+  .inputWithIcon{
+    position:relative;
+    color: #0D0C0C
+  }
+  
+  .inputWithIcon i{
+    position:absolute;
+    left:0;
+    top:4px;
+    padding:9px 7px;
+    transition:.3s;
+    margin-left: 6px;
+  }
+  
+  .inputWithIcon.inputIconBg i{
+    background-color:#aaa;
+    color:#fff;
+    padding:9px 4px;
+    border-radius:6px 0 0 6px;
+  }
+  
+
+
+/*password*/
+  #pesk{
+    width:100%;
+    border:2px solid #fff;
+    border-radius:4px;
+    margin:8px 0;
+    outline:none;
+    padding:6px;
+    box-sizing:border-box;
+    transition:.3s;
+  }
+  
+   #pesk:focus{
+    border-color:#46EB5D;
+    box-shadow:0 0 8px 0 dodgerBlue;
+  }
+  
+  .inputWithIcon  #pesk{
+    padding-left:40px;
+  }
+  
+  
+  
+  .inputWithIcon  #pesk:focus + i{
+    color:#0CBC08;
+  }
+  
+  
+  .inputWithIcon.inputIconBg  #pesk:focus + i{
+    color:#fff;
+    background-color:dodgerBlue;
+  }
+
+
+
+  #pesk_1{
+    width:100%;
+    border:2px solid #2C2A2A;
+    border-radius:4px;
+    margin:8px 0;
+    outline:none;
+    padding:6px;
+    box-sizing:border-box;
+    transition:.3s;
+  }
+  
+   #pesk_1:focus{
+    border-color:#2BD9BE;
+    box-shadow:0 0 8px 0 dodgerBlue;
+  }
+  
+  .inputWithIcon  #pesk_1{
+    padding-left:40px;
+  }
+  
+  
+  
+  .inputWithIcon  #pesk_1:focus + i{
+    color:#2BD9BE;
+  }
+  
+  
+  .inputWithIcon.inputIconBg  #pesk_1:focus + i{
+    color:#fff;
+    background-color:dodgerBlue;
+  }

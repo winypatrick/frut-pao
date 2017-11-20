@@ -1,0 +1,22 @@
+   table.dataTable tbody {
+background-color: #d2d6de;
+} 
+
+
+/*  table.dataTable thead {
+ background-color: #b3e5fc;
+} */
+
+
+ table.dataTable #thead1 {
+  background-color: #3c8dbc;
+}
+
+ table.dataTable #thead11 {
+  background-color: #D6CF1D;
+}
+
+ table.dataTable #thead_1 {
+  /* background-color: #3c8dbc; */
+}
+

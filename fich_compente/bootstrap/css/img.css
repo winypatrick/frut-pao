@@ -1,0 +1,12 @@
+
+input[type='file'] {
+  display: none
+
+}
+
+.input-wrapper label {
+  border-radius: 5px;
+  color: #fff;
+  margin: 0px;
+  padding: 0px
+}
