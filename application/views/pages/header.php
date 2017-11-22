@@ -5,7 +5,9 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="<?= base_url();?>fich_compente/font-awesome-4.7.0/css/font-awesome.css">
   <!-- Ionicons -->
-
+  <!-- material designer-->
+  <link rel="stylesheet" href="node_modules/material-components-web/dist/material-components-web.css">
+  <!-- .... -->
   <!-- jvectormap -->
    <link href="<?= base_url();?>fich_compente/bootstrap/css/hover/hover-min.css" rel="stylesheet" />
     <link href="<?= base_url();?>fich_compente/bootstrap/css/hover/hover.css" rel="stylesheet" />
