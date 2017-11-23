@@ -131,6 +131,18 @@ $res=$this->db->get('func')->result();
 return $res;
 
 }
+
+public function lm(){
+
+$this->db->select('*');
+$this->db->group_by('data');
+$this->db->group_by('periodo');
+$this->db->group_by('loja');
+$res=$this->db->get('turno_text')->result();
+return $res;
+
+}
+
 /*=======================================================================[Rascunho]=====================================================*/
 }
 

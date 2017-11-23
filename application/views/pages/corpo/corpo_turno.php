@@ -106,7 +106,13 @@
             <!-- box-body -->
             <div id=" " class="box-body" style="">
             
-            </div>
+            <div class="col-xs-2 hvr-glow" style="text-align: center; font-size:10px; border:2px double; border-color:#161818; border-left: 0px; border-right: 0px; border-top: 0px; border-radius: 20px; margin-right: 8px"><img src="http://localhost/frut&pao/fich_compente/turno_.png" style="height:130px; width:100%"  class="img-rounded" alt="curso"><div class="caption"  style="text-align: center;"><p style="float: left;" > <a class="fa fa-info-circle fa-lg btn text-info  hvr-pop" style="font-size: 17px"></a> </p><p style="float: right;"> <a class="fa fa-book fa-lg btn text-info  hvr-pop text-info" style="font-size: 17px"></a> </p></div></div>
+
+             <div class="col-xs-2 hvr-glow" style="text-align: center; font-size:10px; border:2px double; border-color:#161818; border-left: 0px; border-right: 0px; border-top: 0px; border-radius: 20px"><img src="http://localhost/frut&pao/fich_compente/turno_.png" style="height:130px; width:100%"  class="img-rounded" alt="curso"><div class="caption"  style="text-align: center;"><p style="float: left;" > <a class="fa fa-info-circle fa-lg btn text-info  hvr-pop" style="font-size: 17px"></a> </p>    <p style="float: right;"> <a class="fa fa-book fa-lg btn text-info  hvr-pop text-info" style="font-size: 17px"></a> </p></div></div>
+
+
+ </div>
+
            <!-- ./box-body -->
 
 
@@ -271,7 +277,7 @@
             <label for="dt">Hora Entrada :</label>
             <div class="input-group " >
             <input type="text" class="form-control" name="hora_entrada_" id="hora_entrada_" style="background: #B4F3B4">
-            <div class="input-group-addon"><i class="glyphicon glyphicon-time"></i></div>
+            <div class="input-group-addon"><i class="fa fa-clock-o fa-lg"></i></div>
             </div>
             </div> 
             </div>
@@ -281,7 +287,7 @@
             <label for="dt">Hora Saida :</label>
             <div class="input-group " >
             <input type="text" class="form-control" name="hora_saida_" id="hora_saida_" style="background: #F37777">
-            <div class="input-group-addon"><i class="glyphicon glyphicon-time"></i></div>
+            <div class="input-group-addon"><i class="fa fa-clock-o fa-lg"></i></div>
             </div>
             </div> 
             </div>
