@@ -1,119 +1,229 @@
-<style media="screen">
-  section {
-    margin-bottom: 2%;
-  }
-</style>
 
-<script type="text/javascript" src="<?php base_url();?>/fich_jquery/loja.js"></script>
-<section class="content-header">
-  <ol class="breadcrumb">
-    <li><a href="<?= base_url();?>funcionario"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li class="active">Loja</li>
-  </ol>
-  <br>
-</section>
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+   <!--  tituo -->
+       <!-- <h1>
+        Fruto&Pão
+        <small> Africa Business</small>
+             </h1> -->
+      <ol class="breadcrumb">
+        <li><a href="<?= base_url();?>funcionario"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Loja</li>
+      </ol>
+      <br>
+    </section>
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="box">
-        <div class="box-header with-border">
-         <!--  <h3 class="box-title">Funcionarios</h3> -->
+    <!-- Main content -->
+    <section class="content">
+      <!-- Info boxes -->
+      <div class="row">
+      
+       <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="info-box  hvr-grow">
+            <span class="info-box-icon bg-yellow"><i class="fa fa-users"></i></span>
 
-         <!--  <a type="button"  class="fa fa-plus-circle btn" data-toggle="modal" data-target="#myModal"></a> -->
-          <a type="button" id="adicionar" class="fa fa-plus-circle btn btn-primary btn-xs" style="display: none;  "> Novo </a>
-
-
-          <div class="box-tools pull-right">
-         <span type="button" class="btn btn-box-tool" ><i class="fa fa-minus"></i>
-
-         </span>
+            <div class="info-box-content">
+              <span class="info-box-text">Funcionarios</span>
+              <span class="info-box-number">20</span>
+            </div>
+            <!-- /.info-box-content -->
           </div>
+          <!-- /.info-box -->
         </div>
+        <!-- /.col -->
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="info-box  hvr-grow">
+            <span class="info-box-icon bg-red"><i class="fa fa-cubes"></i></span>
 
-        <!-- box-body -->
-        <div class="box-body">
-
-          <table class="table table-striped table-condensed " id="tabl">
-                              <thead id="thead1">
-                             <th>Nome  (Detalhes)</th>
-                             <th  style="width: 17%">Morada</th>
-                             <th>Função</th>
-                             <th>Email</th>
-                             <th>Contacto</th>
-                             <th >Acesso</th>
-                             <th id="edit_del" style="display: none;">Edit | Delete</th>
-
-                                 </thead>
-                                 <tbody >
-
-                                 </tbody>
-
-                        <tfoot>
-                        <tr>
-                          <th></th>
-                          <th></th>
-                          <th></th>
-                          <th></th>
-                          <th style="display: none;"></th>
-                          <th style="display: none;"></th>
-                          <th style="display: none;"></th>
-                        </tr>
-                        </tfoot>
-
-                            </table>
-
-
+            <div class="info-box-content">
+              <span class="info-box-text">Armazem </span>
+              <span class="info-box-number">41,410</span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
         </div>
-       <!-- ./box-body -->
+        <!-- /.col -->
 
+        <!-- fix for small devices only -->
+        <div class="clearfix visible-sm-block"></div>
 
-        <!-- box-footer -->
-        <div class="box-footer">
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="info-box  hvr-grow">
+            <span class="info-box-icon bg-green"><i class="fa fa-shopping-cart"></i></span>
 
+            <div class="info-box-content">
+              <span class="info-box-text">vendas</span>
+              <span class="info-box-number">760</span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
         </div>
-        <!-- /.box-footer -->
+        <!-- /.col -->
+        
+         <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="info-box  hvr-grow">
+            <span class="info-box-icon bg-aqua"><i class="fa fa-book"></i></span>
 
+            <div class="info-box-content">
+              <span class="info-box-text">Relatorios</span>
+              <span class="info-box-number">90</span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
       </div>
-      <!-- /.box -->
-    </div>
-  </div>
-  <div class="row ">
-    <div class="col-md-6">
+      <!-- /.row -->
 
-    </div>
-    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="box">
+            <div class="box-header with-border">
+              <h3 class="box-title">Lojas</h3>
+              
+              <a type="button" class="fa fa-plus-circle btn" data-toggle="modal" data-target="#modal_loja"></a>
+              
 
-    </div>
-  </div>
-  <!-- Inicio do modal criar nova loja -->
-  <div class="modal fade" id="modal-1">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times; ba bal</span>
-            <span class="sr-only">Close</span>
-          </button>
-          <h4 class="modal-title">Nova Loja</h4>
+              <div class="box-tools pull-right">
+             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+
+               </button>
+
+          <!--      <div class="btn-group">
+          <button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown">
+            <i class="fa fa-wrench"></i></button>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+                         </div> -->
+               <!--  <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button> -->
+              </div>
+            </div>
+
+       
+          </div>
+          <!-- /.box -->
         </div>
-        <div class="modal-body">
-          <form>
-            <fieldset class="form-group">
-              <label for="formGroupExampleInput">Example label</label>
-              <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input">
-            </fieldset>
-            <fieldset class="form-group">
-              <label for="formGroupExampleInput2">Another label</label>
-              <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
-            </fieldset>
-          </form>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+
+      <!-- Main row -->
+      <div class="row">
+        <!-- Left col -->
+        <div class="col-md-8">
+       
+          <div class="row">
+            <div class="col-md-6">
+           
+            </div>
+            <!-- /.col -->
+
+            <div class="col-md-6">
+             
+                </div>
+                <!-- /.box-body -->
+               <!--  <div class="box-footer text-center">
+                 <a href="javascript:void(0)" class="uppercase">View All Users</a>
+               </div> -->
+                <!-- /.box-footer -->
+              </div>
+              <!--/.box -->
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+
+            </div>
+          
+          </div>
+          <!-- /.box -->
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Confirmar</button>
+        <!-- /.col -->
+
+        <div class="col-md-4">
+
         </div>
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
-</div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </section>
+    <!-- /.content -->
+
+ 
+
+
+<!-- ********************************************modal loja************************************** -->
+        <div class="col-md-12 modal fade " id="modal_loja" >
+        <div  class="modal-dialog modal-lg ">
+        <div id="myModal" class="modal-content " >
+         <form action="" id="form" method="post">
+            <div class="modal-header label-info">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4><strong>Informação de lojas</strong> </h4>
+            </div>
+
+            <div class="modal-body">
+            
+               <div class="col-md-4">
+            <div class="form-group">
+            <label for="antiga">endereço de loja:</label>
+            <input type="text" class="form-control" id="nome" name="nome" placeholder="Digita nome completo " required>
+            </div> 
+            </div>
+
+             <div class="col-md-4">
+            <div class="form-group">
+            <label for="dt">Data de Abertura :</label>
+            <div class="input-group " >
+            <input type="text" class="form-control" name="date" id="datetimepicker1">
+            <div class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></div>
+            </div>
+            </div> 
+            </div>
+
+            <div class="col-md-4">
+            <div class="form-group">
+            <label for="dt">N° tel:</label>
+            <input type="text" class="form-control" id="nome" name="nome" placeholder="N° telefone " required>
+            </div>  
+            </div>
+
+
+
+            
+
+          
+           
+           </fieldset>
+           </div>
+              <div class="col-md-12" id="feed">
+               
+             </div> 
+           
+
+          
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                <button type="submit" id="send" class="btn btn-primary" >Guardar</button>
+                </div>
+</form>
+     </div>
+     </div>
+     </div>
+ <!-- ******************************************************************************************************* -->    
+
+ <script>
+    $(function (){
+
+    $('#datetimepicker1').datepicker("setDate", new Date());
+   
+   });
+ </script>

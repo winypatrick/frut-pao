@@ -5,14 +5,12 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="<?= base_url();?>fich_compente/font-awesome-4.7.0/css/font-awesome.css">
   <!-- Ionicons -->
-  <!-- material designer-->
-  <link rel="stylesheet" href="node_modules/material-components-web/dist/material-components-web.css">
-  <!-- .... -->
+
   <!-- jvectormap -->
    <link href="<?= base_url();?>fich_compente/bootstrap/css/hover/hover-min.css" rel="stylesheet" />
     <link href="<?= base_url();?>fich_compente/bootstrap/css/hover/hover.css" rel="stylesheet" />
     <link href="<?= base_url();?>fich_compente/bootstrap/css/img.css" rel="stylesheet" />
-
+    
   <!-- Theme style -->
   <link rel="stylesheet" href="<?= base_url();?>fich_compente/dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -24,7 +22,7 @@
 <link href="<?= base_url();?>fich_compente/bootstrap/css/campo_pesquisa.css" rel="stylesheet" >
 <!-- ======================================================================================================== -->
 
-  <script src="<?= base_url();?>fich_compente/bootstrap/js/jquery.js"></script>
+  <script src="<?= base_url();?>fich_compente/bootstrap/js/jquery.js"></script>  
   <!-- Bootstrap 3.3.6 -->
 <script src="<?= base_url();?>fich_compente/bootstrap/js/bootstrap.min.js"></script>
 
@@ -35,8 +33,8 @@
 <script src="<?php echo base_url(); ?>fich_plugins/blockUI/jquery.blockUI.js"></script>
 
 <!-- datepicker -->
-<link  rel="stylesheet" href="<?= base_url()?>fich_plugins/datepicker/css/bootstrap-datepicker.css" >
-<script src="<?= base_url()?>fich_plugins/datepicker/js/bootstrap-datepicker.js"></script>
+<link  rel="stylesheet" href="<?= base_url()?>fich_plugins/datepicker/css/bootstrap-datepicker.css" > 
+<script src="<?= base_url()?>fich_plugins/datepicker/js/bootstrap-datepicker.js"></script> 
 
 
 
@@ -46,25 +44,25 @@
     <link rel="stylesheet" href="<?= base_url()?>fich_plugins/datapicker_material/css/bootstrap-material-datetimepicker.css">
 
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> 
+     
 
 
     <!-- <script type="text/javascript" src="http://momentjs.com/downloads/moment-with-locales.min.js"></script> -->
     <!--  ou-->
-    <script type="text/javascript" src="<?= base_url()?>fich_plugins/datapicker_material/js/moment-with-locales.min.js"></script>
+    <script type="text/javascript" src="<?= base_url()?>fich_plugins/datapicker_material/js/moment-with-locales.min.js"></script> 
 
-    <script type="text/javascript" src="<?= base_url()?>fich_plugins/datapicker_material/js/bootstrap-material-datetimepicker.js"></script>
+    <script type="text/javascript" src="<?= base_url()?>fich_plugins/datapicker_material/js/bootstrap-material-datetimepicker.js"></script> 
 
 <!-- datatable -->
 <script src="<?= base_url()?>fich_plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="<?= base_url()?>fich_plugins/datatables/dataTables.bootstrap.min.js"></script>
-<!-- //////////////////////////////////////// /////////////////////////////////////////////////-->
+<!-- //////////////////////////////////////// /////////////////////////////////////////////////--> 
 
 <!-- plugin aler SweetAlert.htm -->
 <script src="<?= base_url()?>fich_plugins/plugin_alert/sweetalert.min.js"></script>
 <link rel="stylesheet" type="text/css" href="<?= base_url()?>fich_plugins/plugin_alert/sweetalert.css">
-<!--  -->
+<!--  -->   
 
 
 <!-- styless para datatable-->
@@ -104,25 +102,25 @@
         <div class="form-group">
         <label for="nova">Senha Antiga :</label>
       <input type="password" class="form-control" id="senha_1" name="senha_1" onkeyup="change_()"  placeholder="Entre Senha Antiga" >
-        </div>
+        </div> 
         </div>
 
         <div class="col-md-12">
         <div class="form-group">
         <label for="nova">Senha Nova :</label>
       <input type="password" class="form-control " id="senha_2" name="senha_2" onkeyup="change_()" placeholder="Entre Nova Senha" >
-        </div>
+        </div> 
         </div>
 
         <div class="col-md-12">
         <div class="form-group">
         <label for="nova">Confirma Senha :</label>
       <input type="password" class="form-control" id="senha_3" name="senha_3" onkeyup="change_()"  placeholder="Confirmar a senha" >
-        </div>
+        </div> 
         </div>
 
         <div id="feed" class="col-sm-12" >
-
+             
          </div>
 
        </div>
@@ -130,18 +128,18 @@
 
        <div class="modal-footer">
        <button class="btn btn-primary" onclick="muda_senha()" id="mudar">
-        <i class="fa fa-check" aria-hidden="true" ></i> Modifica </button>
+        <i class="fa fa-check" aria-hidden="true" ></i> Modifica </button> 
          </div>
 
        </form>
 
        </div>
-
+      
    </div>
  </div>
 </div>
 <!--                                                     fim_modal_senha                                 -->
-
+   
 
   <header class="main-header">
 
@@ -163,7 +161,7 @@
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
           <!-- Messages: style can be found in dropdown.less-->
-
+       
 
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
@@ -182,7 +180,7 @@
                 <p><strong>Hi <?= $perfil_nome ?></strong></p>
                 <strong style="color: #FFFFFF"><span>E-mail:</span> <?= $perfil_email ?> </strong>
               </li>
-
+         
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
