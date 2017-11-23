@@ -1,10 +1,10 @@
- var feedback=$('#feed'); 
+ var feedback=$('#feed');
 
 //==========================================Arranque del funcao===========================================
 
 $(document).ready(function (){
 
-$("#senha_1").keyup(change_());  
+$("#senha_1").keyup(change_());
 $("#senha_2").keyup(change_());
 $("#senha_3").keyup(change_());
 
@@ -62,7 +62,7 @@ function muda_senha(){
 var senha_=$("#senha_2").val();
 var senha_antigo_=$("#senha_1").val();
 
-  $.post(base+'funcionario/mudar_senha', 
+  $.post(base+'funcionario/mudar_senha',
   {
       parm1:senha_antigo_,
       parm2:senha_,
@@ -72,7 +72,7 @@ var senha_antigo_=$("#senha_1").val();
    // alert(data);
 
     if(data==true)
-    {  
+    {
        $('#modal_mudar_senha').modal('hide');
        limpa_muda_senha();
         swal({
@@ -82,7 +82,7 @@ var senha_antigo_=$("#senha_1").val();
         timer:2000,
         showConfirmButton:false,
    });
-     
+
     }
 
     else
@@ -98,7 +98,7 @@ var senha_antigo_=$("#senha_1").val();
 
     }
 
-   
+
 });
 
 }
@@ -118,7 +118,7 @@ function ir_para_turno(){
   confirmButtonText: "ya, concordo",
   cancelButtonClass: 'btn btn-danger',
   buttonsStyling: false,
-  imageUrl: 'http://localhost/frut&pao/fich_compente/14469563_595253984008889_3422939138102187882_n.png',
+  imageUrl: 'http://frutapao.cv/fich_compente/14469563_595253984008889_3422939138102187882_n.png',
   imageWidth: 400,
   imageHeight: 400,
   showLoaderOnConfirm: true,
@@ -137,26 +137,26 @@ function(){
 
                     $('#t_a').removeClass('active');
                     $('#t_c').removeClass('active');
-                    $('#t_b').addClass('active'); 
-                   
+                    $('#t_b').addClass('active');
+
                 /*   swal({
                           title:"",
                           text:"",
                           timer:2000,
                           showConfirmButton:false,
                               });*/
-                 
+
                   }
 
-                  else 
+                  else
                   {
 
                     //alert('merda');
                     window.location.href = ' ';  //es aue redemiciona pagina
-                  } 
+                  }
               }
 
-       
+
    });
 
 });
@@ -173,15 +173,15 @@ function  abrir_ou_nao_ir_para_turno(){
                 if (data!='adim') {
 
                 ir_para_turno();
-                
+
                 }
                 else{
-                
+
                 }
 
               }
 
-       
+
    });
 
 }
