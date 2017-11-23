@@ -1,6 +1,6 @@
 //========================================
 //var base='http://192.168.43.50/frut&pao/';
-var base='http://localhost/frut&pao/';
+var base='http://frutapao.cv/';
 //========================================
 
 //=================================================Arranque===============================================
@@ -48,7 +48,7 @@ if (id_=='') {
 
                 }
                 else{
-                  
+
                    swal({
                         title:"",
                         text:"funcionario adicionado sem sucesso verifica email !",
@@ -62,7 +62,7 @@ if (id_=='') {
 
                 }
  }
-       
+
    });
 }
 
@@ -86,7 +86,7 @@ else{
                   timer:2000,
                   showConfirmButton:false,
                     });
-           
+
                   limpa_form_funcionario();
                  tabela_funcionario.ajax.reload();
 
@@ -102,10 +102,10 @@ else{
                   showConfirmButton:false,
                     });
 
-               } 
+               }
 
               }
-       
+
    });
 
 
@@ -118,7 +118,7 @@ else{
 //===================================================================================//abrir modal fx=================================
 
 $('#adicionar').click(function(event) {
- $('#myModal').modal({  });  
+ $('#myModal').modal({  });
  $('#id_f').val('');
 
  limpa_form_funcionario();
@@ -175,7 +175,7 @@ $('#adicionar').click(function(event) {
 error: function(){
                       //  $("#tabl").html("");
                        // $("#tabl").append('<tbody class="employee-grid-error"><tr><th colspan="3">Nenhum Registro incluido</th></tr></tbody>');
-                       
+
                     }
 
 },
@@ -189,7 +189,7 @@ error: function(){
 
   $('#tabl tfoot th').each( function () {
     var title = $(this).text();
-    $(this).html( '<input  class=" filtro " style="width: 90%; height: 23px" type="text" placeholder="" />' );  
+    $(this).html( '<input  class=" filtro " style="width: 90%; height: 23px" type="text" placeholder="" />' );
   } );
 
   //$('#tabl tfoot th:last-child input').css('display','none'); // oculta ultimo input
@@ -244,34 +244,34 @@ function ir_para(controller){
 
                    $('#t_b').removeClass('active');
                     $('#t_c').removeClass('active');
-                    $('#t_a').addClass(' active');  
+                    $('#t_a').addClass(' active');
                     }
                     if (controller=='turno') {
                     $('#t_a').removeClass('active');
                     $('#t_c').removeClass('active');
-                    $('#t_b').addClass('active'); 
+                    $('#t_b').addClass('active');
                     }
                     if (controller=='loj') {
                     $('#t_a').removeClass('active');
                     $('#t_b').removeClass('active');
                     $('#t_c').addClass('active');
                     }
-                    if (true) {}  
+                    if (true) {}
                      $.unblockUI();
-                 
+
                   }
 
-                  else 
+                  else
                   {
 
                     //alert('merda');
                     window.location.href = ' ';  //es aue redemiciona pagina
                   }
-                 
-                 
+
+
               }
 
-       
+
    });
 
 }
@@ -287,10 +287,10 @@ function ir_para(controller){
     format: 'dd/mm/yyyy',
     endDate: new Date(calc_ano_final, today.getMonth(), today.getDate()),
    });*/ //pega data autal
-    
+
     /*ou*/
 
-   $('#datetimepicker1').bootstrapMaterialDatePicker({ 
+   $('#datetimepicker1').bootstrapMaterialDatePicker({
     format : 'DD/MM/YYYY',
     lang : 'pt',
     maxDate: new Date(calc_ano_final, today.getMonth(), today.getDate()),
@@ -305,7 +305,7 @@ function ir_para(controller){
     });*/
 
     /*ou*/
-  $('#datetimepicker2').bootstrapMaterialDatePicker({ 
+  $('#datetimepicker2').bootstrapMaterialDatePicker({
     format : 'DD/MM/YYYY',
     lang : 'pt',
     maxDate: new Date(today.getFullYear(), today.getMonth(), today.getDate()),
@@ -320,8 +320,8 @@ function ir_para(controller){
    });*/
 
     /*ou*/
-   
-    $('#datetimepicker3').bootstrapMaterialDatePicker({ 
+
+    $('#datetimepicker3').bootstrapMaterialDatePicker({
     format : 'DD/MM/YYYY',
     lang : 'pt',
     maxDate: new Date(today.getFullYear(), today.getMonth(), today.getDate()),
@@ -334,7 +334,7 @@ function ir_para(controller){
         time: false,
         clearButton: true
       });*/
- //=======================================================================     
+ //=======================================================================
 
   $('#time').bootstrapMaterialDatePicker
       ({
@@ -344,7 +344,7 @@ function ir_para(controller){
       });
 
 
-    
+
    });
 
 //setar funcionario
@@ -352,7 +352,7 @@ function set_funcionario(id , bi, nif, dt_nasc, sexo, data_ini, data_fin, desb){
 
 
    $('#detalh').hide(); //vem ocultado campo descricao de deta
-   $('#icon').removeClass('fa fa-chevron-circle-up'); 
+   $('#icon').removeClass('fa fa-chevron-circle-up');
    $('#icon').addClass('fa fa-chevron-circle-down');
    //vem ocultado campo descricao de deta
 
@@ -371,13 +371,13 @@ function set_funcionario(id , bi, nif, dt_nasc, sexo, data_ini, data_fin, desb){
      $('#decrib').html(desb);
 
  $('#modal_funcionario').modal('show');
-     
+
 }
 
 
 function set_info_funcionario(id_user, nome, data_nasc, sexo, morada, bi, nif, email, n_tel, data_ini, data_fin, func, descr){
- 
-  
+
+
       $('#id_f').val(id_user);
       $('#nome').val(nome);
       $('#datetimepicker1').val(data_nasc);
@@ -387,11 +387,11 @@ function set_info_funcionario(id_user, nome, data_nasc, sexo, morada, bi, nif, e
       $('#nif').val(nif);
       $('#email').val(email);
       $('#number').val(n_tel );
-      $('#datetimepicker2').val(data_ini); 
+      $('#datetimepicker2').val(data_ini);
       $('#datetimepicker3').val(data_fin);
-      $('#funcao').val(func).change(); 
+      $('#funcao').val(func).change();
       $('#des').val(descr);
-     
+
 
 
 
@@ -413,7 +413,7 @@ swal({
   closeOnConfirm: false
 },
 function(){
-  $.post(base+'funcionario/deletar_funcionario', 
+  $.post(base+'funcionario/deletar_funcionario',
   {
       parm1:id_user,
   },
@@ -429,7 +429,7 @@ function(){
    });
 
       tabela_funcionario.ajax.reload();
-     
+
     }
 
     else
@@ -443,10 +443,10 @@ function(){
                               });
 
     }
-   
+
 });
 
-  
+
 });
  }
 
@@ -455,7 +455,7 @@ function set_acesso(id_, emaill){
  // alert('tetse');
  swal({
   title: "Quer dar acesso ao funcionario?",
-  
+
   showCancelButton: true,
   confirmButtonColor: "#23CFE3",
   confirmButtonText: "Permite",
@@ -465,7 +465,7 @@ function(){
        var dt= new Date();
       var senha="frut&pao"+dt.getFullYear()+""+dt.getDate()+""+(dt.getMonth()+1)+""+dt.getHours()+""+dt.getMinutes()+""+dt.getSeconds();
 
-$.post(base+'funcionario/acesso_funcioario', 
+$.post(base+'funcionario/acesso_funcioario',
   {   parm1:id_,
       parm2:senha,
 
@@ -488,9 +488,9 @@ $.post(base+'funcionario/acesso_funcioario',
                               });
 
     }
-   
+
 });
-     
+
 });
 
 }
@@ -499,7 +499,7 @@ $.post(base+'funcionario/acesso_funcioario',
 //parte de imagens carregado para ficha de estudante
 var input  = document.getElementById('input-fil');
 var fileName = document.getElementById('file-nam');
-     
+
 
 input.addEventListener('change', function(){
 
@@ -520,7 +520,7 @@ input.addEventListener('change', function(){
 
             document.getElementById("olho").src = e.target.result;
 
-        };       
+        };
         file.readAsDataURL(this.files[0]);
     }
     //================================
@@ -529,7 +529,7 @@ input.addEventListener('change', function(){
      document.getElementById("olho").src ='<?= base_url();?>fich_compente/winy.png';
     }
 
- 
+
 });
 
 
@@ -541,7 +541,7 @@ if($('#detalh').is( ":visible" ))
 {
 
 $('#detalh').hide();
-$('#icon').removeClass('fa fa-chevron-circle-up'); 
+$('#icon').removeClass('fa fa-chevron-circle-up');
 $('#icon').addClass('fa fa-chevron-circle-down');
 }
 
@@ -550,13 +550,13 @@ else if($('#detalh').is( ":hidden" ))
 
 $('#detalh').show();
 $('#icon').removeClass('fa fa-chevron-circle-down');
-$('#icon').addClass('fa fa-chevron-circle-up'); 
+$('#icon').addClass('fa fa-chevron-circle-up');
 }
 
 }
 
 function  estatistica_numero(){
-$.post(base+'funcionario/numero_funcionario', 
+$.post(base+'funcionario/numero_funcionario',
   {  },
    function(data) {
 
@@ -589,7 +589,7 @@ function  defenir_permissoes(){
 
               }
 
-       
+
    });
 
 }
@@ -605,9 +605,8 @@ function limpa_form_funcionario(){
       $('#nif').val('');
       $('#email').val('');
       $('#number').val('' );
-      $('#datetimepicker2').val(''); 
+      $('#datetimepicker2').val('');
       $('#datetimepicker3').val('');
-      $('#funcao').val(1).change(); 
+      $('#funcao').val(1).change();
       $('#des').val('');
 }
-
