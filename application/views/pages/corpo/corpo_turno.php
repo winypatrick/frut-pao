@@ -84,7 +84,11 @@
           <div class="box">
             <div class="box-header with-border ">
 
-              <a type="button" id="add" class="fa fa-plus-circle btn btn-info btn-xs" style="" onclick="modal_turno()"> Novo Turno </a>
+              <!-- <a type="button" id="add" class="fa fa-plus-circle btn btn-info btn-xs" style="" onclick="modal_turno()"> Novo Turno </a> -->
+              <!-- ou -->
+              <a type="button" id="add" class="btn btn-info btn-sm" style="" onclick="modal_turno()">
+              <i class="fa fa-plus-circle fa-lg"></i> Novo Turno</a>
+
 
               <div class="box-tools pull-right" >
 
@@ -187,11 +191,11 @@
                                 <thead id="thead11">
                                  <th> Nome</th>
                                  <th style="width: 15%;"> Função</th> 
-                                 <th style="width: 20%"> Loja </th> 
+                                 <th style="width: 17%"> Loja </th> 
                                  <th style="width: 10%"> Data</th>
                                  <th style="width: 6%"> Periodo</th>
-                                 <th style="width: 10%"> Hora Entrada</th>
-                                 <th style="width: 10%"> Hora Saida</th> 
+                                 <th style="width: 10%"> Hora /E</th>
+                                 <th style="width: 10%"> Hora /S</th> 
                                  <th> Edit &nbsp;|&nbsp; Deleta</th>
                                  </thead>
 
@@ -246,45 +250,21 @@
 
         <div class="col-md-12 modal fade " id="modal_pick"  >
         <div  class="modal-dialog modal-xs">
-        <div id="myModal" class="modal-content " style="margin-top: 110px" >
-         <form action="" id="form" method="post">
+        <div id="myModal" class="modal-content " style="margin-top: 200px" >
             <div class="modal-header label-info">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4><strong>Picagem Para Turno</strong> </h4>
+                <h4><strong>Hora Entrada / Saida</strong> </h4>
                 <input type="hidden" id="id_user_" name="id_cliente" >
             </div>
 
             <div class="modal-body">
             
-            <div class="col-xs-4">
+            <div class="col-xs-6">
             <div class="form-group">
             <label for="antiga">Nome :</label>
-            <input type="text" class="form-control" id="nome_" name="nome_" placeholder="Digita nome completo " required>
+            <input type="text" class="form-control" id="nome_" name="nome_" placeholder="Digita nome completo " disabled>
             </div> 
             </div>
-
-            <div class="col-xs-4">
-            <div class="form-group">
-            <label for="antiga">Função :</label>
-            <select id="funcao_" class="form-control" name="funcao_" >
-                <option value="1" selected="selected" disabled class="text-info">Escolhe um das:</option>
-                <option id="assis" value="Assistente">Assistente</option>
-                <option id="respons" value="Responsavel">Responsavel</option>
-            </select>
-            </div> 
-            </div>
-
-            <div class="col-xs-4">
-            <div class="form-group">
-            <label for="dt">Data :</label>
-            <div class="input-group " >
-            <input type="text" class="form-control" name="data_" id="data_">
-            <div class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></div>
-            </div>
-            </div> 
-            </div>
-
-            <hr>
 
             <div class="col-xs-3">
             <div class="form-group">
@@ -306,43 +286,12 @@
             </div> 
             </div>
 
-            <div class="col-xs-4">
-            <div class="form-group">
-            <label for="antiga">Loja :</label>
-            <select id="loja_" class="form-control" name="loja_" >
-                <option value="1" selected="selected" disabled>Escolhe um</option>
-                <option value="Fazenda">Loja frut&pao, Fazenda </option>
-                <option value="Achada grande">Loja frut&pao, Achada grande </option>
-                <option value="S.domingos">Loja frut&pao, S.domigos </option>
-            </select>
-            </div> 
-            </div>
-
-             <div class="col-xs-2">
-            <div class="form-group">
-            <label for="antiga">Periodo :</label>
-            <select id="periodo_" class="form-control" name="periodo_" >
-                <option value="0" selected="selected" disabled>Escolhe um</option>
-                <option value="1">1 °</option>
-                <option value="2">2 °</option>
-           </select>
-            </div> 
-            </div>
-            <hr>
-             <div class="col-xs-12">
-            <div class="form-group">
-            <label for="desc">Descricão da Situação:</label>
-            <textarea class="form-control" name="des" id="desrib_" rows="2" name="describb_"></textarea>
-            <!-- <input rows="5"  type="" class="form-control" id="conferir" name="conferir" onkeyup="checarsenha()" placeholder="Digita novamente " required> -->
-            </div> 
-           </div>
-           </fieldset>
            </div>
           
             <div class="modal-footer">
-                <button type="submit" id="send" class="btn btn-primary" > Incluir </button>
+                <button  class="btn btn-primary" onclick="picar_hora()"> Pick </button>
                 </div>
-</form>
+
      </div>
      </div>
      </div>

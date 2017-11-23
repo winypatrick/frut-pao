@@ -148,7 +148,7 @@
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>F</b>&P</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Frut&</b>Pão</span>
+      <span class="logo-lg"><b>Frut&</b>Pã<span style="font-size: 16px" class="fa fa-cog fa-spin "></span ></span> 
     </a>
 
     <!-- Header Navbar: style can be found in header.less -->

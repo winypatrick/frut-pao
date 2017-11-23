@@ -108,7 +108,7 @@ public function lista_funcionario(){
 
         else{
 
-           $r[]='&nbsp;<span >'.$k->nome.'</span>'.'<a  style="float:right; margin-right:10px" class="fa fa-info-circle btn" onclick="set_funcionario(\''.$k->id_user.'\', \''.$k->n_bi.'\', \''.$k->n_nif.'\', \''.$k->data_nascimento.'\',  \''.$k->sexo.'\', \''.$k->data_entrada.'\', \''.$k->data_saida.'\', \''.$k->descricao.'\')" ></a>';
+           $r[]='&nbsp;<span >'.$k->nome.'</span>'.'<a  style="float:right; margin-right:10px" class="fa fa-info-circle btn hvr-pulse grow" onclick="set_funcionario(\''.$k->id_user.'\', \''.$k->n_bi.'\', \''.$k->n_nif.'\', \''.$k->data_nascimento.'\',  \''.$k->sexo.'\', \''.$k->data_entrada.'\', \''.$k->data_saida.'\', \''.$k->descricao.'\')" ></a>';
 
         }
        
@@ -131,7 +131,7 @@ public function lista_funcionario(){
        if ($func=="Responsavel" ) {
 
        if ($k->senha!='' || $k->senha!=null) {
-        $r[]= '<a style="color: #2BAF0C; margin-top: 8px; margin-left:10px" class="fa fa-cog" ></span>';
+        $r[]= '<a style="color: #2BAF0C; margin-top: 8px; margin-left:10px" class="fa fa-cog " ></span>';
          
        }
 
@@ -145,7 +145,7 @@ public function lista_funcionario(){
        }
 
        
-      $r[]='<a  data-toggle="modal" data-target="#myModal"  class="fa fa-pencil-square-o btn btn-group hvr-bounce-in" onclick="set_info_funcionario(\''.$k->id_user.'\', \''.$k->nome.'\', \''.$k->data_nascimento.'\', \''.$k->sexo.'\', \''.$k->morada.'\', \''.$k->n_bi.'\', \''.$k->n_nif.'\', \''.$k->email.'\', \''.$k->contacto.'\', \''.$k->data_entrada.'\', \''.$k->data_saida.'\', \''.$k->funcao.'\', \''.$k->descricao.'\' )" ></a><a  class="glyphicon glyphicon glyphicon-remove btn btn-group hvr-bounce-in"  onclick="deleta_funcionario(\''.$k->id_user.'\')"></a>';
+      $r[]='<a  data-toggle="modal" data-target="#myModal"  class="fa fa-pencil-square-o fa-lg btn btn-group hvr-bounce-in" onclick="set_info_funcionario(\''.$k->id_user.'\', \''.$k->nome.'\', \''.$k->data_nascimento.'\', \''.$k->sexo.'\', \''.$k->morada.'\', \''.$k->n_bi.'\', \''.$k->n_nif.'\', \''.$k->email.'\', \''.$k->contacto.'\', \''.$k->data_entrada.'\', \''.$k->data_saida.'\', \''.$k->funcao.'\', \''.$k->descricao.'\' )" ></a><a  class="fa fa-trash-o fa-lg btn btn-group hvr-bounce-in"  onclick="deleta_funcionario(\''.$k->id_user.'\')"></a>';
 
         } 
 

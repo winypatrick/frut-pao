@@ -222,7 +222,8 @@ function ir_para(controller){
     opacity: .3,
     color: '#fff'
   },
-  message: '<img width="100px" height="80px" src="'+base+'preloader.gif" /><h4><span style="font-weight: bold;">Aguarda ...</span></h4>'
+/*  message: '<img width="100px" height="80px" src="'+base+'preloader.gif" /><h4><span style="font-weight: bold;">Aguarda ...</span></h4>'*/
+  message: '<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i> <h4><span style="font-weight: bold;">Aguarda ...</span></h4>'
 
 
 });
