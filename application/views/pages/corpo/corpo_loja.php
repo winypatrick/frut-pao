@@ -2,48 +2,6 @@
   section {
     margin-bottom: 2%;
   }
-  .panel-body {
-    margin: 0;
-    padding: 0;
-  }
-  .panel-terra {
-    border:0;
-    background-color: #d7d9d8;
-  }
-  .terra-cor {
-    background-color: #4db438;
-  }
-  .terra-link:hover {
-
-    cursor: pointer;
-    border-bottom-style: outset;
-    border-bottom-color: #223636;
-  }
-
-  .box {
-    padding-bottom: ;
-  }
-  .afasta {
-    margin-left: 5%;
-  }
-  .afastah {
-    margin-left: 30%;
-  }
-  .longe {
-    margin-left: 10%;
-  }
-  .link:hover {
-
-  }
-  .link:visited {
-    color: grey;
-}
-.link:link {
-    color: green;
-}
-.btn {
-  color: white;
-}
 </style>
 
 <script type="text/javascript" src="<?php base_url();?>/fich_jquery/loja.js"></script>
@@ -58,46 +16,74 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-12">
-      <nav class="navbar navbar-light bg-faded panel-terra">
-        <a id="criar-loja" class="navbar-brand btn-primary terra-link" href="#">Criar Loja</a>
-        <form class="form-inline navbar-form pull-right">
-          <input class="form-control" type="text" placeholder="Pesquisar">
-          <i class="fa fa-search fa-lg" aria-hidden="true"></i>
-        </form>
-      </nav>
+      <div class="box">
+        <div class="box-header with-border">
+         <!--  <h3 class="box-title">Funcionarios</h3> -->
+
+         <!--  <a type="button"  class="fa fa-plus-circle btn" data-toggle="modal" data-target="#myModal"></a> -->
+          <a type="button" id="adicionar" class="fa fa-plus-circle btn btn-primary btn-xs" style="display: none;  "> Novo </a>
+
+
+          <div class="box-tools pull-right">
+         <span type="button" class="btn btn-box-tool" ><i class="fa fa-minus"></i>
+
+         </span>
+          </div>
+        </div>
+
+        <!-- box-body -->
+        <div class="box-body">
+
+          <table class="table table-striped table-condensed " id="tabl">
+                              <thead id="thead1">
+                             <th>Nome  (Detalhes)</th>
+                             <th  style="width: 17%">Morada</th>
+                             <th>Função</th>
+                             <th>Email</th>
+                             <th>Contacto</th>
+                             <th >Acesso</th>
+                             <th id="edit_del" style="display: none;">Edit | Delete</th>
+
+                                 </thead>
+                                 <tbody >
+
+                                 </tbody>
+
+                        <tfoot>
+                        <tr>
+                          <th></th>
+                          <th></th>
+                          <th></th>
+                          <th></th>
+                          <th style="display: none;"></th>
+                          <th style="display: none;"></th>
+                          <th style="display: none;"></th>
+                        </tr>
+                        </tfoot>
+
+                            </table>
+
+
+        </div>
+       <!-- ./box-body -->
+
+
+        <!-- box-footer -->
+        <div class="box-footer">
+
+        </div>
+        <!-- /.box-footer -->
+
+      </div>
+      <!-- /.box -->
     </div>
   </div>
   <div class="row ">
     <div class="col-md-6">
-      <table class="table">
-        <thead>
-          <tr>
-            <th><i class="fa fa-asterisk" aria-hidden="true"></i></th>
-            <th>Zona</th>
-            <th>Rua</th>
-            <th>Contacto</th>
-            <th>Ver</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><i class="fa fa-wpforms" aria-hidden="true"></i></td>
-            <td>Fazenda</td>
-            <td>rua Abilio Cabral</td>
-            <td>2643489</td>
-            <td class="btn"> <a href="#" class="link">Detalhes</a> </td>
-          </tr>
 
-        </tbody>
-      </table>
     </div>
     <div class="col-md-6">
-      <div class="diagrama">
-        <img src="user.png" alt="" class="img-rounded">
-        <img src="user.png" alt="" class="img-rounded">
-        <img src="user.png" alt="" class="img-rounded">
-        <img src="user.png" alt="" class="img-rounded">
-      </div>
+
     </div>
   </div>
   <!-- Inicio do modal criar nova loja -->
