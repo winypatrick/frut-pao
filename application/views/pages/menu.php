@@ -32,12 +32,12 @@
           <a href="javascript:void(0)" onclick="ir_para('funcionario')">
             <i class="fa fa-users"></i> <span>Funcionarios</span>
           </a>
-         
+
         </li>
-        
+
          <li class=" treeview" id="t_b">
           <a href="javascript:void(0)" onclick="ir_para('turno')">
-            <i class="fa fa-desktop"></i> <span>Turnos</span>
+            <i class="fa fa-calendar"></i> <span>Turnos</span>
           </a>
         </li>
 
@@ -56,7 +56,7 @@
 
 
         </ul>
-    
+
     </section>
     <!-- /.sidebar -->
   </aside>

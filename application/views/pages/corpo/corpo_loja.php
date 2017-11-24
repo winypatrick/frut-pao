@@ -22,12 +22,12 @@
    <div class="box">
      <div class="box-header with-border ">
 
-       <a type="button" id="add" class="fa fa-plus-circle btn btn-info btn-xs" style="" onclick="modal_loja()">Adicionar Loja </a>
+       <a type="button" id="add" class="fa fa-plus-circle btn btn-info btn-xs" style="" onclick="modal_loja()">Criar Loja </a>
 
        <div class="box-tools pull-right" >
 
     <div class=" inputWithIcon" >
-    <input  placeholder="search"  id="pesk_1" name="password" onkeyup=""  type="text" value="" style="width: 200px; height: 23px" required>
+    <input  placeholder="Pesquisar"  id="pesk_1" name="password" onkeyup=""  type="text" value="" style="width: 200px; height: 23px" required>
     <i class="fa fa-search" ></i>
     </div>
        </div>
@@ -37,65 +37,94 @@
      <div id=" " class="box-body" style="">
        <div class="row ">
          <div class="col-md-6">
+
            <div class="box">
-             <div class="box-header with-border">
-               <i class="fa fa-wpforms" aria-hidden="true"></i>
-               <b class="afasta"> <span id="lojaLocal">Fazenda</span> </b>
-               <b class="afasta"> <span id="lojaRua">rua abilio cabral</span> </b>
-               <b class="longe"> <span id="lojaContacto">2640987</span> </b>
-               <div class="box-tools pull-right">
-                 <button type="button" class="btn btn-default" onclick="insert_loja()">Detalhes</button>
-               </div>
-             </div>
+             <table class="table">
+               <thead>
+                 <tr>
+                   <th><i class="fa fa-wpforms" aria-hidden="true"></th>
+                   <th>Zona</th>
+                   <th>Endereço</th>
+                   <th>Contacto</th>
+                   <th>Ver</th>
+                   <th>Ir para</th>
+                 </tr>
+               </thead>
+               <tbody><!-- aqui sera prenxido pelo controler com ajax -->
+                 <tr>
+                   <td>1</td>
+                   <td>Latada</td>
+                   <td>Campo Baxo</td>
+                   <td>2939384</td>
+                   <td><button type="button" class="btn btn-default" onclick="analisar()">Analise</button></td>
+                   <td><button type="button" class="btn btn-default" onclick="ir_para("corpo_info")">Detalhes</button></td>
+                 </tr>
+                 <tr>
+                   <td>2</td>
+                   <td>Latada</td>
+                   <td>Campo Baxo</td>
+                   <td>2939384</td>
+                   <td><button type="button" class="btn btn-default" onclick="analisar()">Analise</button></td>
+                   <td><button type="button" class="btn btn-default" onclick="ir_para("corpo_info")">Detalhes</button></td>
+                 </tr>
+                 <tr>
+                   <td>3</td>
+                   <td>Latada</td>
+                   <td>Campo Baxo</td>
+                   <td>2939384</td>
+                   <td><button type="button" class="btn btn-default" onclick="analisar()">Analise</button></td>
+                   <td><button type="button" class="btn btn-default" onclick="ir_para("corpo_info")">Detalhes</button></td>
+                 </tr>
+                 <tr>
+                   <td>4</td>
+                   <td>Latada</td>
+                   <td>Campo Baxo</td>
+                   <td>2939384</td>
+                   <td><button type="button" class="btn btn-default" onclick="analisar()">Analise</button></td>
+                   <td><button type="button" class="btn btn-default" onclick="ir_para("corpo_info")">Detalhes</button></td>
+                 </tr>
+                 <tr>
+                   <td>5</td>
+                   <td>Latada</td>
+                   <td>Campo Baxo</td>
+                   <td>2939384</td>
+                   <td><button type="button" class="btn btn-default" onclick="analisar()">Analise</button></td>
+                   <td><button type="button" class="btn btn-default" onclick="ir_para("corpo_info")">Detalhes</button></td>
+                 </tr>
+                 <tr>
+                   <td>6</td>
+                   <td>Latada</td>
+                   <td>Campo Baxo</td>
+                   <td>2939384</td>
+                   <td><button type="button" class="btn btn-default" onclick="analisar()">Analise</button></td>
+                   <td><button type="button" class="btn btn-default" onclick="ir_para("corpo_info")">Detalhes</button></td>
+                 </tr>
+                 <tr>
+                   <td>7</td>
+                   <td>Latada</td>
+                   <td>Campo Baxo</td>
+                   <td>2939384</td>
+                   <td><button type="button" class="btn btn-default" onclick="analisar()">Analise</button></td>
+                   <td><button type="button" class="btn btn-default" onclick="ir_para("corpo_info")">Detalhes</button></td>
+                 </tr>
+                 <tr>
+                   <td>8</i></td>
+                   <td>Latada</td>
+                   <td>Campo Baxo</td>
+                   <td>2939384</td>
+                   <td><button type="button" class="btn btn-default" onclick="analisar()">Analise</button></td>
+                   <td><button type="button" class="btn btn-default" onclick="ir_para("corpo_info")">Detalhes</button></td>
+                 </tr>
+
+               </tbody>
+             </table>
            </div>
-           <div class="box">
-             <div class="box-header with-border">
-               <i class="fa fa-wpforms" aria-hidden="true"></i>
-               <b class="afasta"> <span id="lojaLocal">Fazenda</span> </b>
-               <b class="afasta"> <span id="lojaRua">rua abilio cabral</span> </b>
-               <b class="longe"> <span id="lojaContacto">2640987</span> </b>
-               <div class="box-tools pull-right">
-                 <button type="button" class="btn btn-default">Detalhes</button>
-               </div>
-             </div>
-           </div>
-           <div class="box">
-             <div class="box-header with-border">
-               <i class="fa fa-wpforms" aria-hidden="true"></i>
-               <b class="afasta"> <span id="lojaLocal">Fazenda</span> </b>
-               <b class="afasta"> <span id="lojaRua">rua abilio cabral</span> </b>
-               <b class="longe"> <span id="lojaContacto">2640987</span> </b>
-               <div class="box-tools pull-right">
-                 <button type="button" class="btn btn-default">Detalhes</button>
-               </div>
-             </div>
-           </div>
-           <div class="box">
-             <div class="box-header with-border">
-               <i class="fa fa-wpforms" aria-hidden="true"></i>
-               <b class="afasta"> <span id="lojaLocal">Fazenda</span> </b>
-               <b class="afasta"> <span id="lojaRua">rua abilio cabral</span> </b>
-               <b class="longe"> <span id="lojaContacto">2640987</span> </b>
-               <div class="box-tools pull-right">
-                 <button type="button" class="btn btn-default">Detalhes</button>
-               </div>
-             </div>
-           </div>
-           <div class="box">
-             <div class="box-header with-border">
-               <i class="fa fa-wpforms" aria-hidden="true"></i>
-               <b class="afasta"> <span id="lojaLocal">Fazenda</span> </b>
-               <b class="afasta"> <span id="lojaRua">rua abilio cabral</span> </b>
-               <b class="longe"> <span id="lojaContacto">2640987</span> </b>
-               <div class="box-tools pull-right">
-                 <button type="button" class="btn btn-default">Detalhes</button>
-               </div>
-             </div>
-           </div>
+
+
          </div>
          <div class="col-md-6">
            <div class="box">
-             <img src="im.png" width="500"  height="200" alt="">
+             <img src="im.png" width="500"  height="250" alt="">
            </div>
            <table class="table">
              <thead>
@@ -157,9 +186,9 @@
   <div class="modal fade" id="modal-loja">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times; ba bal</span>
+        <div class="modal-header btn-primary">
+          <button type="button" class="close btn-danger" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
             <span class="sr-only">Close</span>
           </button>
           <h4 class="modal-title">Nova Loja</h4>
@@ -177,7 +206,7 @@
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Canselar</button>
           <button type="button" class="btn btn-primary">Confirmar</button>
         </div>
       </div><!-- /.modal-content -->
