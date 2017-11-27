@@ -15,7 +15,6 @@ $this->db->select('*');
 $this->db->group_start();
 $this->db->where('funcao!=', 'adim');
 $this->db->where('id_user!=', $id_);
-
 $this->db->group_start();
 $this->db->where('data!=', $data);
 $this->db->or_where('data', $data);
@@ -110,9 +109,40 @@ return $res;
 
 }
 
+public function lista_turno_loja_(){ 
 
+$this->db->select('loja, data, periodo');
+$this->db->group_by('data');
+$this->db->group_by('periodo');
+$this->db->group_by('loja');
+$this->db->order_by('data', 'desc');
+$this->db->order_by('periodo', 'desc');
+$res=$this->db->get('turno_text')->result();
+return $res;
+
+}
+
+public function pesquisa_turnos_($filtro_){
+
+$this->db->select('loja, data, periodo');
+
+$this->db->like('loja', $filtro_);
+$this->db->or_like('periodo', $filtro_);
+$this->db->or_where('data', $filtro_);
+
+$this->db->group_by('data');
+$this->db->group_by('periodo');
+$this->db->group_by('loja');
+$this->db->order_by('data', 'desc');
+$this->db->order_by('periodo', 'desc');
+$res=$this->db->get('turno_text')->result();
+
+return $res;
+  }
 
 /*=======================================================================[Rascunho]=====================================================*/
+
+/*
 
 public function lista_disponivel($data, $periodo){
 
@@ -132,16 +162,17 @@ return $res;
 
 }
 
-public function lm(){
+public function lm(){ 
 
-$this->db->select('*');
+$this->db->select('loja, data, periodo');
+$this->db->group_by('data');
 $this->db->group_by('periodo');
 $this->db->group_by('loja');
 $res=$this->db->get('turno_text')->result();
 return $res;
 
 }
-
+*/
 /*=======================================================================[Rascunho]=====================================================*/
 }
 

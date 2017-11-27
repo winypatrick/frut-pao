@@ -71,7 +71,7 @@ else{
 
 public function criar_turno()
 {
-$id_recebedo=$this->input->post('id_userr');
+ $id_recebedo=$this->input->post('id_userr');
 
  $id=$this->session->userdata('userr_id');
 
@@ -201,7 +201,27 @@ else{
    /*fim*/
 }
 
+public function lista_turno_loja_(){
+$r=$this->turno->lista_turno_loja_();
+echo json_encode($r);
+}
+
+public function pesquisa_turnos_()
+  {
+$filtro_=$this->input->post('campo_pesquisa_1');    
+$pega_=$this->turno->pesquisa_turnos_($filtro_);
+
+if ($pega_) {
+ echo json_encode($pega_);
+}
+else{
+  echo false;
+}
+
+  }
+
  /*=======================================================================[Rascunho]=====================================================*/
+/*
 public function lista_disponivel(){
 
 date_default_timezone_set('Atlantic/Cape_Verde');  //hora de Time_zone Cap verd
@@ -230,6 +250,7 @@ public function lm(){
 $r=$this->turno->lm();
 echo json_encode($r);
 }
+*/
 
 
 /*=======================================================================[Rascunho]=====================================================*/

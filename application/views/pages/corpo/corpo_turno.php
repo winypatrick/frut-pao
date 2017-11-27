@@ -93,7 +93,7 @@
               <div class="box-tools pull-right" >
 
            <div class=" inputWithIcon" >
-           <input  placeholder="search"  id="pesk_1" name="password" onkeyup=""  type="text" value="" style="width: 200px; height: 23px" required>
+           <input  placeholder="search"  id="pesk_1" name="password" onkeyup="pesquisa_turnos()"  type="text" value="" style="width: 200px; height: 23px" required>
            <i class="fa fa-search" ></i> 
            </div>
 
@@ -104,12 +104,8 @@
             </div>
             
             <!-- box-body -->
-            <div id=" " class="box-body" style="">
+            <div id="lista_loja_turn" class="box-body" style="padding-left: 20px">
             
-            <div class="col-xs-2 hvr-glow" style="text-align: center; font-size:10px; border:2px double; border-color:#161818; border-left: 0px; border-right: 0px; border-top: 0px; border-radius: 20px; margin-right: 8px"><img src="http://localhost/frut&pao/fich_compente/turno_.png" style="height:130px; width:100%"  class="img-rounded" alt="curso"><div class="caption"  style="text-align: center;"><p style="float: left;" > <a class="fa fa-info-circle fa-lg btn text-info  hvr-pop" style="font-size: 17px"></a> </p><p style="float: right;"> <a class="fa fa-book fa-lg btn text-info  hvr-pop text-info" style="font-size: 17px"></a> </p></div></div>
-
-             <div class="col-xs-2 hvr-glow" style="text-align: center; font-size:10px; border:2px double; border-color:#161818; border-left: 0px; border-right: 0px; border-top: 0px; border-radius: 20px"><img src="http://localhost/frut&pao/fich_compente/turno_.png" style="height:130px; width:100%"  class="img-rounded" alt="curso"><div class="caption"  style="text-align: center;"><p style="float: left;" > <a class="fa fa-info-circle fa-lg btn text-info  hvr-pop" style="font-size: 17px"></a> </p>    <p style="float: right;"> <a class="fa fa-book fa-lg btn text-info  hvr-pop text-info" style="font-size: 17px"></a> </p></div></div>
-
 
  </div>
 
@@ -117,11 +113,31 @@
 
 
             <!-- box-footer -->
-            <div class="box-footer">
+            <div class="box-footer" style="text-align: center;">
+            
+          <nav aria-label="Page navigation">
+          <ul class="pagination">
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+              </a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">4</a></li>
+            <li class="page-item"><a class="page-link" href="#">5</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+              </a>
+            </li>
+          </ul>
+                    </nav>
 
-           
-            <!-- /.box-footer -->
-       
+
           </div>
           <!-- /.box -->
         </div>
