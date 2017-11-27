@@ -6,14 +6,14 @@ class Login extends CI_Controller {
      function __construct(){
 		parent::__construct();
 		$this->load->model('model_login', 'op_log');
-}	
+}
 	public function index($indice=null)
-	{   
-     
+	{
+
     /* se sessao sta aberto e ta bai direto pa acesso*/
      if($this->session->userdata('logado_yes'))
-        {  
-           $pegado=$this->session->userdata('userr_id');  
+        {
+           $pegado=$this->session->userdata('userr_id');
           redirect('funcionario');
         }
 
@@ -23,12 +23,12 @@ class Login extends CI_Controller {
 
      if($indice==1){
          $date['msg']="atencao verifica Email ou senha esta incorreto ";
-        }  
+        }
 
     $this->load->view('pages/login', $date);
-    }    
+    }
 
-	   
+
 
 
 	}
@@ -36,7 +36,7 @@ class Login extends CI_Controller {
 
 public function acesso(){
 
-   $this->form_validation->set_rules('email', 'email', 'required');  //define regras 
+   $this->form_validation->set_rules('email', 'email', 'required');  //define regras
    $this->form_validation->set_rules('password', 'password', 'required'); //define regras
 
   if ($this->form_validation->run() ==true) {
@@ -52,15 +52,16 @@ public function acesso(){
     if ($id_user) {
 
       $this->session->set_userdata(array(
-                  'logado_yes' => true, 
-                  'userr_id' => $id_user[0]->id_user,
-                  '_nome' => $id_user[0]->nome,
-                  '_email' => $id_user[0]->email,
-                  '_funcao' => $id_user[0]->funcao));
+                  'logado_yes' => true,
+                  'id' => $id_user[0]->id_user,
+                  'nome' => $id_user[0]->nome,
+                  'email' => $id_user[0]->email,
+                  //'funcao' => $id_user[0]->funcao)
+                );
 
-      /*$pegado=$this->session->userdata('userr_nome'); 
+      /*$pegado=$this->session->userdata('userr_nome');
       echo $pegado;*/
-  
+
       redirect('funcionario');
 
       /*teste
@@ -70,11 +71,11 @@ public function acesso(){
 
     else{
 
-      $this->session->set_flashdata('logado_no', true); 
+      $this->session->set_flashdata('logado_no', true);
 
-      //$this->load->view('pages/login'); 
+      //$this->load->view('pages/login');
      redirect('login/1');
-     // echo 'merda'; 
+     // echo 'merda';
     }
 
     //echo $user;
@@ -83,7 +84,7 @@ public function acesso(){
 }
 
 
-//sair de 
+//sair de
 public function logout()
   {
 
@@ -101,5 +102,3 @@ redirect('control/func');   isso e importante
 
 
 }
-
-
