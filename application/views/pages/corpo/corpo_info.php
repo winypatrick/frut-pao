@@ -19,7 +19,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-3">
-      <i class="fa fa-user fa-5x"></i>
+      <i class="fa fa-user fa-5x">ba</i>
     </div>
   </div>
 </div>

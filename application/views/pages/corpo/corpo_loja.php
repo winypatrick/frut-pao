@@ -33,7 +33,7 @@
        </div>
      </div>
 
-     <!-- box-body -->
+     <!-- box body -->
      <div id=" " class="box-body" style="">
        <div class="row ">
          <div class="col-md-6">
