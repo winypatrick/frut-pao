@@ -90,8 +90,12 @@
              <!--  <h3 class="box-title">Funcionarios</h3> -->
               
              <!--  <a type="button"  class="fa fa-plus-circle btn" data-toggle="modal" data-target="#myModal"></a> -->
-              <a type="button" id="adicionar" class="fa fa-plus-circle btn btn-primary btn-xs" style="display: none;  "> Novo </a>
 
+           <!--    <a type="button" id="adicionar" class="fa fa-plus-circle btn btn-primary btn-xs" style="display: none;  "> Novo </a> -->
+                                    <!-- ou -->
+
+              <a type="button" class="btn btn-primary btn-sm"  id="adicionar" style="display: none;">
+              <i class="fa fa-plus-circle fa-lg"></i> Novo</a>
 
               <div class="box-tools pull-right">
              <span type="button" class="btn btn-box-tool" ><i class="fa fa-minus"></i>

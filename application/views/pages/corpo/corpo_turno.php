@@ -21,7 +21,11 @@
           <div class="box">
             <div class="box-header with-border ">
 
-              <a type="button" id="add" class="fa fa-plus-circle btn btn-info btn-xs" style="" onclick="modal_turno()"> Novo Turno </a>
+              <!-- <a type="button" id="add" class="fa fa-plus-circle btn btn-info btn-xs" style="" onclick="modal_turno()"> Novo Turno </a> -->
+              <!-- ou -->
+              <a type="button" id="add" class="btn btn-info btn-sm" style="" onclick="modal_turno()">
+              <i class="fa fa-plus-circle fa-lg"></i> Novo Turno</a>
+
 
               <div class="box-tools pull-right" >
 
@@ -34,8 +38,19 @@
 
             <!-- box-body -->
             <div id=" " class="box-body" style="">
+<<<<<<< HEAD
 
             </div>
+=======
+            
+            <div class="col-xs-2 hvr-glow" style="text-align: center; font-size:10px; border:2px double; border-color:#161818; border-left: 0px; border-right: 0px; border-top: 0px; border-radius: 20px; margin-right: 8px"><img src="http://localhost/frut&pao/fich_compente/turno_.png" style="height:130px; width:100%"  class="img-rounded" alt="curso"><div class="caption"  style="text-align: center;"><p style="float: left;" > <a class="fa fa-info-circle fa-lg btn text-info  hvr-pop" style="font-size: 17px"></a> </p><p style="float: right;"> <a class="fa fa-book fa-lg btn text-info  hvr-pop text-info" style="font-size: 17px"></a> </p></div></div>
+
+             <div class="col-xs-2 hvr-glow" style="text-align: center; font-size:10px; border:2px double; border-color:#161818; border-left: 0px; border-right: 0px; border-top: 0px; border-radius: 20px"><img src="http://localhost/frut&pao/fich_compente/turno_.png" style="height:130px; width:100%"  class="img-rounded" alt="curso"><div class="caption"  style="text-align: center;"><p style="float: left;" > <a class="fa fa-info-circle fa-lg btn text-info  hvr-pop" style="font-size: 17px"></a> </p>    <p style="float: right;"> <a class="fa fa-book fa-lg btn text-info  hvr-pop text-info" style="font-size: 17px"></a> </p></div></div>
+
+
+ </div>
+
+>>>>>>> d5ea6e722b41308b19fbc04dd400356807eddb34
            <!-- ./box-body -->
 
 
@@ -119,12 +134,21 @@
 
                                 <thead id="thead11">
                                  <th> Nome</th>
+<<<<<<< HEAD
                                  <th style="width: 15%;"> Função</th>
                                  <th style="width: 20%"> Loja </th>
                                  <th style="width: 10%"> Data</th>
                                  <th style="width: 6%"> Periodo</th>
                                  <th style="width: 10%"> Hora Entrada</th>
                                  <th style="width: 10%"> Hora Saida</th>
+=======
+                                 <th style="width: 15%;"> Função</th> 
+                                 <th style="width: 17%"> Loja </th> 
+                                 <th style="width: 10%"> Data</th>
+                                 <th style="width: 6%"> Periodo</th>
+                                 <th style="width: 10%"> Hora /E</th>
+                                 <th style="width: 10%"> Hora /S</th> 
+>>>>>>> d5ea6e722b41308b19fbc04dd400356807eddb34
                                  <th> Edit &nbsp;|&nbsp; Deleta</th>
                                  </thead>
 
@@ -179,15 +203,15 @@
 
         <div class="col-md-12 modal fade " id="modal_pick"  >
         <div  class="modal-dialog modal-xs">
-        <div id="myModal" class="modal-content " style="margin-top: 110px" >
-         <form action="" id="form" method="post">
+        <div id="myModal" class="modal-content " style="margin-top: 200px" >
             <div class="modal-header label-info">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4><strong>Picagem Para Turno</strong> </h4>
+                <h4><strong>Hora Entrada / Saida</strong> </h4>
                 <input type="hidden" id="id_user_" name="id_cliente" >
             </div>
 
             <div class="modal-body">
+<<<<<<< HEAD
 
             <div class="col-xs-4">
             <div class="form-group">
@@ -215,16 +239,22 @@
             <div class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></div>
             </div>
             </div>
+=======
+            
+            <div class="col-xs-6">
+            <div class="form-group">
+            <label for="antiga">Nome :</label>
+            <input type="text" class="form-control" id="nome_" name="nome_" placeholder="Digita nome completo " disabled>
+            </div> 
+>>>>>>> d5ea6e722b41308b19fbc04dd400356807eddb34
             </div>
-
-            <hr>
 
             <div class="col-xs-3">
             <div class="form-group">
             <label for="dt">Hora Entrada :</label>
             <div class="input-group " >
             <input type="text" class="form-control" name="hora_entrada_" id="hora_entrada_" style="background: #B4F3B4">
-            <div class="input-group-addon"><i class="glyphicon glyphicon-time"></i></div>
+            <div class="input-group-addon"><i class="fa fa-clock-o fa-lg"></i></div>
             </div>
             </div>
             </div>
@@ -234,11 +264,12 @@
             <label for="dt">Hora Saida :</label>
             <div class="input-group " >
             <input type="text" class="form-control" name="hora_saida_" id="hora_saida_" style="background: #F37777">
-            <div class="input-group-addon"><i class="glyphicon glyphicon-time"></i></div>
+            <div class="input-group-addon"><i class="fa fa-clock-o fa-lg"></i></div>
             </div>
             </div>
             </div>
 
+<<<<<<< HEAD
             <div class="col-xs-4">
             <div class="form-group">
             <label for="antiga">Loja :</label>
@@ -270,12 +301,14 @@
             </div>
            </div>
            </fieldset>
+=======
+>>>>>>> d5ea6e722b41308b19fbc04dd400356807eddb34
            </div>
 
             <div class="modal-footer">
-                <button type="submit" id="send" class="btn btn-primary" > Incluir </button>
+                <button  class="btn btn-primary" onclick="picar_hora()"> Pick </button>
                 </div>
-</form>
+
      </div>
      </div>
      </div>

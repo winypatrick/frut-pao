@@ -1,6 +1,6 @@
 //========================================
 //var base='http://192.168.43.50/frut&pao/';
-var base='http://frutapao.cv/';
+var base='http://localhost/frut&pao/';
 //========================================
 //alert('merda');
 function recover() {
@@ -25,7 +25,7 @@ var senha_gerado="frut&pao"+dt.getFullYear()+""+dt.getDate()+""+(dt.getMonth()+1
 
 });
 
-		  $.post(base+'funcionario/recupera_senha',
+		  $.post(base+'funcionario/recupera_senha', 
   {
       parm1:email,
       parm2:senha_gerado,
@@ -33,7 +33,7 @@ var senha_gerado="frut&pao"+dt.getFullYear()+""+dt.getDate()+""+(dt.getMonth()+1
    function(data) {
 
     if(data==true)
-    {
+    {   
     	$('#id_email').val('');
     	$('#modal_log').modal('hide');
       $.unblockUI();
@@ -63,7 +63,7 @@ var senha_gerado="frut&pao"+dt.getFullYear()+""+dt.getDate()+""+(dt.getMonth()+1
 
 
     }
-
+   
 });
  // alert(email);
-	}
+	}	
