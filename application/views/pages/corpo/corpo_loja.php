@@ -123,7 +123,7 @@
 
          </div>
          <div class="col-md-6">
-           <div class="box">
+           <div id="gra" class="box">
              <img src="im.png" width="500"  height="250" alt="">
            </div>
            <table class="table">
@@ -142,7 +142,7 @@
                  <td>Fazenda</td>
                  <td>2</td>
                  <td>30.000</td>
-                 <td><button type="button" class="btn btn-default">Detalhes</button></td>
+                 <td><button type="button" class="btn btn-default" onclick="draw_gra()">Detalhes</button></td>
                </tr>
                <tr>
                  <td>2º</td>
@@ -196,12 +196,32 @@
         <div class="modal-body">
           <form>
             <fieldset class="form-group">
-              <label for="formGroupExampleInput">Example label</label>
+              <label for="formGroupExampleInput">Zona</label>
+              <input type="file" class="form-control" id="formGroupExampleInput" placeholder="Example input">
+            </fieldset>
+            <fieldset class="form-group">
+              <label for="formGroupExampleInput">Zona</label>
               <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input">
             </fieldset>
             <fieldset class="form-group">
-              <label for="formGroupExampleInput2">Another label</label>
+              <label for="formGroupExampleInput2">Rua</label>
               <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
+            </fieldset>
+            <fieldset class="form-group">
+              <label for="formGroupExampleInput2">Data Inaugoração</label>
+              <input type="date" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
+            </fieldset>
+            <fieldset class="form-group">
+              <label for="formGroupExampleInput2">Contacto</label>
+              <input type="number" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
+            </fieldset>
+            <fieldset class="form-group">
+              <label for="formGroupExampleInput2">Estato</label>
+                  <select class="" name="estado">
+                    <option value="1">Activo</option>
+                    <option value="0">Fechado</option>
+                  </select>
+              </optgroup>
             </fieldset>
           </form>
         </div>

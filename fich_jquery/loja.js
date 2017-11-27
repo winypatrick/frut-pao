@@ -3,7 +3,7 @@
 
 
 function insert_loja() {
-  
+
 }
 
 function modal_loja() {
