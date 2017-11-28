@@ -176,21 +176,42 @@ listar_funcionario_diponivel();
 
 //=======================================================[fim_pesauisa]===================================================================
 
-/*===========================================================================List - loja por turno===================================*/
-function lista_turno_loja(){
+/*===========================================================================List - loja por turno e paginacao===================================*/
+function lista_turno_loja(page){
+
+                     var dt= new Date();
+                     var Date_atual_=dt.getDate()+"/"+(dt.getMonth()+1)+"/"+dt.getFullYear();
+                     var time = dt.getHours();
+                    if (time>=6 && time<=14 ) {var periodo_ = 1 ; }
+                    else{ var periodo_ = 2 ; }
 
 
-                   $.post(base+'turno/lista_turno_loja_',
+
+                   $.post(base+'turno/paginacao_/'+page,
                    { }, 
                    function(data) {
 
-                  // alert(data);   //teste de request
-                   var c=JSON.parse(data);
+                   // alert(data);
 
+                   var c=JSON.parse(data);
+                   
+                   $('#pag_link').html(c.pagina_link); 
                    $('#lista_loja_turn').html(''); //isso importante permite que nao repiti nada
 
-                   $.each(c, function(index, val) {
+                   $.each(c.tabela, function(index, val) {
 
+                  if (val.data==Date_atual_ && val.periodo==periodo_) {
+                    $('#lista_loja_turn').append('<div class="col-md-2 hvr-glow" style="text-align: center; font-size:11px; border:2px solid; border-color:#4DE21F; border-left: 0px; border-right: 0px; border-top: 0px; border-radius: 20px; margin-right: 13px; margin-top: 10px; margin-left: 12px">'+
+                   '<img src="http://localhost/frut&pao/fich_compente/turno_.png" style="height:130px; width:100%"  class="img-rounded" alt="curso"> <div class="caption "  style="text-align: center;"> <p><strong>Loja:</strong><span >'+val.loja+'</span></p>'+
+                   '<p><strong>Data:</strong><span >'+val.data+'</span>&nbsp;&nbsp;<strong>Periodo:</strong><span >'+val.periodo+'</span></p>'+
+                   '<p></p>'+
+                  ' <p style="float: left;" > <a class="fa fa-info-circle fa-lg btn text-info  hvr-pop" style="font-size: 17px"></a> </p>'+
+                  ' <p style="float: right;"> <a class="fa fa-book fa-lg btn text-info  hvr-pop text-info" style="font-size: 17px"></a> </p>'+
+                  '</div>'+
+                 '</div>');
+                  }
+
+                  else{
                   $('#lista_loja_turn').append('<div class="col-md-2 hvr-glow" style="text-align: center; font-size:11px; border:2px double; border-color:#161818; border-left: 0px; border-right: 0px; border-top: 0px; border-radius: 20px; margin-right: 13px; margin-top: 10px; margin-left: 12px">'+
                    '<img src="http://localhost/frut&pao/fich_compente/turno_.png" style="height:130px; width:100%"  class="img-rounded" alt="curso"> <div class="caption "  style="text-align: center;"> <p><strong>Loja:</strong><span >'+val.loja+'</span></p>'+
                    '<p><strong>Data:</strong><span >'+val.data+'</span>&nbsp;&nbsp;<strong>Periodo:</strong><span >'+val.periodo+'</span></p>'+
@@ -199,14 +220,23 @@ function lista_turno_loja(){
                   ' <p style="float: right;"> <a class="fa fa-book fa-lg btn text-info  hvr-pop text-info" style="font-size: 17px"></a> </p>'+
                   '</div>'+
                  '</div>');
-                 
+                 }
+
                    });
 
                   });
 
 
 }
-//=================================================================[]=====================================================
+lista_turno_loja(1);
+
+//pagina feito para dar click aqui
+ $(document).on("click", ".pagination li a", function (event){
+event.preventDefault();
+var pagina=$(this).data('ci-pagination-page');
+lista_turno_loja(pagina);
+ });
+//=================================================================[lista com paginacao]=====================================================
 
 
 /*====================================================[pesauisa_Turnos]=================================================*/
@@ -229,6 +259,7 @@ $.ajax({
                if(data==false){
                 $('#lista_loja_turn').html('');
                $('#lista_loja_turn').append('<div class="col-md-12 text-danger" style="text-align: center; margin-top:35px"><h3>Nenhum Turno encontrado  <i class="fa fa-low-vision text-danger" ></i></h3></div>');
+              $('#pag_link').html(' ');
                }
 
                 else{
@@ -236,7 +267,7 @@ $.ajax({
                  var c=JSON.parse(data);
 
                     $.each(c, function(index, val) {
-
+             
                   $('#lista_loja_turn').append('<div class="col-md-2 hvr-glow" style="text-align: center; font-size:11px; border:2px double; border-color:#35CAC1; border-left: 0px; border-right: 0px; border-top: 0px; border-radius: 20px; margin-right: 13px; margin-top: 10px; margin-left: 12px">'+
                    '<img src="http://localhost/frut&pao/fich_compente/turno_.png" style="height:130px; width:100%"  class="img-rounded" alt="curso"> <div class="caption "  style="text-align: center;"> <p><strong>Loja:</strong><span >'+val.loja+'</span></p>'+
                    '<p><strong>Data:</strong><span >'+val.data+'</span>&nbsp;&nbsp;<strong>Periodo:</strong><span >'+val.periodo+'</span></p>'+
@@ -258,7 +289,7 @@ $.ajax({
 
 else{
 $('#lista_loja_turn').html('');  
-lista_turno_loja();
+lista_turno_loja(1);
 }
 
 

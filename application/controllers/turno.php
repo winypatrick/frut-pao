@@ -166,8 +166,10 @@ $pega=$this->turno->lista_turno();
        $r[]= '<span >'.$k->periodo.' °</span>';
        $r[]= '<span >'.$k->hora_entrada.'</span>';
        $r[]= '<span >'.$k->hora_saida.'</span>';
+
       
-if ($id!=$k->id_users) {
+if ($id!=$k->id_users && $k->funcao_=='Assistente') {
+
        $r[]='<a class="fa fa-pencil-square-o btn btn-group  text-warning " onclick="altera_r(\''.$k->id_turno.'\', \''.$k->nome_.'\', \''.$k->hora_entrada.'\', \''.$k->hora_saida.'\')"></a> <a class="fa fa-user-times  btn btn-group text-danger" onclick="deleta_turno(\''.$k->id_turno.'\')"></a>';
       }
 else{
@@ -201,10 +203,69 @@ else{
    /*fim*/
 }
 
+/*  ==================lista de turno loja============*/
 public function lista_turno_loja_(){
-$r=$this->turno->lista_turno_loja_();
+
+$r=$this->turno->lista_turno_loja_($limit, $start);
 echo json_encode($r);
+
 }
+
+/*====================count turn======================*/
+public function counta_all_lista_turno_loja_(){
+
+$r_=$this->turno->counta_all_lista_turno_loja_();
+echo $r_;
+
+}
+
+
+public function paginacao_(){  //aqui e para fazer pagicao
+
+$this->load->library('pagination');
+
+$resq=$this->turno->counta_all_lista_turno_loja_();
+
+
+$config = array();
+$config['base_url'] = '';
+$config['total_rows'] = $resq;
+$config['per_page'] =10;
+$config['uri_segment'] = 3;
+$config['use_page_numbers'] = TRUE;
+$config['full_tag_open'] = ' <ul class="pagination">';
+$config['first_link'] = '<span style="font-weight: bold; font-size: 12px; color: #2ECDC4">Primeira</span>';  
+$config['last_link'] = '<span style="font-weight: bold; font-size: 13px; color: #2ECDC4">Ultima</span>';
+$config['full_tag_close'] = '</ul>';
+$config['first_tag_open'] = '<li>';
+$config['first_tag_close'] = '</li>';
+$config['last_tag_open'] = '<li>';
+$config['last_tag_close'] = '</li>';
+$config['next_link'] = '<span style="font-weight: bold; font-size: 14px; color: #2ECDC4"> &gt; </span>';
+$config['next_tag_open'] = '<li>';
+$config['next_tag_close'] = '</li>';
+$config['prev_link'] = '<span style="font-weight: bold; font-size: 14px; color: #2ECDC4"> &lt; </span>';
+$config['prev_tag_open'] = '<li>';
+$config['prev_tag_close'] = '</li>';
+$config['cur_tag_open'] = ' <li class="active"><a href="#" style="color: #FFFFFF; font-weight: bold;">';
+$config['cur_tag_close'] = ' </a></li>';
+$config['num_tag_open'] = '<li>';
+$config['num_tag_close'] = '</li>';
+$config['num_links'] = 1;
+
+$this->pagination->initialize($config);
+$pagina=$this->uri->segment(3);
+$start= ($pagina-1) * $config['per_page'];
+
+$output = array(
+  'pagina_link' => $this->pagination->create_links(),
+  'tabela' => $this->turno->lista_turno_loja_($config['per_page'], $start)
+);
+echo json_encode($output);
+
+}
+
+
 
 public function pesquisa_turnos_()
   {

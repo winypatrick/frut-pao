@@ -11,7 +11,6 @@ class Model_turno extends CI_Model {
 public function lista_funcionario_diponivel($id_, $data, $periodo){
 
 $this->db->select('*');
-
 $this->db->group_start();
 $this->db->where('funcao!=', 'adim');
 $this->db->where('id_user!=', $id_);
@@ -109,7 +108,8 @@ return $res;
 
 }
 
-public function lista_turno_loja_(){ 
+
+public function lista_turno_loja_($limit, $start){   //para listar por limite
 
 $this->db->select('loja, data, periodo');
 $this->db->group_by('data');
@@ -117,10 +117,26 @@ $this->db->group_by('periodo');
 $this->db->group_by('loja');
 $this->db->order_by('data', 'desc');
 $this->db->order_by('periodo', 'desc');
+$this->db->limit($limit, $start);
 $res=$this->db->get('turno_text')->result();
 return $res;
 
 }
+//para paginacao
+public function counta_all_lista_turno_loja_(){   //countar quantidade de turno diacordo com resultado
+
+$this->db->select('loja, data, periodo');
+$this->db->group_by('data');
+$this->db->group_by('periodo');
+$this->db->group_by('loja');
+$this->db->order_by('data', 'desc');
+$this->db->order_by('periodo', 'desc');
+//$respp=$this->db->count_all('turno_text');  isso e pra contar todos 
+$respp=$this->db->count_all_results('turno_text');  //isso e pra countar resultados
+
+return $respp;
+}
+
 
 public function pesquisa_turnos_($filtro_){
 
