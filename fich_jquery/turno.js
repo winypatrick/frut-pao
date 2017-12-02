@@ -101,9 +101,7 @@ function listar_funcionario_diponivel(){
 
                   $('#list_funcionarios_disponivel').append('<div class="col-md-2 hvr-grow" style="text-align: center; font-size:10px"><img src="http://localhost/frut&pao/fich_compente/winy.png" style="height:108px; width:70%"  class="img-rounded" alt="curso"><div class="caption"  style="text-align: center;"><strong>Nome:</strong> <span >'+nome+'</span><br><strong>Função:</strong> <span >'+val.funcao+'</span><br>  <p style="float: left;" > <a class="fa fa-eye btn" ></a></p>    <p style="float: right;"> <a class="fa fa-user-plus btn text-success hvr-pop" onclick="pick_turno(\''+val.id_user+'\', \''+val.nome+'\', \''+val.funcao+'\')"></a></p></div></div>');
                  
-               
-             
-
+              
                    });
 
                   });
@@ -180,7 +178,17 @@ listar_funcionario_diponivel();
 function lista_turno_loja(page){
 
                      var dt= new Date();
-                     var Date_atual_=dt.getDate()+"/"+(dt.getMonth()+1)+"/"+dt.getFullYear();
+                    
+                    if (dt.getDate()<10)
+                     {
+                       var format_dia='0'+dt.getDate();
+                     } 
+                     else {
+                       var format_dia=dt.getDate();
+                     }
+
+
+                     var Date_atual_=format_dia+"/"+(dt.getMonth()+1)+"/"+dt.getFullYear();
                      var time = dt.getHours();
                     if (time>=6 && time<=14 ) {var periodo_ = 1 ; }
                     else{ var periodo_ = 2 ; }
@@ -205,7 +213,7 @@ function lista_turno_loja(page){
                    '<img src="http://localhost/frut&pao/fich_compente/turno_.png" style="height:130px; width:100%"  class="img-rounded" alt="curso"> <div class="caption "  style="text-align: center;"> <p><strong>Loja:</strong><span >'+val.loja+'</span></p>'+
                    '<p><strong>Data:</strong><span >'+val.data+'</span>&nbsp;&nbsp;<strong>Periodo:</strong><span >'+val.periodo+'</span></p>'+
                    '<p></p>'+
-                  ' <p style="float: left;" > <a class="fa fa-info-circle fa-lg btn text-info  hvr-pop" style="font-size: 17px"></a> </p>'+
+                  ' <p style="float: left;" > <a class="fa fa-info-circle fa-lg btn text-info  hvr-pop" style="font-size: 17px" onclick="info_turno(\''+val.loja+'\', \''+val.data+'\', \''+val.periodo+'\')"></a> </p>'+
                   ' <p style="float: right;"> <a class="fa fa-book fa-lg btn text-info  hvr-pop text-info" style="font-size: 17px"></a> </p>'+
                   '</div>'+
                  '</div>');
@@ -216,7 +224,7 @@ function lista_turno_loja(page){
                    '<img src="http://localhost/frut&pao/fich_compente/turno_.png" style="height:130px; width:100%"  class="img-rounded" alt="curso"> <div class="caption "  style="text-align: center;"> <p><strong>Loja:</strong><span >'+val.loja+'</span></p>'+
                    '<p><strong>Data:</strong><span >'+val.data+'</span>&nbsp;&nbsp;<strong>Periodo:</strong><span >'+val.periodo+'</span></p>'+
                    '<p></p>'+
-                  ' <p style="float: left;" > <a class="fa fa-info-circle fa-lg btn text-info  hvr-pop" style="font-size: 17px"></a> </p>'+
+                  ' <p style="float: left;" > <a class="fa fa-info-circle fa-lg btn text-info  hvr-pop" style="font-size: 17px" onclick="info_turno(\''+val.loja+'\', \''+val.data+'\', \''+val.periodo+'\')"></a> </p>'+
                   ' <p style="float: right;"> <a class="fa fa-book fa-lg btn text-info  hvr-pop text-info" style="font-size: 17px"></a> </p>'+
                   '</div>'+
                  '</div>');
@@ -272,7 +280,7 @@ $.ajax({
                    '<img src="http://localhost/frut&pao/fich_compente/turno_.png" style="height:130px; width:100%"  class="img-rounded" alt="curso"> <div class="caption "  style="text-align: center;"> <p><strong>Loja:</strong><span >'+val.loja+'</span></p>'+
                    '<p><strong>Data:</strong><span >'+val.data+'</span>&nbsp;&nbsp;<strong>Periodo:</strong><span >'+val.periodo+'</span></p>'+
                    '<p></p>'+
-                  ' <p style="float: left;" > <a class="fa fa-info-circle fa-lg btn text-info  hvr-pop" style="font-size: 17px"></a> </p>'+
+                  ' <p style="float: left;" > <a class="fa fa-info-circle fa-lg btn text-info  hvr-pop" style="font-size: 17px" onclick="info_turno(\''+val.loja+'\', \''+val.data+'\', \''+val.periodo+'\')"></a> </p>'+
                   ' <p style="float: right;"> <a class="fa fa-book fa-lg btn text-info  hvr-pop text-info" style="font-size: 17px"></a> </p>'+
                   '</div>'+
                  '</div>');
@@ -298,6 +306,37 @@ lista_turno_loja(1);
 }
 
 //=======================================================[fim_pesauisa]===================================================================
+
+
+/*===============================================[info turno]===========================================================*/
+function info_turno(loja, data, periodo){
+  //alert('sinalizador');
+   $('#titulo_info_turno').html(+periodo+'° Turno &nbsp;&nbsp;'+loja+'&nbsp;&nbsp;'+data);
+  
+  $.ajax({
+                 url: base+'turno/info_turno',
+                 type: 'POST',
+                 data:{'loja': loja, 'data': data, 'periodo': periodo},
+
+                 success: function (data_){
+             
+                  $('#adiciona_funcionario').html('');
+                   var c=JSON.parse(data_);
+                   
+                    $.each(c.data, function(index, val) {
+                   //alert(val);// sinalizador
+                   $('#adiciona_funcionario').append(val);
+
+                    });
+
+              }
+
+       
+   });
+
+   $('#modal_info_turno').modal('show');
+}
+/*===============================================[info turno]===========================================================*/
 
 
 /*===========================================================================Data-table===================================*/
@@ -383,7 +422,15 @@ error: function(){
 
 var loja='Fazenda';
 
-var Data_atual=dt.getDate()+"/"+(dt.getMonth()+1)+"/"+dt.getFullYear();
+ if (dt.getDate()<10)
+                     {
+                       var format_dia='0'+dt.getDate();
+                     } 
+                     else {
+                       var format_dia=dt.getDate();
+                     }
+
+var Data_atual=format_dia+"/"+(dt.getMonth()+1)+"/"+dt.getFullYear();
 
 
 var time = dt.getHours();
@@ -422,6 +469,7 @@ var periodo = 2 ;
                         showConfirmButton:false,
                         });
                        listar_funcionario_diponivel();
+                       lista_turno_loja(1);
                        tabela_turno.ajax.reload();
 
 
@@ -578,34 +626,31 @@ function modal_turno(){
 
 function logo_inicio_turno(){
 
-
-
    $.ajax({
                  url: base+'turno/pega_info_logado',
                  type: 'POST',
                  success: function (pacote){
                // alert(pacote);
-                 var c=JSON.parse(pacote);
-                 $.each(c, function(index, val) {
-               // alert(val.funcao);
-               if (val.funcao!='adim') {
+                var c=JSON.parse(pacote);
+            
+               if (c.resposta==true) {
                     $('#modal_turno').modal('show');
+                 
+                    $.each(c.dados_user, function(index, val) {
                     pick_turno(val.id, val.nome);
+                    });
+
+
+                   
                 }
                 else{
                  
-                }
-                 
-                 
-                   });
-
-
-             
-                     }
+                    }
+                
+                   }
 
    });
 
-     //  pick_turno(id_, nome, funcao);
-      //alert(pacote);
+   
 
 }

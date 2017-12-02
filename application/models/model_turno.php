@@ -7,10 +7,42 @@ class Model_turno extends CI_Model {
 		parent::__construct();
 }	
 
+public function verificar_id_ocupado_recente($data_, $periodo_){
+
+/*===============================================[ contruind meu array de id de pessoas que ta na dia atual de ]==========================*/
+$this->db->select('id_users');
+$this->db->distinct();
+$this->db->where('data', $data_);
+$this->db->where('periodo', $periodo_);
+$res_p_=$this->db->get('turno_text')->result();
+
+if ($res_p_) {
+
+$b = array();  
+foreach( $res_p_ as $a) {  //aqui pra formar nosso que da inicio a formacao do nosso array 
+   $b[] = $a->id_users; //formando ...
+}
+/*==============================================[fim de ]==================================*/
+return $b;
+
+}
+
+else
+{
+return null;
+}
+
+}
+
 
 public function lista_funcionario_diponivel($id_, $data, $periodo){
 
-$this->db->select('*');
+//$names = array(6, 5);
+$id_busy=$this->verificar_id_ocupado_recente($data, $periodo);
+
+
+$this->db->select('id_user, nome, funcao');
+$this->db->distinct();  //isso dai pra permitir nao repiticao de nome e outros
 $this->db->group_start();
 $this->db->where('funcao!=', 'adim');
 $this->db->where('id_user!=', $id_);
@@ -26,27 +58,74 @@ $this->db->group_end();
 
 $this->db->group_end();
 
-$this->db->join('turno_text', 'id_user=id_users', 'left');
+ if ($id_busy!=null) {
+   $this->db->where_not_in('id_user', $id_busy); //e pra lista menos id pegado em sima que verificamos que dia de hoje
+ }
+   
 
+$this->db->join('turno_text', 'id_user=id_users', 'left');
 $res=$this->db->get('funcionario_text')->result();
 
 return $res;
 
 }
 
-public function pesquisa_filtro($filtro){
+
+public function pesquisa_filtro($filtro, $id, $data, $periodo){
+
+$id_busy=$this->verificar_id_ocupado_recente($data, $periodo);
 
 $this->db->select('*');
-$this->db->like('nome', $filtro);
+$this->db->group_start();
+$this->db->where('funcao!=', 'adim');
+$this->db->where('id_user!=', $id);
+$this->db->group_start();
+$this->db->where('data!=', $data);
+$this->db->or_where('data', $data);
+$this->db->where('periodo!=', $periodo);
 
+$this->db->or_where('data', null);
+$this->db->or_where('periodo', null);
+
+$this->db->group_end();
+
+$this->db->like('nome', $filtro);
 $this->db->not_like('funcao', 'adim');
 $this->db->or_like('funcao', $filtro);
-
 $this->db->where('funcao!=', 'adim');
+
+$this->db->group_end();
+
+ if ($id_busy!=null) {
+   $this->db->where_not_in('id_user', $id_busy); //e pra lista menos id pegado em sima que verificamos que dia de hoje
+ }
+
+$this->db->join('turno_text', 'id_user=id_users', 'left');
+
 $res=$this->db->get('funcionario_text')->result();
+
 return $res;
 
   }
+
+public function funcionario_y_n_turno($data, $periodo, $id){
+
+$this->db->select('*');
+$this->db->where('id_users', $id);
+$this->db->where('data', $data);
+$this->db->where('periodo', $periodo);
+
+$res=$this->db->get('turno_text')->result();
+
+if ($res) {
+ return true;
+} 
+else {
+  return false;
+}
+
+}
+
 
 
 public function criar_turno($date, $verificar){
@@ -108,6 +187,17 @@ return $res;
 
 }
 
+public function info_turno($data){
+
+$this->db->select('*');
+$this->db->where($data);
+$this->db->join('funcionario_text', 'id_user=id_users', 'left');
+$this->db->order_by('funcao', 'desc');
+$res=$this->db->get('turno_text')->result();
+
+return $res;
+}
+
 
 public function lista_turno_loja_($limit, $start){   //para listar por limite
 
@@ -116,12 +206,13 @@ $this->db->group_by('data');
 $this->db->group_by('periodo');
 $this->db->group_by('loja');
 $this->db->order_by('data', 'desc');
-$this->db->order_by('periodo', 'desc');
+$this->db->order_by('periodo', 'asc');
 $this->db->limit($limit, $start);
 $res=$this->db->get('turno_text')->result();
 return $res;
 
 }
+
 //para paginacao
 public function counta_all_lista_turno_loja_(){   //countar quantidade de turno diacordo com resultado
 

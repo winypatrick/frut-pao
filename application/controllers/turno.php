@@ -15,8 +15,9 @@ class Turno extends CI_Controller {
 		
 	}
 
-	public function lista_funcionario_diponivel()
-	{
+
+public function lista_funcionario_diponivel()
+{
 
 date_default_timezone_set('Atlantic/Cape_Verde'); 
 
@@ -42,8 +43,16 @@ $periodo = 2 ;
 
   public function pesquisa_filtro()
   {
-$filtro=$this->input->post('campo_pesquisa');    
-$pega=$this->turno->pesquisa_filtro($filtro);
+date_default_timezone_set('Atlantic/Cape_Verde'); 
+$id=$this->session->userdata('userr_id');
+$data=date('d/m/Y');
+$time=date('H') ;
+
+if ($time>=6 && $time<=14 ) {$periodo = 1 ;}
+else{$periodo = 2 ; }    
+$filtro=$this->input->post('campo_pesquisa'); 
+
+$pega=$this->turno->pesquisa_filtro($filtro, $id, $data, $periodo);
 if ($pega) {
  echo json_encode($pega);
 }
@@ -186,21 +195,105 @@ else{
 
 }
 
+public function info_turno(){
+
+$data['loja']=$this->input->post('loja');
+$data['data']=$this->input->post('data');
+$data['periodo']=$this->input->post('periodo');
+
+$pacote = array('loja'=>$data['loja'], 'data'=>$data['data'], 'periodo'=>$data['periodo']);
+
+ $retorno=$this->turno->info_turno($pacote);
+
+ foreach ($retorno as $k) {
+
+  $r= array();
+
+//particiona nome
+  $nome_p=explode(" ", $k->nome); 
+   if (count($nome_p)>1) {
+           $name=$nome_p[0].' '.$nome_p[1] ;
+    }
+           
+  else {
+           $name=$nome_p[0];
+   }
+   //fim de partitiona nome
+ 
+ if ($k->funcao_=='Responsavel') {
+
+  $r[]='<div class="col-md-4 "><div class="box " style="border-radius: 4px">'.
+'<div class="box-header with-border label-danger">'.
+'<span class="box-title" style="font-size: 12px">'.$name.' <strong>(R)</strong>'.'</span>'.
+'<div class="box-tools pull-right"><button type="button" class="btn btn-box-tool" data-toggle="collapse" data-target="#'.$k->id_users.'">'.
+'<i class="fa fa-angle-double-down fa-lg hvr-hang"></i></button></div></div><div class="box-body collapse label-default" id="'.$k->id_users.'" >'.
+'<p><span><strong> Hora /E:</strong>'.$k->hora_entrada.'</span></p> <p><span><strong> Hora /S:</strong>'.$k->hora_saida.'</span></p> </div></div></div>';
+ } 
+
+ else {
+
+  $r[]='<div class="col-md-4 "><div class="box " style="border-radius: 4px">'.
+'<div class="box-header with-border label-default">'.
+'<span class="box-title" style="font-size: 12px">'.$name.' <strong>(A)</strong>'.'</span>'.
+'<div class="box-tools pull-right"><button type="button" class="btn btn-box-tool" data-toggle="collapse" data-target="#'.$k->id_users.'">'.
+'<i class="fa fa-angle-double-down fa-lg hvr-hang"></i></button></div></div><div class="box-body collapse label-default" id="'.$k->id_users.'">'.
+'<p><span><strong> Hora /E:</strong>'.$k->hora_entrada.'</span></p> <p><span><strong> Hora /S:</strong>'.$k->hora_saida.'</span></p>  </div></div></div>';
+  
+ }
+ 
+
+  
+
+
+       $dados []=$r;
+      
+     }
+
+ $output = array('data' => $dados); 
+
+ echo json_encode($output);
+
+}
 
  public function pega_info_logado()  //pega id_user loagdo
 {
+ date_default_timezone_set('Atlantic/Cape_Verde'); 
+
+$data=date('d/m/Y');
+$time=date('H') ;
+if ($time>=6 && $time<=14 ) { $periodo = 1 ; }
+else{ $periodo = 2 ;  }
+
     $id=$this->session->userdata('userr_id');
     $nome=$this->session->userdata('_nome');
     $funcao=$this->session->userdata('_funcao');
 
-/*passos para formar seu json esto e importante */
-   $output = array('id' => $id, 'nome' => $nome, 'funcao'=>$funcao); 
+ $formar_dados= array('id' => $id, 'nome' => $nome, 'funcao'=>$funcao);   
+ $pega_user_log = array('data'=>$formar_dados);
 
-   $outputt = array('data'=>$output);  //poi sena em json
+if ($funcao=='adim') {
+   $echo=false;
+ }
 
-   echo json_encode($outputt);
+ else{
 
-   /*fim*/
+ $retorno=$this->turno->funcionario_y_n_turno($data, $periodo, $id);
+
+ if ($retorno==true) {
+    $echo=false;
+ } 
+ else {
+      $echo=true;
+ }
+
+     }
+
+ $output = array(
+  'resposta' => $echo, 
+  'dados_user' => $pega_user_log
+);
+echo json_encode($output);    
+
 }
 
 /*  ==================lista de turno loja============*/

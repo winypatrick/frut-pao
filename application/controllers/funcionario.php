@@ -169,8 +169,8 @@ public function lista_funcionario(){
 }
 
 public function deletar_funcionario(){
-
- $pega=$this->funcionario->deletar_funcionario();
+ $id_user=$this->input->post('parm1');
+ $pega=$this->funcionario->deletar_funcionario($id_user);
 
  if ($pega) {
    echo true;

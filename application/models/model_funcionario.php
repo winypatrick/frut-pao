@@ -48,9 +48,8 @@ return $res;
 }
 
 
-public function deletar_funcionario(){
+public function deletar_funcionario($id_user){
 
- $id_user=$this->input->post('parm1');
  $this->db->where('id_user', $id_user);
  return  $this->db->delete('funcionario_text');
 

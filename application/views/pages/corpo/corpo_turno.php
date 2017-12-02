@@ -245,17 +245,55 @@
      </div>
 <!-- ====================================================[ end modal truno]================================================= -->
 
+
+
+<!-- ====================================================[ modal informacao turno antigas ]============================================= -->
+        <div class="col-md-12 modal fade " id="modal_info_turno"  >
+        <div  class="modal-dialog modal-xs " style="margin-top:60px; border-radius: 9px; border: solid; border-color: #BBE8EB" >
+          <div id="modal_info_turno" class="modal-content" >
+
+   
+          <div class="box">
+            <div class="box-header with-border label-info">
+              <span class="box-title" style="font-size: 15px; font-weight: bold; " id="titulo_info_turno"></span>
+
+              <div class="box-tools pull-right" >
+
+            <button type="button " class="close" data-dismiss="modal">&times;</button>
+
+            </div>
+
+            </div>
+            
+            <div id="adiciona_funcionario" class="box-body" style="height: 160px;  ">
+
+
+            </div>
+
+        </div>
+
+
+            <div class="modal-footer"> 
+           
+               </div> 
+
+     </div>
+     </div>
+     </div>
+<!-- ====================================================[ end modal informacao de turno]================================================ -->
+
+
      <div class="col-sm-12">
  <!--  ******************************************* modal_ cliente ********************************************* -->
 
         <div class="col-md-12 modal fade " id="modal_pick"  >
         <div  class="modal-dialog modal-xs">
-        <div id="myModal" class="modal-content " style="margin-top: 200px" >
-            <div class="modal-header label-info">
+        <div id="myModal" class="modal-content hvr-wobble-skew" style="margin-top: 200px" >
+        <div class="modal-header label-info">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4><strong>Hora Entrada / Saida</strong> </h4>
                 <input type="hidden" id="id_user_" name="id_cliente" >
-            </div>
+        </div>
 
             <div class="modal-body">
             
