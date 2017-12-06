@@ -1,108 +1,134 @@
-<style media="screen">
-.afasta {
-  margin-left: 5%;
-}
-.longe {
-  margin-left: 10%;
-}
- 
-</style> 
 
-<script type="text/javascript" src="<?php echo base_url();?>/fich_jquery/loja.js"></script>
+
+<script type="text/javascript" src="<?php base_url();?>/fich_jquery/loja_info.js"></script>
 <section class="content-header">
   <ol class="breadcrumb">
     <li><a href="<?= base_url();?>funcionario"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li class="active">Loja</li>
-  </ol>
+    
+  </ol> 
   
 </section>
-<br>
-<br>
-<div class="container-fluid">
+<br><br>
+<div class="container">
   <div class="row">
-   <div class="col-md-12">
-   <div class="box">
-     <div class="box-header with-border ">
-       <a type="button" id="add" class="fa fa-plus-circle btn btn-info btn-xs" >Criar Loja </a>
-       <div class="box-tools pull-right" >
-       </div>
-     </div> 
-     <!-- box body -->
-     <div id=" " class="box-body" style="">
-       <div class="row ">
-         <div class="col-md-6">
-
-           <div class="box">
-             <table class="table table-striped table-condensed " id="tab11">
-               <thead>
-                 <tr>
-                   <th>Zona</th>
-                   <th>Endereço</th>
-                   <th>Contacto</th>
-                   <th>Ver</th>
-                   <th>Ir para</th>
-                 </tr>
-               </thead>
-               <tbody><!-- aqui sera prenxido pelo controler com ajax -->
-
-
-               </tbody>
-             </table>
-           </div>
-
-
-         </div>
-         <div class="col-md-6">
-           <div id="gra" class="box">
-             <img src="im.png" width="500"  height="250" alt="">
-           </div>
-           <table class="table">
-             <thead>
-               <tr>
-                 <th>Ranking</th>
-                 <th>Zona</th>
-                 <th>Relatorios novos</th>
-                 <th>Caixa</th>
-                 <th>Ver</th>
-               </tr>
-             </thead>
-             <tbody>
-               <tr>
-                 <td>1º</td>
-                 <td>Fazenda</td>
-                 <td>2</td>
-                 <td>30.000</td>
-                 <td><button type="button" class="btn btn-default" onclick="draw_graphic()">Detalhes</button></td>
-               </tr>
-               <tr>
-                 <td>2º</td>
-                 <td>Achada S. Antonio</td>
-                 <td>2</td>
-                 <td>22.000</td>
-                 <td><button type="button" class="btn btn-default" >Detalhes</button></td>
-               </tr>
-               <tr>
-                 <td>3º</td>
-                 <td>São Domingos</td>
-                 <td>2</td>
-                 <td>18.000</td>
-                 <td><button type="button" class="btn btn-default">Detalhes</button></td>
-               </tr>
-             </tbody>
-           </table>
-         </div>
-       </div>
-     </div>
-       <div class="box-footer">
-         
-       </div>
+    <div class="col-md-1 btn-primary"></div>
+    <div class="col-md-10">
+      <div class="box">
+       <div class="box-header with-border">
+      <button class="btn btn-primary">Avaliar</button>
+      <div class="box-tools pull-right" >
+        <button id="edit_info" class="btn btn-primary"><i class="fa fa-edit"></i></button>
+        <button class="btn btn-primary"><i class="fa fa-gear"></i></button>
+      </div> 
+    </div>
+    <div class="box-body">
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-2"><img src="<?= base_url();?>/fich_compente/user.png" width="150" ></div>
+        <div class="col-md-3">
+           <ul id="list" class="list-unstyled ">
+            
+           </ul>
+        </div>        
       </div>
+       <!-- inicio -->
+      <br><br>
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+          
+
+
+          <div class="box">
+              <div class="box-header">
+                Mais Informações
+              </div>
+              <div class="box-body">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody id="list2">
+                   
+                   
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+      </div>
+      <!-- fim -->
+       <!-- inicio -->
+      <br><br>
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+          
+
+
+          <div class="box">
+              <div class="box-header">
+                Ultimos Turnos
+              </div>
+              <div class="box-body">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Data</th>
+                      <th>Responsavel</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th>1-2-1222</th>
+                      <th>Ailton Mendes duarte</th>
+                    </tr>
+                    <tr>
+                      <th>1-2-1222</th>
+                     <th>Ailton Mendes duarte</th>
+                    </tr>
+                    <tr>
+                      <th>1-2-1222</th>
+                     <th>abd paulista</th>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+      </div>
+      <!-- fim -->
+       <!-- inicio -->
+      <br><br>
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+          
+
+
+          <div class="box">
+              <div class="box-header">
+                Avaliação
+              </div>
+              <div class="box-body">
+                
+              </div>
+            </div>
+          </div>
+      </div>
+      <!-- fim -->
+    </div>
+    </div>
     </div>
   </div>
 </div>
 
-  <!-- Inicio do modal criar nova loja -->
-  <div class="modal fade" id="modal_loja">
+<!-- Inicio do modal criar nova loja -->
+  <div class="modal fade" id="modal_loja_info">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header btn-primary">
