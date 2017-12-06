@@ -1,5 +1,5 @@
 //========================================
-//var base='http://192.168.43.50/frut&pao/';
+//var base='http://192.168.1.86/frut&pao/';
 var base='http://localhost/frut&pao/';
 //========================================
 
@@ -350,7 +350,7 @@ function ir_para(controller){
 //setar funcionario
 function set_funcionario(id , bi, nif, dt_nasc, sexo, data_ini, data_fin, desb){
 
-
+  
    $('#detalh').hide(); //vem ocultado campo descricao de deta
    $('#icon').removeClass('fa fa-chevron-circle-up'); 
    $('#icon').addClass('fa fa-chevron-circle-down');
@@ -360,10 +360,10 @@ function set_funcionario(id , bi, nif, dt_nasc, sexo, data_ini, data_fin, desb){
  $('#nb').html(bi);
  $('#dn').html(dt_nasc);
   $('#nn').html(nif);
-  if (sexo='m') {
+  if (sexo='M') {
     $('#sx').html('Masculino');
   }
-   if (sexo='f') {
+   if (sexo='F') {
     $('#sx').html('Feminina');
   }
     $('#di').html(data_ini);

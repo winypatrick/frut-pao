@@ -1,5 +1,5 @@
 //========================================
-//var base='http://192.168.43.50/frut&pao/';
+//var base='http://192.168.1.86/frut&pao/';
 var base='http://localhost/frut&pao/';
 //====================================================[Arranque]===============================================================
 
@@ -193,8 +193,6 @@ function lista_turno_loja(page){
                     if (time>=6 && time<=14 ) {var periodo_ = 1 ; }
                     else{ var periodo_ = 2 ; }
 
-
-
                    $.post(base+'turno/paginacao_/'+page,
                    { }, 
                    function(data) {
@@ -208,27 +206,32 @@ function lista_turno_loja(page){
 
                    $.each(c.tabela, function(index, val) {
 
-                  if (val.data==Date_atual_ && val.periodo==periodo_) {
+                  if (val.data==Date_atual_ && val.periodo==periodo_ ) {
                     $('#lista_loja_turn').append('<div class="col-md-2 hvr-glow" style="text-align: center; font-size:11px; border:2px solid; border-color:#4DE21F; border-left: 0px; border-right: 0px; border-top: 0px; border-radius: 20px; margin-right: 13px; margin-top: 10px; margin-left: 12px">'+
                    '<img src="http://localhost/frut&pao/fich_compente/turno_.png" style="height:130px; width:100%"  class="img-rounded" alt="curso"> <div class="caption "  style="text-align: center;"> <p><strong>Loja:</strong><span >'+val.loja+'</span></p>'+
                    '<p><strong>Data:</strong><span >'+val.data+'</span>&nbsp;&nbsp;<strong>Periodo:</strong><span >'+val.periodo+'</span></p>'+
-                   '<p></p>'+
-                  ' <p style="float: left;" > <a class="fa fa-info-circle fa-lg btn text-info  hvr-pop" style="font-size: 17px" onclick="info_turno(\''+val.loja+'\', \''+val.data+'\', \''+val.periodo+'\')"></a> </p>'+
+                   ''+
+                  ' <p style="float: left;" > <a class="fa fa-info-circle fa-lg btn text-info  hvr-pop" style="font-size: 17px" onclick="modal_turno(\''+val.loja+'\')"></a> </p>'+
                   ' <p style="float: right;"> <a class="fa fa-book fa-lg btn text-info  hvr-pop text-info" style="font-size: 17px"></a> </p>'+
                   '</div>'+
                  '</div>');
                   }
 
-                  else{
+                
+               else{
+
                   $('#lista_loja_turn').append('<div class="col-md-2 hvr-glow" style="text-align: center; font-size:11px; border:2px double; border-color:#161818; border-left: 0px; border-right: 0px; border-top: 0px; border-radius: 20px; margin-right: 13px; margin-top: 10px; margin-left: 12px">'+
                    '<img src="http://localhost/frut&pao/fich_compente/turno_.png" style="height:130px; width:100%"  class="img-rounded" alt="curso"> <div class="caption "  style="text-align: center;"> <p><strong>Loja:</strong><span >'+val.loja+'</span></p>'+
                    '<p><strong>Data:</strong><span >'+val.data+'</span>&nbsp;&nbsp;<strong>Periodo:</strong><span >'+val.periodo+'</span></p>'+
-                   '<p></p>'+
-                  ' <p style="float: left;" > <a class="fa fa-info-circle fa-lg btn text-info  hvr-pop" style="font-size: 17px" onclick="info_turno(\''+val.loja+'\', \''+val.data+'\', \''+val.periodo+'\')"></a> </p>'+
-                  ' <p style="float: right;"> <a class="fa fa-book fa-lg btn text-info  hvr-pop text-info" style="font-size: 17px"></a> </p>'+
+                   ''+
+                  ' <p style="float: left" > <a class="fa fa-info-circle fa-lg btn text-info  hvr-pop" style="font-size: 17px" onclick="info_turno(\''+val.loja+'\', \''+val.data+'\', \''+val.periodo+'\')"></a> </p>'+
+                  ' <p style="float: right"> <a class="fa fa-book fa-lg btn text-info  hvr-pop text-info" style="font-size: 17px"></a> </p>'+
                   '</div>'+
                  '</div>');
-                 }
+
+               }
+
+               
 
                    });
 
@@ -460,6 +463,7 @@ var periodo = 2 ;
               
                    if (data==true ) {
 
+
                    $('#modal_pick').modal('hide');
                        swal({
                         title:"",
@@ -495,6 +499,7 @@ var periodo = 2 ;
               }
 
               else{
+                
                /*  swal({
                         title:"",
                         text:"Funcionario ja Contem um Turno!",
@@ -617,9 +622,10 @@ var hora_saida=$('#hora_saida_').val();
 
 /*   ================================================pick=================================================*/
 
-function modal_turno(){
+function modal_turno(){   //aqui vou verificar se ele responsavel ou nao
 
- $('#modal_turno').modal('show');
+
+$('#modal_turno').modal('show');
 
 }
 
@@ -635,13 +641,11 @@ function logo_inicio_turno(){
             
                if (c.resposta==true) {
                     $('#modal_turno').modal('show');
-                 
+
                     $.each(c.dados_user, function(index, val) {
                     pick_turno(val.id, val.nome);
                     });
 
-
-                   
                 }
                 else{
                  

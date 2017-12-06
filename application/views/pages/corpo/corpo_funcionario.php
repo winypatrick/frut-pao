@@ -273,8 +273,8 @@
             <label for="nova">Sexo :</label>
             <select id="selecao" class="form-control" name="selecao" >
                 <option value="1" selected="selected" disabled>Escolhe um</option>
-                <option value="m" class="fa fa-mars">Masculino</option>
-                <option value="f" class="fa fa-venus">Feminino</option>
+                <option value="M" class="fa fa-mars">Masculino</option>
+                <option value="F" class="fa fa-venus">Feminino</option>
             </select>
             </div> 
             </div>

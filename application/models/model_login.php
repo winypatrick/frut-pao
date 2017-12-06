@@ -14,7 +14,7 @@ $this->db->select('*');
 $this->db->where('email', $user);
 $this->db->where('senha', $senha);
 $this->db->where('funcao!=', 'Assistente');
-$result = $this->db->get('funcionario_text')->result();
+$result = $this->db->get('funcionario')->result();
 
 /*$id_ = $result[0]->id_user;
 $nome_=$result[0]->nome;

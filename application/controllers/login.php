@@ -39,7 +39,8 @@ public function acesso(){
    $this->form_validation->set_rules('email', 'email', 'required');  //define regras 
    $this->form_validation->set_rules('password', 'password', 'required'); //define regras
 
-  if ($this->form_validation->run() ==true) {
+
+ if ($this->form_validation->run() ==true) {
 
 
  $user=$this->input->post('email');
@@ -58,26 +59,18 @@ public function acesso(){
                   '_email' => $id_user[0]->email,
                   '_funcao' => $id_user[0]->funcao));
 
-      /*$pegado=$this->session->userdata('userr_nome'); 
-      echo $pegado;*/
   
       redirect('funcionario');
 
-      /*teste
-      echo $id_user[0]->id_user;
-      echo $id_user[0]->nome;*/
     }
 
     else{
 
       $this->session->set_flashdata('logado_no', true); 
-
-      //$this->load->view('pages/login'); 
      redirect('login/1');
-     // echo 'merda'; 
     }
 
-    //echo $user;
+
 
   }
 }

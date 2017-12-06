@@ -146,9 +146,9 @@
     <!-- Logo -->
     <a href="<?= base_url();?>funcionario" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>F</b>&P</span>
+      <span class="logo-mini"><b>F</b><span style="color: #0A0909">&</span>P</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Frut&</b>Pã<span style="font-size: 16px" class="fa fa-cog fa-spin "></span ></span> 
+      <span class="logo-lg"><b>Frut<span style="color: #0A0909">&</span></b>Pã<span style="font-size: 16px; " class="fa fa-cog fa-spin"></span ></span> 
     </a>
 
     <!-- Header Navbar: style can be found in header.less -->

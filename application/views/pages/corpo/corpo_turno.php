@@ -86,9 +86,13 @@
 
               <!-- <a type="button" id="add" class="fa fa-plus-circle btn btn-info btn-xs" style="" onclick="modal_turno()"> Novo Turno </a> -->
               <!-- ou -->
-              <a type="button" id="add" class="btn btn-info btn-sm" style="" onclick="modal_turno()">
-              <i class="fa fa-plus-circle fa-lg"></i> Novo Turno</a>
+           <!--    <a type="button" id="add" class="btn btn-info btn-sm" style="" onclick="modal_turno()">
+           <i class="fa fa-plus-circle fa-lg"></i> Novo Turno</a> -->
+              <a type="button" id="add" class="btn btn-sm active" style="" >
+              <i class=" fa fa fa-table fa-lg label-info"></i></a>
 
+               <span type="button" id="add" class="btn btn-sm" style="" >
+              <i class=" fa fa-list fa-lg label-info"></i></span>
 
               <div class="box-tools pull-right" >
 
@@ -379,4 +383,3 @@
     <!-- /.content -->
 
 
- 

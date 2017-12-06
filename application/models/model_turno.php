@@ -10,17 +10,17 @@ class Model_turno extends CI_Model {
 public function verificar_id_ocupado_recente($data_, $periodo_){
 
 /*===============================================[ contruind meu array de id de pessoas que ta na dia atual de ]==========================*/
-$this->db->select('id_users');
+$this->db->select('id_funcionario');
 $this->db->distinct();
 $this->db->where('data', $data_);
 $this->db->where('periodo', $periodo_);
-$res_p_=$this->db->get('turno_text')->result();
+$res_p_=$this->db->get('turno')->result();
 
 if ($res_p_) {
 
 $b = array();  
 foreach( $res_p_ as $a) {  //aqui pra formar nosso que da inicio a formacao do nosso array 
-   $b[] = $a->id_users; //formando ...
+   $b[] = $a->id_funcionario; //formando ...
 }
 /*==============================================[fim de ]==================================*/
 return $b;
@@ -63,8 +63,8 @@ $this->db->group_end();
  }
    
 
-$this->db->join('turno_text', 'id_user=id_users', 'left');
-$res=$this->db->get('funcionario_text')->result();
+$this->db->join('turno', 'id_user=id_funcionario', 'left');
+$res=$this->db->get('funcionario')->result();
 
 return $res;
 
@@ -100,9 +100,9 @@ $this->db->group_end();
    $this->db->where_not_in('id_user', $id_busy); //e pra lista menos id pegado em sima que verificamos que dia de hoje
  }
 
-$this->db->join('turno_text', 'id_user=id_users', 'left');
+$this->db->join('turno', 'id_user=id_funcionario', 'left');
 
-$res=$this->db->get('funcionario_text')->result();
+$res=$this->db->get('funcionario')->result();
 
 return $res;
 
@@ -111,11 +111,11 @@ return $res;
 public function funcionario_y_n_turno($data, $periodo, $id){
 
 $this->db->select('*');
-$this->db->where('id_users', $id);
+$this->db->where('id_funcionario', $id);
 $this->db->where('data', $data);
 $this->db->where('periodo', $periodo);
 
-$res=$this->db->get('turno_text')->result();
+$res=$this->db->get('turno')->result();
 
 if ($res) {
  return true;
@@ -132,17 +132,16 @@ public function criar_turno($date, $verificar){
 
 $this->db->select('*');
 $this->db->where($verificar);
-$res=$this->db->get('turno_text')->result();
+$res=$this->db->get('turno')->result();
 
-                //return $res;
- if ($res) 
+if ($res) 
  {              
-return null;
+  return null;
  }
 
               else{
                
-               $inserir=$this->db->insert('turno_text', $date);
+               $inserir=$this->db->insert('turno', $date);
 
                 if ($inserir) {
                 return true;
@@ -160,7 +159,7 @@ return null;
 public function alterar_turno($data, $id_){
 
 $this->db->where('id_turno', $id_);
-$resp=$this->db->update('turno_text', $data);
+$resp=$this->db->update('turno', $data);
 
 if ($resp) {
     return true;
@@ -175,14 +174,19 @@ else{
 
 public function remover_turno($id_turno_){
    $this->db->where('id_turno', $id_turno_);
-   $resl=$this->db->delete('turno_text');
+   $resl=$this->db->delete('turno');
    return $resl;
   }  
 
-public function lista_turno(){
+
+public function lista_turno($data, $periodo){
 $this->db->select('*');
+$this->db->where('data', $data);
+$this->db->where('periodo', $periodo);
 $this->db->order_by("funcao_");
-$res=$this->db->get('turno_text')->result();
+
+$this->db->join('funcionario', 'id_funcionario=id_user');
+$res=$this->db->get('turno')->result();
 return $res;
 
 }
@@ -191,9 +195,9 @@ public function info_turno($data){
 
 $this->db->select('*');
 $this->db->where($data);
-$this->db->join('funcionario_text', 'id_user=id_users', 'left');
+$this->db->join('funcionario', 'id_user=id_funcionario', 'left');
 $this->db->order_by('funcao', 'desc');
-$res=$this->db->get('turno_text')->result();
+$res=$this->db->get('turno')->result();
 
 return $res;
 }
@@ -208,7 +212,7 @@ $this->db->group_by('loja');
 $this->db->order_by('data', 'desc');
 $this->db->order_by('periodo', 'asc');
 $this->db->limit($limit, $start);
-$res=$this->db->get('turno_text')->result();
+$res=$this->db->get('turno')->result();
 return $res;
 
 }
@@ -222,8 +226,8 @@ $this->db->group_by('periodo');
 $this->db->group_by('loja');
 $this->db->order_by('data', 'desc');
 $this->db->order_by('periodo', 'desc');
-//$respp=$this->db->count_all('turno_text');  isso e pra contar todos 
-$respp=$this->db->count_all_results('turno_text');  //isso e pra countar resultados
+//$respp=$this->db->count_all('turno');  isso e pra contar todos 
+$respp=$this->db->count_all_results('turno');  //isso e pra countar resultados
 
 return $respp;
 }
@@ -242,7 +246,7 @@ $this->db->group_by('periodo');
 $this->db->group_by('loja');
 $this->db->order_by('data', 'desc');
 $this->db->order_by('periodo', 'desc');
-$res=$this->db->get('turno_text')->result();
+$res=$this->db->get('turno')->result();
 
 return $res;
   }
@@ -275,7 +279,7 @@ $this->db->select('loja, data, periodo');
 $this->db->group_by('data');
 $this->db->group_by('periodo');
 $this->db->group_by('loja');
-$res=$this->db->get('turno_text')->result();
+$res=$this->db->get('turno')->result();
 return $res;
 
 }

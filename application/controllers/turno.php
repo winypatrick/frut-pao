@@ -85,7 +85,6 @@ public function criar_turno()
  $id=$this->session->userdata('userr_id');
 
 
-$data['nome_']=$this->input->post('nome');
 /*$data['funcao_']=$this->input->post('funcao');*/
 
 if ($id_recebedo==$id) {
@@ -99,13 +98,15 @@ else{
 $data['loja']=$this->input->post('loja');
 $data['data']=$this->input->post('data');
 $data['periodo']=$this->input->post('periodo');
-$data['id_users']=$id_recebedo;
+$data['id_funcionario']=$id_recebedo;
 
-$array_verificar = array('nome_'=>$data['nome_'], 'data'=>$data['data'], 'periodo'=>$data['periodo']);
+$array_verificar = array('id_funcionario'=>$data['id_funcionario'], 'data'=>$data['data'], 'periodo'=>$data['periodo']);
+
+//print_r($array_verificar );
 
 $request=$this->turno->criar_turno($data, $array_verificar);
 
-  if ($request==null) {
+  if ( $request==='') {
       echo 'null';
    }
 
@@ -145,17 +146,25 @@ $req=$this->turno->alterar_turno($data, $id_);
 
 
 public function lista_turno() {
+ date_default_timezone_set('Atlantic/Cape_Verde'); 
 
- $id=$this->session->userdata('userr_id');
+$id=$this->session->userdata('userr_id');
 
-$pega=$this->turno->lista_turno();
+$loja=$this->input->post('loja');
+
+$data=date('d/m/Y');
+$time=date('H') ;
+if ($time>=6 && $time<=14 ) { $periodo = 1 ; }
+else{ $periodo = 2 ;  }
+
+$pega=$this->turno->lista_turno($data, $periodo);
 //partepe poi na datatable costumiza e fxtmb
 
  foreach ($pega as $k) {
 
      $r= array();
      
-       $r[]= '<span >'.$k->nome_.'</span>';
+       $r[]= '<span >'.$k->nome.'</span>';
 
        if ($k->funcao_=='Assistente' || $k->funcao_=='') {
 
@@ -177,12 +186,12 @@ $pega=$this->turno->lista_turno();
        $r[]= '<span >'.$k->hora_saida.'</span>';
 
       
-if ($id!=$k->id_users && $k->funcao_=='Assistente') {
+if ($id!=$k->id_funcionario && $k->funcao_=='Assistente') {
 
-       $r[]='<a class="fa fa-pencil-square-o btn btn-group  text-warning " onclick="altera_r(\''.$k->id_turno.'\', \''.$k->nome_.'\', \''.$k->hora_entrada.'\', \''.$k->hora_saida.'\')"></a> <a class="fa fa-user-times  btn btn-group text-danger" onclick="deleta_turno(\''.$k->id_turno.'\')"></a>';
+       $r[]='<a class="fa fa-pencil-square-o btn btn-group  text-warning " onclick="altera_r(\''.$k->id_turno.'\', \''.$k->nome.'\', \''.$k->hora_entrada.'\', \''.$k->hora_saida.'\')"></a> <a class="fa fa-user-times  btn btn-group text-danger" onclick="deleta_turno(\''.$k->id_turno.'\')"></a>';
       }
 else{
-       $r[]='<a class="fa fa-pencil-square-o btn btn-group  text-warning " onclick="altera_r(\''.$k->id_turno.'\', \''.$k->nome_.'\', \''.$k->hora_entrada.'\', \''.$k->hora_saida.'\')"></a> <span  class="fa fa-user-times btn btn-group " style="color:#868080" ></span>';
+       $r[]='<a class="fa fa-pencil-square-o btn btn-group  text-warning " onclick="altera_r(\''.$k->id_turno.'\', \''.$k->nome.'\', \''.$k->hora_entrada.'\', \''.$k->hora_saida.'\')"></a> <span  class="fa fa-user-times btn btn-group " style="color:#868080" ></span>';
 }            
 
        
@@ -223,20 +232,20 @@ $pacote = array('loja'=>$data['loja'], 'data'=>$data['data'], 'periodo'=>$data['
  if ($k->funcao_=='Responsavel') {
 
   $r[]='<div class="col-md-4 "><div class="box " style="border-radius: 4px">'.
-'<div class="box-header with-border label-danger">'.
+'<div class="box-header with-border" style="background: #EE620D">'.
 '<span class="box-title" style="font-size: 12px">'.$name.' <strong>(R)</strong>'.'</span>'.
-'<div class="box-tools pull-right"><button type="button" class="btn btn-box-tool" data-toggle="collapse" data-target="#'.$k->id_users.'">'.
-'<i class="fa fa-angle-double-down fa-lg hvr-hang"></i></button></div></div><div class="box-body collapse label-default" id="'.$k->id_users.'" >'.
+'<div class="box-tools pull-right"><button type="button" class="btn btn-box-tool" data-toggle="collapse" data-target="#'.$k->id_funcionario.'">'.
+'<i class="fa fa-angle-double-down fa-lg hvr-hang"></i></button></div></div><div class="box-body collapse label-default" id="'.$k->id_funcionario.'" >'.
 '<p><span><strong> Hora /E:</strong>'.$k->hora_entrada.'</span></p> <p><span><strong> Hora /S:</strong>'.$k->hora_saida.'</span></p> </div></div></div>';
  } 
 
  else {
 
   $r[]='<div class="col-md-4 "><div class="box " style="border-radius: 4px">'.
-'<div class="box-header with-border label-default">'.
+'<div class="box-header with-border" style="background: #13CF25">'.
 '<span class="box-title" style="font-size: 12px">'.$name.' <strong>(A)</strong>'.'</span>'.
-'<div class="box-tools pull-right"><button type="button" class="btn btn-box-tool" data-toggle="collapse" data-target="#'.$k->id_users.'">'.
-'<i class="fa fa-angle-double-down fa-lg hvr-hang"></i></button></div></div><div class="box-body collapse label-default" id="'.$k->id_users.'">'.
+'<div class="box-tools pull-right"><button type="button" class="btn btn-box-tool" data-toggle="collapse" data-target="#'.$k->id_funcionario.'">'.
+'<i class="fa fa-angle-double-down fa-lg hvr-hang"></i></button></div></div><div class="box-body collapse label-default" id="'.$k->id_funcionario.'">'.
 '<p><span><strong> Hora /E:</strong>'.$k->hora_entrada.'</span></p> <p><span><strong> Hora /S:</strong>'.$k->hora_saida.'</span></p>  </div></div></div>';
   
  }
@@ -257,6 +266,7 @@ $pacote = array('loja'=>$data['loja'], 'data'=>$data['data'], 'periodo'=>$data['
 
  public function pega_info_logado()  //pega id_user loagdo
 {
+
  date_default_timezone_set('Atlantic/Cape_Verde'); 
 
 $data=date('d/m/Y');
@@ -406,6 +416,10 @@ echo json_encode($r);
 }
 */
 
+
+public function pega_loja(){
+
+}
 
 /*=======================================================================[Rascunho]=====================================================*/
 }
