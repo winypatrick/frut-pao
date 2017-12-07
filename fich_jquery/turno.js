@@ -1,6 +1,6 @@
 //========================================
 //var base='http://192.168.1.86/frut&pao/';
-var base='http://localhost/frut&pao/';
+var base='http://frutapao.cv/';
 //====================================================[Arranque]===============================================================
 
 $("#pesk").keyup(pesquisa()); // isso ja chama metodo automaticamente listar 
@@ -99,7 +99,7 @@ function listar_funcionario_diponivel(){
                 //==========================================================================
              
 
-                  $('#list_funcionarios_disponivel').append('<div class="col-md-2 hvr-grow" style="text-align: center; font-size:10px"><img src="http://localhost/frut&pao/fich_compente/winy.png" style="height:108px; width:70%"  class="img-rounded" alt="curso"><div class="caption"  style="text-align: center;"><strong>Nome:</strong> <span >'+nome+'</span><br><strong>Função:</strong> <span >'+val.funcao+'</span><br>  <p style="float: left;" > <a class="fa fa-eye btn" ></a></p>    <p style="float: right;"> <a class="fa fa-user-plus btn text-success hvr-pop" onclick="pick_turno(\''+val.id_user+'\', \''+val.nome+'\', \''+val.funcao+'\')"></a></p></div></div>');
+                  $('#list_funcionarios_disponivel').append('<div class="col-md-2 hvr-grow" style="text-align: center; font-size:10px"><img src="http://frutapao.cv/fich_compente/winy.png" style="height:108px; width:70%"  class="img-rounded" alt="curso"><div class="caption"  style="text-align: center;"><strong>Nome:</strong> <span >'+nome+'</span><br><strong>Função:</strong> <span >'+val.funcao+'</span><br>  <p style="float: left;" > <a class="fa fa-eye btn" ></a></p>    <p style="float: right;"> <a class="fa fa-user-plus btn text-success hvr-pop" onclick="pick_turno(\''+val.id_user+'\', \''+val.nome+'\', \''+val.funcao+'\')"></a></p></div></div>');
                  
               
                    });
@@ -152,7 +152,7 @@ $.ajax({
                 var nome=nome_formado[0];
                 }
              
-                $('#list_funcionarios_disponivel').append('<div class="col-md-2 hvr-grow" style="text-align: center;  font-size:12px;  border:2px solid; border-color:#46EB5D; border-left: 0px; border-right: 0px; border-top: 0px; border-radius: 10px;"><img src="http://localhost/frut&pao/fich_compente/winy.png" style="height:108px; width:70%"  class="img-rounded" alt="curso"><div class="caption"  style="text-align: center;"><strong>Nome:</strong> <span >'+nome+'</span><br><strong>Função:</strong> <span >'+val.funcao+'</span><br>  <p style="float: left;" > <a class="fa fa-eye btn" ></a></p>    <p style="float: right;"> <a class="fa fa-user-plus btn text-success hvr-pop" onclick="pick_turno(\''+val.id_user+'\', \''+val.nome+'\', \''+val.funcao+'\')"></a></p></div></div>');
+                $('#list_funcionarios_disponivel').append('<div class="col-md-2 hvr-grow" style="text-align: center;  font-size:12px;  border:2px solid; border-color:#46EB5D; border-left: 0px; border-right: 0px; border-top: 0px; border-radius: 10px;"><img src="http://frutapao.cv/fich_compente/winy.png" style="height:108px; width:70%"  class="img-rounded" alt="curso"><div class="caption"  style="text-align: center;"><strong>Nome:</strong> <span >'+nome+'</span><br><strong>Função:</strong> <span >'+val.funcao+'</span><br>  <p style="float: left;" > <a class="fa fa-eye btn" ></a></p>    <p style="float: right;"> <a class="fa fa-user-plus btn text-success hvr-pop" onclick="pick_turno(\''+val.id_user+'\', \''+val.nome+'\', \''+val.funcao+'\')"></a></p></div></div>');
                  });
                 }
               }
@@ -208,7 +208,7 @@ function lista_turno_loja(page){
 
                   if (val.data==Date_atual_ && val.periodo==periodo_ ) {
                     $('#lista_loja_turn').append('<div class="col-md-2 hvr-glow" style="text-align: center; font-size:11px; border:2px solid; border-color:#4DE21F; border-left: 0px; border-right: 0px; border-top: 0px; border-radius: 20px; margin-right: 13px; margin-top: 10px; margin-left: 12px">'+
-                   '<img src="http://localhost/frut&pao/fich_compente/turno_.png" style="height:130px; width:100%"  class="img-rounded" alt="curso"> <div class="caption "  style="text-align: center;"> <p><strong>Loja:</strong><span >'+val.loja+'</span></p>'+
+                   '<img src="http://frutapao.cv/fich_compente/turno_.png" style="height:130px; width:100%"  class="img-rounded" alt="curso"> <div class="caption "  style="text-align: center;"> <p><strong>Loja:</strong><span >'+val.loja+'</span></p>'+
                    '<p><strong>Data:</strong><span >'+val.data+'</span>&nbsp;&nbsp;<strong>Periodo:</strong><span >'+val.periodo+'</span></p>'+
                    ''+
                   ' <p style="float: left;" > <a class="fa fa-info-circle fa-lg btn text-info  hvr-pop" style="font-size: 17px" onclick="modal_turno(\''+val.loja+'\')"></a> </p>'+
@@ -221,7 +221,7 @@ function lista_turno_loja(page){
                else{
 
                   $('#lista_loja_turn').append('<div class="col-md-2 hvr-glow" style="text-align: center; font-size:11px; border:2px double; border-color:#161818; border-left: 0px; border-right: 0px; border-top: 0px; border-radius: 20px; margin-right: 13px; margin-top: 10px; margin-left: 12px">'+
-                   '<img src="http://localhost/frut&pao/fich_compente/turno_.png" style="height:130px; width:100%"  class="img-rounded" alt="curso"> <div class="caption "  style="text-align: center;"> <p><strong>Loja:</strong><span >'+val.loja+'</span></p>'+
+                   '<img src="http://frutapao.cv/fich_compente/turno_.png" style="height:130px; width:100%"  class="img-rounded" alt="curso"> <div class="caption "  style="text-align: center;"> <p><strong>Loja:</strong><span >'+val.loja+'</span></p>'+
                    '<p><strong>Data:</strong><span >'+val.data+'</span>&nbsp;&nbsp;<strong>Periodo:</strong><span >'+val.periodo+'</span></p>'+
                    ''+
                   ' <p style="float: left" > <a class="fa fa-info-circle fa-lg btn text-info  hvr-pop" style="font-size: 17px" onclick="info_turno(\''+val.loja+'\', \''+val.data+'\', \''+val.periodo+'\')"></a> </p>'+
@@ -280,7 +280,7 @@ $.ajax({
                     $.each(c, function(index, val) {
              
                   $('#lista_loja_turn').append('<div class="col-md-2 hvr-glow" style="text-align: center; font-size:11px; border:2px double; border-color:#35CAC1; border-left: 0px; border-right: 0px; border-top: 0px; border-radius: 20px; margin-right: 13px; margin-top: 10px; margin-left: 12px">'+
-                   '<img src="http://localhost/frut&pao/fich_compente/turno_.png" style="height:130px; width:100%"  class="img-rounded" alt="curso"> <div class="caption "  style="text-align: center;"> <p><strong>Loja:</strong><span >'+val.loja+'</span></p>'+
+                   '<img src="http://frutapao.cv/fich_compente/turno_.png" style="height:130px; width:100%"  class="img-rounded" alt="curso"> <div class="caption "  style="text-align: center;"> <p><strong>Loja:</strong><span >'+val.loja+'</span></p>'+
                    '<p><strong>Data:</strong><span >'+val.data+'</span>&nbsp;&nbsp;<strong>Periodo:</strong><span >'+val.periodo+'</span></p>'+
                    '<p></p>'+
                   ' <p style="float: left;" > <a class="fa fa-info-circle fa-lg btn text-info  hvr-pop" style="font-size: 17px" onclick="info_turno(\''+val.loja+'\', \''+val.data+'\', \''+val.periodo+'\')"></a> </p>'+

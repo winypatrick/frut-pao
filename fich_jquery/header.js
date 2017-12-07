@@ -118,7 +118,7 @@ function ir_para_turno(){
   confirmButtonText: "ya, concordo",
   cancelButtonClass: 'btn btn-danger',
   buttonsStyling: false,
-  imageUrl: 'http://localhost/frut&pao/fich_compente/14469563_595253984008889_3422939138102187882_n.png',
+  imageUrl: 'http://frutapao.cv/fich_compente/14469563_595253984008889_3422939138102187882_n.png',
   imageWidth: 400,
   imageHeight: 400,
   showLoaderOnConfirm: true,
