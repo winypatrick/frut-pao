@@ -25,8 +25,9 @@ $("#form_1").submit(function(event) {
     type: "POST",
     data: form.serialize(),
     success: function(data){
-      
+     
       if (data==true) {
+         alert("terrasystem")
         swal({
           title:"",
           text: "Loja Criada com sucesso",
@@ -161,7 +162,7 @@ function ir_para(controller, id){
                   else
                   {
 
-                    alert('winy e Terrasystem');
+                    //alert('winy e Terrasystem');
                     window.location.href = ' ';  //es aue redemiciona pagina
                   }
 
@@ -173,7 +174,7 @@ function ir_para(controller, id){
 
   if (id)
   {
-    alert("terrasystem:"+id);
+    //alert("terrasystem:"+id);
 
     $.ajax({
       url: base+'loja/listas_loja_dados',
@@ -187,19 +188,25 @@ function ir_para(controller, id){
         var c = JSON.parse(data);
         $.each(c, function(index, val) {
                 var status;
+                var id= val.id_lojja;
                 var zona= val.zona;
                 var endereco = val.rua;
                 var contacto = val.contacto;
                 var data_i = val.data_inaugoracao;
                 var data_e = val.data_encerramento;
                 var statu = val.estado;
+                var desc = val.descricao;
+
                 if (statu==1) {
-                  status = '<span style="background:blue; color:white">Activo</span>';
+                  status = '<span style="background:green; color:white">Activo</span>';
                 }else {
                   status = '<span style="background:red; color:white>Inactivo</span>';
                 }
 
                 
+
+                
+                $('#editar').append('<button  class="btn btn-primary mr" onclick="set_loja(\''+id+'\',\''+zona+'\',\''+endereco+'\',\''+contacto+'\',\''+data_i+'\',\''+data_e+'\',\''+statu+'\',\''+desc+'\',)"><i class="fa fa-edit"></i></button><button class="btn btn-primary "><i class="fa fa-gear"></i></button>');
                 $('#list').append("<li>"+zona+"</li><li>"+endereco+"</li><li>"+contacto+"</li>");
                 $('#list2').append('<tr><th>Data Inaugoração</th><th>'+data_i+'</th></tr><tr><th>Data Encerramento</th><th>'+data_e+'</th></tr><tr><th>Estado</th><th>'+status+'</th></tr>');
                  });
@@ -209,3 +216,58 @@ function ir_para(controller, id){
    }
 
 }
+
+// ajax return value '+zona+', '+endereco+', '+data_i+', '+data_e+', '+contacto+', '+statu+', '+desc+'
+function set_loja(id, zona, endereco,contacto, data_i, data_e,  statu, desc) {
+  //alert("terrasystem: "+statu+":"+zona+":"+endereco+":"+data_i+":"+data_e+":"+contacto+":"+desc+":");
+  $('#id_lojja').val(id);
+  $('#zona').val(zona);
+  $('#rua').val(endereco);
+  $('#data_i').val(data_i);
+  $('#data_E').val(data_e);
+  $('#contacto').val(contacto);
+  $('#estado').val(statu).change();
+  $('#desc').val(desc);
+
+   $("#modal_loja_info").modal({backdrop: "static"});
+}
+
+// editar loja form
+$("#form_2").submit(function(event) {
+  var form = $('#form_2');
+
+  event.preventDefault();
+
+  $.ajax({
+    url: host+'loja/update_loja',
+    type: "POST",
+    data: form.serialize(),
+    success: function(data){
+      if (data==true) {
+        $('#modal_loja').modal('hide');
+        swal({
+          title:"",
+          text: "Loja Criada com sucesso",
+          button:false,
+          timer:1000,
+          type: "success",
+        });
+        tabela_turno.ajax.reload();
+        limpar();
+
+      }else {
+       // alert(form.serialize());
+        swal({
+          title:"",
+          text: "Erro na Criação da loja",
+          button:false,
+          timer:2000,
+          type: "error",
+        });
+      }
+    },
+    dataType:"html"
+  });
+ 
+});
+

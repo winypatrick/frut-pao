@@ -23,8 +23,10 @@
    <div class="col-md-12">
    <div class="box">
      <div class="box-header with-border ">
-       <a type="button" id="add" class="fa fa-plus-circle btn btn-info btn-xs" >Criar Loja </a>
-       <div class="box-tools pull-right" >
+      <a type="button" class="btn btn-primary btn-sm"  id="add" >
+              <i class="fa fa-plus-circle fa-lg"></i>Criar loja</a>
+      
+             <div class="box-tools pull-right" >
        </div>
      </div> 
      <!-- box body -->
@@ -115,8 +117,8 @@
         <div class="modal-body">
           <form id="form_1" action="" method="post" enctype="multipart/form-data">
                           <div class="row">
-                <div class="col-md-5">
-                  <!-- aqui vai ficar img do home -->
+                <div class="col-md-12">
+                  <!-- imagem -->
                 </div>
               </div>
               <div class="row">
@@ -155,7 +157,7 @@
                   </div>
                 <div class="col-md-12">
                   <label for="">Descrição</label>
-                  <textarea id="desc" class="form-control" rows="4" cols="90"></textarea>
+                  <textarea id="desc" name="desc" class="form-control" rows="4" cols="90"></textarea>
                 </div>
               </div>
               <div class="modal-footer">

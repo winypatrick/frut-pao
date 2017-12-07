@@ -40,7 +40,18 @@ class Model_loja extends CI_Model{
     return $rst;
   }
 
-
+ public function update_loja($dados,$id)
+{
+  $this->db->select('*');
+  $this->db->where('id_lojja',$id);
+  $rst = $this->db->update('loja', $dados);
+  
+  if ($rst) {
+    return true;
+  }else{
+    return false;
+  }
+}
 
 
   public function remove_loja($dados,$id){

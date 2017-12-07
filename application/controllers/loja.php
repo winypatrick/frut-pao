@@ -39,10 +39,11 @@ public function criar_loja()
 {
 	$dados['zona'] = $this->input->post('zona');
 	$dados['contacto'] = $this->input->post('contacto');
-	$dados['data_inaugoracao'] = $this->input->post('data_inaugoracao');
-	$dados['data_Encerramento'] = $this->input->post('data_encerramento');
+	$dados['data_inaugoracao'] = $this->input->post('data_i');
+	$dados['data_Encerramento'] = $this->input->post('data_E');
 	$dados['rua'] = $this->input->post('rua');
 	$dados['estado'] = $this->input->post('estado');
+	$dados['descricao'] = $this->input->post('desc');
 	$contacto = $dados['contacto'];
 
 	// $arraydados = array('zona' => $dados['zona'], 'rua' => $dados['rua'], 'data_inaugoracao' => $dados['data_inaugoracao'],
@@ -86,6 +87,31 @@ public function listas_loja_dados()
 	$dados = $this->loja->list_loja_id($rst);
 
 	echo json_encode($dados);
+}
+
+//editar loja
+public function update_loja()
+{
+
+	$dados['id_lojja'] = $this->input->post('id_lojja');
+	$dados['zona'] = $this->input->post('zona');
+	$dados['contacto'] = $this->input->post('contacto');
+	$dados['data_inaugoracao'] = $this->input->post('data_i');
+	$dados['data_Encerramento'] = $this->input->post('data_E');
+	$dados['rua'] = $this->input->post('rua');
+	$dados['estado'] = $this->input->post('estado');
+	$dados['descricao'] = $this->input->post('desc');
+	$id = $dados['id_lojja'];
+
+	$rst = $this->loja->update_loja($dados,$id);
+
+	if ($rst) {
+    	echo true;
+  	}else{
+    	echo false;
+  	}
+
+
 }
 
 /*essa parte pra ir_para()*/
