@@ -88,15 +88,15 @@
               <!-- ou -->
            <!--    <a type="button" id="add" class="btn btn-info btn-sm" style="" onclick="modal_turno()">
            <i class="fa fa-plus-circle fa-lg"></i> Novo Turno</a> -->
-              <a type="button" id="add" class="btn btn-sm active" style="" >
+              <a type="button" id="list_n" class="btn btn-sm active"  >
               <i class=" fa fa fa-table fa-lg label-info"></i></a>
 
-               <span type="button" id="add" class="btn btn-sm" style="" >
-              <i class=" fa fa-list fa-lg label-info"></i></span>
+               <a type="button" id="list_a" class="btn btn-sm" style="display: none;" >
+              <i class=" fa fa-list fa-lg label-info"></i></a>
 
               <div class="box-tools pull-right" >
 
-           <div class=" inputWithIcon" >
+           <div class=" inputWithIcon" id="pacote_pesk_1">
            <input  placeholder="search"  id="pesk_1" name="password" onkeyup="pesquisa_turnos()"  type="text" value="" style="width: 200px; height: 23px" required>
            <i class="fa fa-search" ></i> 
            </div>
@@ -192,7 +192,7 @@
             
              <table class="table table-striped table-condensed " id="tab11">
 
-                                <thead id="thead11">
+                                <thead id="thead11" >
                                  <th> Nome</th>
                                  <th style="width: 15%;"> Função</th> 
                                  <th style="width: 17%"> Loja </th> 
@@ -240,8 +240,10 @@
             </div><!--  fim -->
 
             <div class="modal-footer"> 
-            
-                </div>
+
+            <button  class="btn btn-danger" onclick="relatorio()"> Finalizar turno </button>
+
+            </div>
 
      </div>
      </div>
@@ -296,7 +298,7 @@
         <div class="modal-header label-info">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4><strong>Hora Entrada / Saida</strong> </h4>
-                <input type="hidden" id="id_user_" name="id_cliente" >
+                <input type="hidden" id="id_user_" name="id_cliente">
         </div>
 
             <div class="modal-body">

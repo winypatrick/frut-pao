@@ -7,6 +7,21 @@ class Model_turno extends CI_Model {
 		parent::__construct();
 }	
 
+  public function pega_loja($hostname){
+
+$this->db->select('id_lojja, zona, hostmane');
+$this->db->like('hostmane', $hostname);
+$this->db->join('maquina', 'id_lojja=id_loja');
+$res=$this->db->get('loja')->result();
+//return $res;
+
+foreach( $res as $a) {  //aqui pra formar nosso que da inicio a formacao do nosso array 
+   $loja = $a->id_lojja; //formando ...
+}
+
+return $loja;
+}
+
 public function verificar_id_ocupado_recente($data_, $periodo_){
 
 /*===============================================[ contruind meu array de id de pessoas que ta na dia atual de ]==========================*/
@@ -179,15 +194,28 @@ public function remover_turno($id_turno_){
   }  
 
 
-public function lista_turno($data, $periodo){
+public function lista_turno($data, $periodo, $loja_id){  //tem que listar mediante a 
 $this->db->select('*');
 $this->db->where('data', $data);
 $this->db->where('periodo', $periodo);
+$this->db->where('id_loja', $loja_id);
 $this->db->order_by("funcao_");
-
 $this->db->join('funcionario', 'id_funcionario=id_user');
+$this->db->join('loja', 'id_loja=id_lojja');
 $res=$this->db->get('turno')->result();
 return $res;
+
+}
+
+public function lista_turno_detalhes(){
+ $this->db->select('*');
+$this->db->group_by('data');
+$this->db->group_by('periodo');
+$this->db->group_by('zona');
+$this->db->join('funcionario', 'id_funcionario=id_user');
+$this->db->join('loja', 'id_loja=id_lojja');
+$res=$this->db->get('turno')->result();
+return $res; 
 
 }
 
@@ -196,22 +224,24 @@ public function info_turno($data){
 $this->db->select('*');
 $this->db->where($data);
 $this->db->join('funcionario', 'id_user=id_funcionario', 'left');
+$this->db->join('loja', 'id_loja=id_lojja');
 $this->db->order_by('funcao', 'desc');
 $res=$this->db->get('turno')->result();
-
 return $res;
+
 }
 
 
 public function lista_turno_loja_($limit, $start){   //para listar por limite
 
-$this->db->select('loja, data, periodo');
+$this->db->select('id_loja ,zona, data, periodo');
 $this->db->group_by('data');
 $this->db->group_by('periodo');
-$this->db->group_by('loja');
+$this->db->group_by('zona');
 $this->db->order_by('data', 'desc');
-$this->db->order_by('periodo', 'asc');
+$this->db->order_by('periodo', 'desc');
 $this->db->limit($limit, $start);
+$this->db->join('loja', 'id_loja=id_lojja');
 $res=$this->db->get('turno')->result();
 return $res;
 
@@ -220,13 +250,14 @@ return $res;
 //para paginacao
 public function counta_all_lista_turno_loja_(){   //countar quantidade de turno diacordo com resultado
 
-$this->db->select('loja, data, periodo');
+$this->db->select('zona, data, periodo');
 $this->db->group_by('data');
 $this->db->group_by('periodo');
-$this->db->group_by('loja');
+$this->db->group_by('zona');
 $this->db->order_by('data', 'desc');
 $this->db->order_by('periodo', 'desc');
 //$respp=$this->db->count_all('turno');  isso e pra contar todos 
+$this->db->join('loja', 'id_loja=id_lojja');
 $respp=$this->db->count_all_results('turno');  //isso e pra countar resultados
 
 return $respp;
@@ -235,21 +266,24 @@ return $respp;
 
 public function pesquisa_turnos_($filtro_){
 
-$this->db->select('loja, data, periodo');
+$this->db->select('zona, data, periodo');
 
-$this->db->like('loja', $filtro_);
+$this->db->like('zona', $filtro_);
 $this->db->or_like('periodo', $filtro_);
 $this->db->or_where('data', $filtro_);
 
 $this->db->group_by('data');
 $this->db->group_by('periodo');
-$this->db->group_by('loja');
+$this->db->group_by('zona');
 $this->db->order_by('data', 'desc');
 $this->db->order_by('periodo', 'desc');
+$this->db->join('loja', 'id_loja=id_lojja');
 $res=$this->db->get('turno')->result();
 
 return $res;
   }
+
+
 
 /*=======================================================================[Rascunho]=====================================================*/
 
@@ -284,6 +318,8 @@ return $res;
 
 }
 */
+
+
 /*=======================================================================[Rascunho]=====================================================*/
 }
 

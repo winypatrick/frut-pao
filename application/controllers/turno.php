@@ -15,6 +15,17 @@ class Turno extends CI_Controller {
 		
 	}
 
+/*=====================================================pegando loja recente atual==========================*/
+
+public function pega_loja(){
+
+$hostname = gethostbyaddr($_SERVER['REMOTE_ADDR']);
+
+$id_loja=$this->turno->pega_loja($hostname);
+
+return $id_loja;
+}
+/*=====================================================fim==========================================================*/
 
 public function lista_funcionario_diponivel()
 {
@@ -80,6 +91,9 @@ else{
 
 public function criar_turno()
 {
+
+ $loja_id=$this->pega_loja();
+
  $id_recebedo=$this->input->post('id_userr');
 
  $id=$this->session->userdata('userr_id');
@@ -95,7 +109,7 @@ else{
  $data['funcao_']='Assistente';
 }
 
-$data['loja']=$this->input->post('loja');
+$data['id_loja']=$loja_id;
 $data['data']=$this->input->post('data');
 $data['periodo']=$this->input->post('periodo');
 $data['id_funcionario']=$id_recebedo;
@@ -148,16 +162,16 @@ $req=$this->turno->alterar_turno($data, $id_);
 public function lista_turno() {
  date_default_timezone_set('Atlantic/Cape_Verde'); 
 
-$id=$this->session->userdata('userr_id');
+ $loja_id=$this->pega_loja();
 
-$loja=$this->input->post('loja');
+$id=$this->session->userdata('userr_id');
 
 $data=date('d/m/Y');
 $time=date('H') ;
 if ($time>=6 && $time<=14 ) { $periodo = 1 ; }
 else{ $periodo = 2 ;  }
 
-$pega=$this->turno->lista_turno($data, $periodo);
+$pega=$this->turno->lista_turno($data, $periodo,  $loja_id);
 //partepe poi na datatable costumiza e fxtmb
 
  foreach ($pega as $k) {
@@ -179,7 +193,7 @@ $pega=$this->turno->lista_turno($data, $periodo);
 
        //$r[]= '<span >'.$k->funcao_.'</span>';
 
-       $r[]= '<span >'.$k->loja.'</span>';
+       $r[]= '<span >'.$k->zona.'</span>';
        $r[]= '<span >'.$k->data.'</span>';
        $r[]= '<span >'.$k->periodo.' °</span>';
        $r[]= '<span >'.$k->hora_entrada.'</span>';
@@ -204,22 +218,70 @@ else{
 
 }
 
+
+
+
+public function lista_turno_detalhes() {
+
+$pega=$this->turno->lista_turno_detalhes( );
+//partepe poi na datatable costumiza e fxtmb
+
+ foreach ($pega as $k) {
+
+     $r= array();
+     
+       $r[]= '<span >'.$k->nome.'</span>';
+
+       if ($k->funcao_=='Assistente' || $k->funcao_=='') {
+
+      $r[]= '<div class="col-md-6" style="background: #13CF25; border-radius: 5px; text-align: center; font-weight: bold;">A</div>';
+
+
+       }
+
+       else{
+
+      $r[]= '<div class="col-md-6" style="background: #EE620D; border-radius: 5px; text-align: center; font-weight: bold;">R</div>';
+       }
+
+       //$r[]= '<span >'.$k->funcao_.'</span>';
+
+       $r[]= '<span >'.$k->zona.'</span>';
+       $r[]= '<span >'.$k->data.'</span>';
+       $r[]= '<span >'.$k->periodo.' °</span>';
+       $r[]= '<span >'.$k->hora_entrada.'</span>';
+       $r[]= '<span >'.$k->hora_saida.'</span>';
+
+      
+
+       $r[]='<a class="fa fa-pencil-square-o  btn btn-group  text-primary " onclick="altera_r(\''.$k->id_turno.'\', \''.$k->nome.'\', \''.$k->hora_entrada.'\', \''.$k->hora_saida.'\')"></a> <a class="fa fa-user-times  btn btn-group text-primary" onclick="deleta_turno(\''.$k->id_turno.'\')"></a>';          
+
+       
+       $dados []=$r;
+      
+     }
+
+ $output = array('data' => $dados); 
+ echo json_encode($output);
+
+}
+
 public function info_turno(){
 
-$data['loja']=$this->input->post('loja');
+$data['zona']=$this->input->post('zona');
 $data['data']=$this->input->post('data');
 $data['periodo']=$this->input->post('periodo');
 
-$pacote = array('loja'=>$data['loja'], 'data'=>$data['data'], 'periodo'=>$data['periodo']);
+$pacote = array('zona'=>$data['zona'], 'data'=>$data['data'], 'periodo'=>$data['periodo']);
 
- $retorno=$this->turno->info_turno($pacote);
+$retorno=$this->turno->info_turno($pacote);
 
  foreach ($retorno as $k) {
 
   $r= array();
 
 //particiona nome
-  $nome_p=explode(" ", $k->nome); 
+$nome_p=explode(" ", $k->nome); 
    if (count($nome_p)>1) {
            $name=$nome_p[0].' '.$nome_p[1] ;
     }
@@ -325,6 +387,8 @@ echo $r_;
 
 public function paginacao_(){  //aqui e para fazer pagicao
 
+ $loja_id=$this->pega_loja();
+
 $this->load->library('pagination');
 
 $resq=$this->turno->counta_all_lista_turno_loja_();
@@ -361,6 +425,7 @@ $pagina=$this->uri->segment(3);
 $start= ($pagina-1) * $config['per_page'];
 
 $output = array(
+  'id_loja_logado' =>$loja_id,
   'pagina_link' => $this->pagination->create_links(),
   'tabela' => $this->turno->lista_turno_loja_($config['per_page'], $start)
 );
@@ -372,6 +437,7 @@ echo json_encode($output);
 
 public function pesquisa_turnos_()
   {
+
 $filtro_=$this->input->post('campo_pesquisa_1');    
 $pega_=$this->turno->pesquisa_turnos_($filtro_);
 
@@ -382,7 +448,11 @@ else{
   echo false;
 }
 
-  }
+ }
+
+
+
+
 
  /*=======================================================================[Rascunho]=====================================================*/
 /*
@@ -417,9 +487,7 @@ echo json_encode($r);
 */
 
 
-public function pega_loja(){
 
-}
 
 /*=======================================================================[Rascunho]=====================================================*/
 }
