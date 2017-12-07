@@ -29,7 +29,7 @@
 <br><br>
 <div class="container">
   <div class="row">
-    <div class="col-md-1 azul btn-primary"></div>
+    <div class="col-md-1 btn-primary"></div>
     <div class="col-md-10">
       <div class="box">
        <div class="box-header with-border">

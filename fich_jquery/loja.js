@@ -243,8 +243,9 @@ $("#form_2").submit(function(event) {
     type: "POST",
     data: form.serialize(),
     success: function(data){
+
       if (data==true) {
-        $('#modal_loja').modal('hide');
+        $("#modal_loja_info").modal('hide');
         swal({
           title:"",
           text: "Loja Criada com sucesso",
