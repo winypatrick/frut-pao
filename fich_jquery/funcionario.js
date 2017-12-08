@@ -244,18 +244,41 @@ function ir_para(controller){
 
                    $('#t_b').removeClass('active');
                     $('#t_c').removeClass('active');
+                    $('#t_d').removeClass('active');
+                    $('#t_e').removeClass('active');
                     $('#t_a').addClass(' active');  
                     }
                     if (controller=='turno') {
                     $('#t_a').removeClass('active');
                     $('#t_c').removeClass('active');
+                    $('#t_d').removeClass('active');
+                    $('#t_e').removeClass('active');
                     $('#t_b').addClass('active'); 
                     }
                     if (controller=='loj') {
                     $('#t_a').removeClass('active');
                     $('#t_b').removeClass('active');
+                    $('#t_d').removeClass('active');
+                    $('#t_e').removeClass('active');
                     $('#t_c').addClass('active');
                     }
+
+                    if (controller=='relatorio') {
+                    $('#t_a').removeClass('active');
+                    $('#t_b').removeClass('active');
+                    $('#t_c').removeClass('active');
+                    $('#t_e').removeClass('active');
+                    $('#t_d').addClass('active');
+                    }
+
+                    if (controller=='avaliacao') {
+                    $('#t_a').removeClass('active');
+                    $('#t_b').removeClass('active');
+                    $('#t_d').removeClass('active');
+                    $('#t_c').removeClass('active');
+                    $('#t_e').addClass('active');
+                    }
+
                     if (true) {}  
                      $.unblockUI();
                  

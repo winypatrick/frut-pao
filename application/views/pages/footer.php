@@ -5,7 +5,7 @@
     <div class="pull-right hidden-xs">
       <b>Version</b> 2.3.8
     </div>
-    <strong>Copyright &copy; 2017-2018 <a href="http://almsaeedstudio.com">Winy Patrick</a>.</strong> All rights
+    <strong>Copyright &copy; 2017-2018 <a href="http://almsaeedstudio.com">Winy Patrick & Ailton Duarte</a>.</strong> All rights
     reserved.
   </footer>
 <!-- ////////////////////////////// -->

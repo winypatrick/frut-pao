@@ -3,21 +3,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Loja extends CI_Controller {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see https://codeigniter.com/user_guide/general/urls.html
-	 */
+ public function __construct()
+  {
+          parent::__construct();
+          $this->load->model('model_loja', 'loja');
+          
+  }
+
 	public function index()
 	{
 		    if($this->session->userdata('logado_yes'))
@@ -44,6 +36,85 @@ class Loja extends CI_Controller {
       }
 		
 	}
+
+	public function criar_loja()
+{
+	$dados['zona'] = $this->input->post('zona');
+	$dados['contacto'] = $this->input->post('contacto');
+	$dados['data_inaugoracao'] = $this->input->post('data_i');
+	$dados['data_Encerramento'] = $this->input->post('data_E');
+	$dados['rua'] = $this->input->post('rua');
+	$dados['estado'] = $this->input->post('estado');
+	$dados['descricao'] = $this->input->post('desc');
+	$contacto = $dados['contacto'];
+
+	// $arraydados = array('zona' => $dados['zona'], 'rua' => $dados['rua'], 'data_inaugoracao' => $dados['data_inaugoracao'],
+	//  'contacto' => $dados['contacto'], 'estado' => $dados['estado']);
+
+	$rst = $this->loja->insert_loja($dados,$contacto);
+
+// echo json_encode($arraydados);
+
+	 if ($rst) {
+	 	echo true;
+	}else {
+		echo false;
+	}
+}
+
+public function listar_loja()
+{
+	$a = 'loja_info';
+	$rst = $this->loja->list_loja();
+
+	foreach ($rst as $key) {
+		$dados = array();
+
+		// if ($key->estado != 0) {//0 - fechado(no futoro && enable ==true)
+			$dados[] = '<span>'.$key->zona.'</span>';
+			$dados[] = '<span>'.$key->rua.'</span>';
+			$dados[] = '<span>'.$key->contacto.'</span>';
+			$dados[] = '<button type="button" class="btn btn-default" onclick="analisar()">Analise</button>';
+			$dados[] = '<button type="button" class="btn btn-default" onclick="ir_para_(\''.$a.'\',\''.$key->id_lojja.'\')">Detalhes</button>';
+		// }
+		$arraydados[] = $dados;
+	}
+	$output = array('data' => $arraydados);
+	echo json_encode($output);
+}
+
+public function listas_loja_dados()
+{
+	$rst = $this->input->post('id_loja');
+	$dados = $this->loja->list_loja_id($rst);
+
+	echo json_encode($dados);
+}
+
+//editar loja
+public function update_loja()
+{
+
+	$dados['id_lojja'] = $this->input->post('id_lojja');
+	$dados['zona'] = $this->input->post('zona');
+	$dados['contacto'] = $this->input->post('contacto');
+	$dados['data_inaugoracao'] = $this->input->post('data_i');
+	$dados['data_Encerramento'] = $this->input->post('data_E');
+	$dados['rua'] = $this->input->post('rua');
+	$dados['estado'] = $this->input->post('estado');
+	$dados['descricao'] = $this->input->post('desc');
+	$id = $dados['id_lojja'];
+
+	$rst = $this->loja->update_loja($dados,$id);
+
+	if ($rst) {
+    	echo true;
+  	}else{
+    	echo false;
+  	}
+
+
+}
 
 
 
@@ -104,19 +175,54 @@ class Loja extends CI_Controller {
   
    else{
   
-         //redirect('login'); lado de jquery ta fica mas dreto
          echo false;               
       }
 		
 	}
 
+	public function relatorio()
+	{
+	if($this->session->userdata('logado_yes'))
+        {
 
+		$this->load->view('pages/corpo/corpo_relatorio');
+		//echo true;
+	}
 
-//pegado nome do pc que foi logado
-public function nome_comp(){
-$hostname = gethostbyaddr($_SERVER['REMOTE_ADDR']);
-echo $hostname;
-}
+   else{
 
+         echo false;
+      }
+
+	}
+
+	public function avaliacao()
+	{
+	if($this->session->userdata('logado_yes'))
+        {
+
+		$this->load->view('pages/corpo/corpo_avaliacao');
+		//echo true;
+	}
+
+   else{
+
+         echo false;
+      }
+
+	}
+
+	public function loja_info(){
+		if($this->session->userdata('logado_yes'))
+        {
+		$this->load->view('pages/corpo/corpo_loja_info');
+	
+	}
+
+   else{
+
+         echo false;
+      }
+	}
 
 }

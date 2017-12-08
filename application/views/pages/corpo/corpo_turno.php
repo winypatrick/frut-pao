@@ -358,7 +358,7 @@
             </div>
             
             <!-- box-body -->
-            <div  class="box-body " >
+            <div  class="box-body" >
             
             <div class="col-md-12">
             <div class="form-group">

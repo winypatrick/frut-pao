@@ -43,17 +43,21 @@
 
         <li class="treeview" id="t_c">
           <a href="javascript:void(0)" onclick="ir_para('loj')">
-            <i class="fa fa-dashboard"></i> <span>Lojas</span>
+            <i class="fa fa-home"></i> <span>Lojas</span>
           </a>
         </li>
 
-       <li class=" treeview" id="t_d">
-          <a href="Relatorios.html">
+       <li class="treeview" id="t_d">
+          <a href="javascript:void(0)" onclick="ir_para('relatorio')">
             <i class="fa fa-book"></i> <span>Relatorios</span>
           </a>
         </li>
 
-
+        <li class="treeview" id="t_e">
+          <a href="javascript:void(0)" onclick="ir_para('avaliacao')">
+            <i class="fa fa-building-o"></i> <span>Avaliações</span>
+          </a>
+        </li>
 
         </ul>
     
