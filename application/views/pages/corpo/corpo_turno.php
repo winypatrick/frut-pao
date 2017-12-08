@@ -96,7 +96,7 @@
 
               <div class="box-tools pull-right" >
 
-           <div class=" inputWithIcon" id="pacote_pesk_1">
+           <div class=" inputWithIcon " id="pacote_pesk_1">
            <input  placeholder="search"  id="pesk_1" name="password" onkeyup="pesquisa_turnos()"  type="text" value="" style="width: 200px; height: 23px" required>
            <i class="fa fa-search" ></i> 
            </div>
@@ -341,6 +341,78 @@
      </div>
  <!-- ******************************************************************************************************* -->  
      </div>
+
+<!-- ====================================================[ modal Relatorio ]================================================= -->
+      <div class="col-md-12">
+        <div class="col-md-12 modal fade " id="modal_relatorio"  >
+        <div  class="modal-dialog modal-lg " style="margin-top:10px; width: 58%; border-radius: 10px">
+        <div id="myModal" class="modal-content " >
+           
+          <div class="box">
+
+           <div class="box-header with-border label-primary">
+            <span class="box-title" style="font-size: 15px; font-weight: bold; ">Relatorio turno</span>
+            <div class="box-tools pull-right" >
+            <button type="button " class="close" data-dismiss="modal">&times;</button>
+            </div>
+            </div>
+            
+            <!-- box-body -->
+            <div  class="box-body " >
+            
+            <div class="col-md-12">
+            <div class="form-group">
+            <label for="desc">Congelado:</label>
+            <textarea class="form-control label-default" name="des" id="des" rows="4" style="border-radius: 10px"></textarea>
+            </div> 
+           </div>
+
+           <br>
+
+           <div class="col-md-12">
+            <div class="form-group">
+            <label for="desc">Frescos/Padaria:</label>
+            <textarea class="form-control label-default" name="des" id="des" rows="4" style="border-radius: 10px"></textarea>
+            </div> 
+           </div>
+
+           <br>
+
+           <div class="col-md-12">
+            <div class="form-group">
+            <label for="desc">Stock/Armazem:</label>
+            <textarea class="form-control label-default" name="des" id="des" rows="4" style="border-radius: 10px"></textarea>
+            </div> 
+           </div>
+
+           <br>
+
+           <div class="col-md-12">
+            <div class="form-group">
+            <label for="desc">Caixa/Equipamentos:</label>
+            <textarea class="form-control label-default" name="des" id="des" rows="4" style="border-radius: 10px"></textarea>
+            </div> 
+           </div>
+           
+           <div class="modal-footer">
+            <button  class="btn btn-primary" onclick=""> Confirma </button>
+            </div>
+
+            </div>
+           <!-- ./box-body -->
+
+
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+
+     </div>
+     </div>
+     </div>
+     </div>
+<!-- ====================================================[ modal Relatorio end]================================================= -->
+
+
 
       <!-- Main row -->
       <div class="row">

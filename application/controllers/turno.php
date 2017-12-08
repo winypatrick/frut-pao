@@ -94,6 +94,8 @@ public function criar_turno()
 
  $loja_id=$this->pega_loja();
 
+if ($loja_id!=null) {
+
  $id_recebedo=$this->input->post('id_userr');
 
  $id=$this->session->userdata('userr_id');
@@ -133,6 +135,16 @@ $request=$this->turno->criar_turno($data, $array_verificar);
       echo false;
   }
  }
+
+}
+
+else {
+ echo 'null';
+}
+
+
+
+
 
  }
 

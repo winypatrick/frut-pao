@@ -15,8 +15,15 @@ $this->db->join('maquina', 'id_lojja=id_loja');
 $res=$this->db->get('loja')->result();
 //return $res;
 
-foreach( $res as $a) {  //aqui pra formar nosso que da inicio a formacao do nosso array 
+
+if ($res) {
+ foreach( $res as $a) {  //aqui pra formar nosso que da inicio a formacao do nosso array 
    $loja = $a->id_lojja; //formando ...
+}
+
+} 
+else {
+  $loja=null;
 }
 
 return $loja;
@@ -198,7 +205,16 @@ public function lista_turno($data, $periodo, $loja_id){  //tem que listar median
 $this->db->select('*');
 $this->db->where('data', $data);
 $this->db->where('periodo', $periodo);
-$this->db->where('id_loja', $loja_id);
+
+if ($loja_id) {
+ $this->db->where('id_loja', $loja_id);
+} 
+else {
+ 
+}
+
+
+
 $this->db->order_by("funcao_");
 $this->db->join('funcionario', 'id_funcionario=id_user');
 $this->db->join('loja', 'id_loja=id_lojja');
@@ -212,6 +228,10 @@ public function lista_turno_detalhes(){
 $this->db->group_by('data');
 $this->db->group_by('periodo');
 $this->db->group_by('zona');
+
+$this->db->order_by('data', 'desc');
+$this->db->order_by('periodo', 'desc');
+
 $this->db->join('funcionario', 'id_funcionario=id_user');
 $this->db->join('loja', 'id_loja=id_lojja');
 $res=$this->db->get('turno')->result();

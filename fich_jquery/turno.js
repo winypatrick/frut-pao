@@ -481,9 +481,10 @@ var periodo = 2 ;
                  // alert(data);
 
               if (data!='null') {
-              
+                  
                    if (data==true ) {
 
+                  $('#modal_turno').modal('show');
 
                    $('#modal_pick').modal('hide');
                        swal({
@@ -668,7 +669,6 @@ $('#list_n').addClass('active');
                 var c=JSON.parse(pacote);
             
                if (c.resposta==true) {
-                    $('#modal_turno').modal('show');
 
                     $.each(c.dados_user, function(index, val) {
                     pick_turno(val.id, val.nome);
@@ -791,6 +791,14 @@ error: function(){
 /*================================================================[fim_list_detalheado]============================================*/
 
 
+function relatorio(){
+   $('#modal_relatorio').modal('show');
+}
+
+
+
+/*====================================================[end]=======================================================*/
+
 function Menu_zinho(value){   //funcao de costumizacao de menu
 if (value==1) {
 //alert('normal');
@@ -832,3 +840,5 @@ function  defenir_permissoes(){
    });
 
 }
+/*====================================================[end]=======================================================*/
+
