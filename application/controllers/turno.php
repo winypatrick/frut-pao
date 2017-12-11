@@ -24,6 +24,7 @@ $hostname = gethostbyaddr($_SERVER['REMOTE_ADDR']);
 $id_loja=$this->turno->pega_loja($hostname);
 
 return $id_loja;
+//echo $hostname;
 }
 /*=====================================================fim==========================================================*/
 
@@ -235,7 +236,7 @@ else{
 
 public function lista_turno_detalhes() {
 
-$pega=$this->turno->lista_turno_detalhes( );
+$pega=$this->turno->lista_turno_detalhes();
 //partepe poi na datatable costumiza e fxtmb
 
  foreach ($pega as $k) {
@@ -275,7 +276,7 @@ $pega=$this->turno->lista_turno_detalhes( );
 
  $output = array('data' => $dados); 
  echo json_encode($output);
-
+/*echo json_encode($pega);*/
 }
 
 public function info_turno(){

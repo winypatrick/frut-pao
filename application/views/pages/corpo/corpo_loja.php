@@ -24,13 +24,13 @@
    <div class="box">
      <div class="box-header with-border ">
       <a type="button" class="btn btn-primary btn-sm"  id="add" >
-              <i class="fa fa-plus-circle fa-lg"></i>Criar loja</a>
+              <i class="fa fa-plus-circle fa-lg"></i> Criar loja</a>
       
              <div class="box-tools pull-right" >
        </div>
      </div> 
      <!-- box body -->
-     <div id=" " class="box-body" style="">
+     <div id=" " class="box-body" >
        <div class="row ">
          <div class="col-md-6">
 
@@ -124,17 +124,17 @@
               <div class="row">
                 <div class="col-md-6">
                   <fieldset class="form-group">
-                      <label for="">Localidade (*)</label>
+                      <label for="">Localidade <spam class="text-danger">(*)</span></label>
                       <input type="text" class="form-control" id="zona" placeholder="Zona" name="zona" required>
                     </fieldset>
 
 
                       <fieldset class="form-group">
-                        <label for="">Endereço (*)</label>
+                        <label for="">Endereço <spam class="text-danger">(*)</span></label>
                         <input type="text" class="form-control" id="rua" placeholder="Endereço" name="rua" required>
                       </fieldset>
                   <fieldset class="form-group">
-                    <label for="">Estado (*)</label>
+                    <label for="">Estado <spam class="text-danger">(*)</span>)</label>
                         <select id="estado" class="form-control" name="estado">
                           <option value="1">Activo</option>
                           <option value="0">Fechado</option>
@@ -143,11 +143,11 @@
                   </div>
                   <div class="col-md-6">
                     <fieldset class="form-group">
-                      <label for="">Data Inaugoração (*)</label>
+                      <label for="">Data Inaugoração <spam class="text-danger">(*)</span></label>
                       <input type="date" class="form-control" id="data_i" placeholder="data" name="data_i" required>
                     </fieldset>
                     <fieldset class="form-group">
-                      <label for="">Contacto (*)</label>
+                      <label for="">Contacto <spam class="text-danger">(*)</span></label>
                       <input type="number" class="form-control" id="contacto" placeholder="contacto" name="contacto" required>
                     </fieldset>
                     <fieldset class="form-group">
@@ -162,7 +162,7 @@
               </div>
               <div class="modal-footer">
               <b style="" class="pull-left text-danger">(*) - Campos com preenchimento obrigatorio</b>
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Canselar</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
               <button type="submit" class="btn btn-primary">Confirmar</button>
             </div>
           </form>

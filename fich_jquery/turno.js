@@ -1,6 +1,6 @@
 //========================================
-//var base='http://192.168.1.86/frut&pao/';
-var base='http://localhost/frut&pao/';
+var base='http://192.168.1.68/frut&pao/';
+//var base='http://localhost/frut&pao/';
 //====================================================[Arranque]===============================================================
 
 $("#pesk").keyup(pesquisa()); // isso ja chama metodo automaticamente listar 
@@ -101,7 +101,7 @@ function listar_funcionario_diponivel(){
                 //==========================================================================
              
 
-                  $('#list_funcionarios_disponivel').append('<div class="col-md-2 hvr-grow" style="text-align: center; font-size:10px"><img src="'+base+'fich_compente/winy.png" style="height:108px; width:70%"  class="img-rounded" alt="curso"><div class="caption"  style="text-align: center;"><strong>Nome:</strong> <span >'+nome+'</span><br><strong>Função:</strong> <span >'+val.funcao+'</span><br>  <p style="float: left;" > <a class="fa fa-eye btn" ></a></p>    <p style="float: right;"> <a class="fa fa-user-plus btn text-success hvr-pop" onclick="pick_turno(\''+val.id_user+'\', \''+val.nome+'\', \''+val.funcao+'\')"></a></p></div></div>');
+                  $('#list_funcionarios_disponivel').append('<div class="col-md-2 hvr-grow" style="text-align: center; font-size:10px"><img src="'+base+'fich_compente/people_2.png" style="height:108px; width:80%"  class="img-rounded" alt="curso"><div class="caption"  style="text-align: center;"><strong>Nome:</strong> <span >'+nome+'</span><br><strong>Função:</strong> <span >'+val.funcao+'</span><br>  <p style="float: left;" > <a class="fa fa-eye btn" ></a></p>    <p style="float: right;"> <a class="fa fa-user-plus btn text-success hvr-pop" onclick="pick_turno(\''+val.id_user+'\', \''+val.nome+'\', \''+val.funcao+'\')"></a></p></div></div>');
                  
               
                    });
@@ -131,7 +131,7 @@ $.ajax({
                  data:{'campo_pesquisa': campo},
 
                  success: function (data){
-               
+                  
                if(data==false){
                $('#list_funcionarios_disponivel').html('');
                $('#list_funcionarios_disponivel').append('<div class="col-md-12 text-danger" style="text-align: center; margin-top:35px"><h3>Nenhum funcionario encontrado  <i class="fa fa-low-vision text-danger" ></i></h3></div>');
@@ -154,7 +154,7 @@ $.ajax({
                 var nome=nome_formado[0];
                 }
              
-                $('#list_funcionarios_disponivel').append('<div class="col-md-2 hvr-grow" style="text-align: center;  font-size:12px;  border:2px solid; border-color:#46EB5D; border-left: 0px; border-right: 0px; border-top: 0px; border-radius: 10px;"><img src="'+base+'fich_compente/winy.png" style="height:108px; width:70%"  class="img-rounded" alt="curso"><div class="caption"  style="text-align: center;"><strong>Nome:</strong> <span >'+nome+'</span><br><strong>Função:</strong> <span >'+val.funcao+'</span><br>  <p style="float: left;" > <a class="fa fa-eye btn" ></a></p>    <p style="float: right;"> <a class="fa fa-user-plus btn text-success hvr-pop" onclick="pick_turno(\''+val.id_user+'\', \''+val.nome+'\', \''+val.funcao+'\')"></a></p></div></div>');
+                $('#list_funcionarios_disponivel').append('<div class="col-md-2 hvr-grow" style="text-align: center;  font-size:12px;  border:2px solid; border-color:#46EB5D; border-left: 0px; border-right: 0px; border-top: 0px; border-radius: 10px;"><img src="'+base+'fich_compente/people_2.png" style="height:108px; width:80%"  class="img-rounded" alt="curso"><div class="caption"  style="text-align: center;"><strong>Nome:</strong> <span >'+nome+'</span><br><strong>Função:</strong> <span >'+val.funcao+'</span><br>  <p style="float: left;" > <a class="fa fa-eye btn" ></a></p>    <p style="float: right;"> <a class="fa fa-user-plus btn text-success hvr-pop" onclick="pick_turno(\''+val.id_user+'\', \''+val.nome+'\', \''+val.funcao+'\')"></a></p></div></div>');
                  });
                 }
               }
@@ -199,12 +199,11 @@ function lista_turno_loja(page){
                    { }, 
                    function(data) {
 
-                   // alert(data);
 
                    var c=JSON.parse(data);
                    
                    $('#pag_link').html(c.pagina_link); 
-                   $('#lista_loja_turn').html(''); //isso importante permite que nao repiti nada
+                   $('#lista_loja_turn').html(''); 
 
                    $.each(c.tabela, function(index, val) {
 
@@ -646,7 +645,7 @@ var hora_saida=$('#hora_saida_').val();
 
 function modal_turno(){   //aqui vou verificar se ele responsavel ou nao
 
-
+listar_funcionario_diponivel();
 $('#modal_turno').modal('show');
 
 }
@@ -696,6 +695,8 @@ lista_turno_loja(1);
 /*=========================================================================[Inicio_view_detalhado]=========================================================*/
 $('#list_a').click(function(event) {
 Menu_zinho(2);
+
+ $('#pag_link').html(''); 
  $('#lista_loja_turn').html(''); //isso importante permite que nao repiti nada
 $('#lista_loja_turn').append('<table class="table table-striped table-condensed box" id="tab_detalhes">'+
                                '<thead id="thead12">'+
@@ -766,7 +767,6 @@ error: function(){
                     }
 },
 
-"order":[ [2, "asc"], [3, "asc"], [4, "asc"]], 
 
 });
 

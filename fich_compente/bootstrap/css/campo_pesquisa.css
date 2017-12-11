@@ -37,7 +37,7 @@
   }
   
    #pesk:focus{
-    border-color:#46EB5D;
+    border-color:#298BD0;
     box-shadow:0 0 8px 0 dodgerBlue;
   }
   
@@ -48,7 +48,7 @@
   
   
   .inputWithIcon  #pesk:focus + i{
-    color:#0CBC08;
+    color:#298BD0;
   }
   
   

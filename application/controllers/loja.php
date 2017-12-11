@@ -75,7 +75,7 @@ public function listar_loja()
 			$dados[] = '<span>'.$key->rua.'</span>';
 			$dados[] = '<span>'.$key->contacto.'</span>';
 			$dados[] = '<button type="button" class="btn btn-default" onclick="analisar()">Analise</button>';
-			$dados[] = '<button type="button" class="btn btn-default" onclick="ir_para_(\''.$a.'\',\''.$key->id_lojja.'\')">Detalhes</button>';
+			$dados[] = '<button type="button" class="btn btn-default" onclick="ir_para_(\''.$a.'\', \''.$key->id_lojja.'\')">Detalhes</button>';
 		// }
 		$arraydados[] = $dados;
 	}
@@ -95,7 +95,7 @@ public function listas_loja_dados()
 public function update_loja()
 {
 
-	$dados['id_lojja'] = $this->input->post('id_lojja');
+	$id = $this->input->post('id_lojja');
 	$dados['zona'] = $this->input->post('zona');
 	$dados['contacto'] = $this->input->post('contacto');
 	$dados['data_inaugoracao'] = $this->input->post('data_i');
@@ -103,13 +103,16 @@ public function update_loja()
 	$dados['rua'] = $this->input->post('rua');
 	$dados['estado'] = $this->input->post('estado');
 	$dados['descricao'] = $this->input->post('desc');
-	$id = $dados['id_lojja'];
 
 	$rst = $this->loja->update_loja($dados,$id);
 
 	if ($rst) {
+
     	echo true;
-  	}else{
+
+  	}
+  	else{
+  		
     	echo false;
   	}
 

@@ -3,6 +3,8 @@
 var base='http://localhost/frut&pao/';
 //========================================
 //alert('merda');
+
+
 function recover() {
 
 var email=$('#id_email').val();
@@ -66,4 +68,12 @@ var senha_gerado="frut&pao"+dt.getFullYear()+""+dt.getDate()+""+(dt.getMonth()+1
    
 });
  // alert(email);
-	}	
+	}
+
+/*para pre-loader*/
+$(document).ready(function() {
+
+ setTimeout(function(){
+     $('.loader').hide();
+}, 6000) 
+});

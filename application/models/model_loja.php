@@ -27,7 +27,7 @@ class Model_loja extends CI_Model{
   public function list_loja()
   {
     $this->db->select('*');
-    $this->db->where('estado!=',0); // 1 - activo 0 -  fechado
+    //$this->db->where('estado!=',0); // 1 - activo 0 -  fechado
     $rst = $this->db->get('loja')->result();
     return $rst;
   }
@@ -48,7 +48,8 @@ class Model_loja extends CI_Model{
   
   if ($rst) {
     return true;
-  }else{
+  }
+  else{
     return false;
   }
 }

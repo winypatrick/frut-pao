@@ -140,11 +140,10 @@
             </div>
 
             <div class="modal-body">  <!-- init -->
-
                 <div class="row">
           <div class="col-md-12">
           <div class="box">
-            <div class="box-header with-border label-success">
+            <div class="box-header with-border label-primary">
               <span class="box-title" style="font-size: 14px" >Funcionarios Disponivel</span>
 
               <div class="box-tools pull-right" >
@@ -162,8 +161,7 @@
             
             <!-- box-body -->
             <div id="list_funcionarios_disponivel" class="box-body " style="height: 200px; overflow: auto;">
-            
-
+           
             </div>
            <!-- ./box-body -->
 
@@ -175,12 +173,12 @@
 
           <div class="col-md-12">
           <div class="box">
-          <div class="box-header with-border label-warning">
-          <span class="box-title" style="font-size: 14px">Turnos Formados</span>
+          <div class="box-header with-border" style="background: #353232">
+          <span class="box-title" style="font-size: 14px; color: white">Turnos em Formação</span>
               
-         
+          
               <div class="box-tools pull-right">
-             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus" style="color: white"></i>
 
                </button>
 
@@ -190,9 +188,9 @@
             <!-- box-body -->
             <div class="box-body">
             
-             <table class="table table-striped table-condensed " id="tab11">
+             <table class="table table-striped table-condensed box" id="tab11">
 
-                                <thead id="thead11" >
+                                <thead >
                                  <th> Nome</th>
                                  <th style="width: 15%;"> Função</th> 
                                  <th style="width: 17%"> Loja </th> 
@@ -203,7 +201,7 @@
                                  <th> Edit &nbsp;|&nbsp; Deleta</th>
                                  </thead>
 
-                                     <tbody >
+                                     <tbody class="box">
                                       
                                      </tbody>
 

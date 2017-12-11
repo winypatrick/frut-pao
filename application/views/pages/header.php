@@ -75,6 +75,8 @@
 <!-- scripts para funcionario quel ir para -->
 <script src="<?php echo base_url(); ?>fich_jquery/header.js"></script>
 
+<!-- Favicon -->
+<link href="<?= base_url(); ?>fich_compente/14469563_595253984008889_3422939138102187882_n.png" rel="shortcut icon">
 
  <title>frut&Pão</title>
 
@@ -166,13 +168,13 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="<?= base_url();?>fich_compente/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+              <img src="<?= base_url();?>fich_compente/dist/img/avatar.png" class="user-image" alt="User Image">
               <span class="hidden-xs">Africa Business</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="<?= base_url();?>fich_compente/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <img src="<?= base_url();?>fich_compente/dist/img/avatar.png" class="img-circle" alt="User Image">
 
                 <!-- <p>
                   Africa Business

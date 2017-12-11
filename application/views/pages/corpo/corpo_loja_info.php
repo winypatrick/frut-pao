@@ -18,38 +18,50 @@
   }
 </style>
 
-<script type="text/javascript" src="<?php base_url();?>/fich_jquery/loja.js"></script>
+<script type="text/javascript" src="<?= base_url();?>/fich_jquery/loja.js"></script>
 <section class="content-header">
   <ol class="breadcrumb">
-    <li><a href="<?= base_url();?>/funcionario"><i class="fa fa-dashboard"></i> Home</a></li>
-    
+    <li><a href="<?= base_url();?>funcionario"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li><a  href="javascript:void(0)" onclick="ir_para_('loj')"> Loja  </a></li>
+    <li class="active">Detalhes</li>
   </ol> 
   
 </section>
 <br><br>
-<div class="container">
-  <div class="row">
-    <div class="col-md-1 btn-primary"></div>
-    <div class="col-md-10">
+
+<div class="container-fluid">
+
+  <!--    <div class="col-md-1"></div> -->
+    <div class="col-md-12">
       <div class="box">
+
+      <div class="col-md-12">
+
        <div class="box-header with-border">
       <button class="btn btn-primary">Avaliar</button>
       <div class="box-tools pull-right" id="editar">
-        <!--<button id="edit_info" class="btn btn-primary"><i class="fa fa-edit"></i></button>-->
-       <!--<button class="btn btn-primary"><i class="fa fa-gear"></i></button> -->
+
       </div> 
     </div>
+      </div>
+
     <div class="box-body">
       <div class="row">
-        <div class="col-md-1"></div>
+       <div class="col-md-12">
+          <div class="col-md-1"></div>
         <div class="col-md-2">
-          <i class="fa fa-home fa-5x " style="font-size: 120px"></i>
+         <!--  <i class="fa fa-home fa-4x " style="font-size: 120px"></i> -->
+         <span class="fa-stack" style="text-align: center; font-size: 70px">
+         <i class="fa fa-square-o fa-stack-5x " style="font-size: 140px"></i>
+         <i class="fa fa-home fa-stack-1x " style="font-size: 90px"></i>
+         </span>
           </div>
-        <div class="col-md-4">
-           <ul id="list" class="list-unstyled ">
+        <div class="col-md-3">
+           <ul id="list" class="list-unstyled" style="margin-top: 30px">
             
            </ul>
-        </div>        
+        </div>    
+       </div>    
       
     </div>
        <!-- inicio -->
@@ -145,7 +157,6 @@
     </div>
     </div>
     </div>
-  </div>
 </div>
 
 <!-- Inicio do modal criar nova loja -->
@@ -208,7 +219,7 @@
               </div>
               <div class="modal-footer">
               <b style="" class="pull-left text-danger"><spam class="text-danger">(*)</span> - Campos com preenchimento obrigatorio</b>
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Canselar</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
               <button type="submit" class="btn btn-primary">Confirmar</button>
             </div>
           </form>

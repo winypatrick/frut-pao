@@ -1,4 +1,4 @@
-var base='http://localhost/frut&pao/';
+var base='http://192.168.1.68/frut&pao/';
 
 $("#add").click(function(){
   //limpar campos
@@ -17,7 +17,6 @@ $("#add").click(function(){
 
 $("#form_1").submit(function(event) {
   var form = $('#form_1');
-// alert("ola mundo "+form)
   event.preventDefault();
 
   $.ajax({
@@ -27,13 +26,13 @@ $("#form_1").submit(function(event) {
     success: function(data){
      
       if (data==true) {
-         alert("terrasystem")
         swal({
           title:"",
           text: "Loja Criada com sucesso",
           button:false,
           timer:1000,
           type: "success",
+          showConfirmButton:false,
         });
         tabela_turno.ajax.reload();
         limpar();
@@ -44,10 +43,10 @@ $("#form_1").submit(function(event) {
           button:false,
           timer:2000,
           type: "error",
+          showConfirmButton:false,
         });
       }
-    },
-    dataType:"html"
+    }
   });
   $('#modal_loja').modal('hide');
 });
@@ -57,8 +56,8 @@ var tabela_turno=$('#tab22').DataTable(
 {
 'paging':true,
 'info':false,
-'filter':true,
-"pageLength": 7,
+'filter':false,
+"pageLength": 5,
 'statesave':false,
 "responsive":true,
 "autoWidth": false,
@@ -76,8 +75,8 @@ var tabela_turno=$('#tab22').DataTable(
       "sZeroRecords": "Nenhum registro encontrado",
       "sSearch": "Pesquisar",
       "oPaginate": {
-          "sNext": "Prox",
-          "sPrevious": "Ant",
+          "sNext": '<span style="font-weight: bold; font-size: 14px; color: #0274BD"> &gt; </span>',
+            "sPrevious": '<span style="font-weight: bold; font-size: 14px; color: #0274BD"> &lt; </span>',
           "sFirst": "Primeiro",
           "sLast":"Ultimo"
       },
@@ -142,8 +141,7 @@ function ir_para_(controller, id){
                   else
                   {
 
-                    //alert('winy e Terrasystem');
-                    window.location.href = ' ';  //es aue redemiciona pagina
+                    window.location.href = ' ';  
                   }
 
 
@@ -154,17 +152,22 @@ function ir_para_(controller, id){
 
   if (id)
   {
-    //alert("terrasystem:"+id);
+     set_info(id);
+   }
 
-    $.ajax({
+}
+
+function set_info(id){
+      $.ajax({
       url: base+'loja/listas_loja_dados',
       type: 'POST',
       data:{'id_loja':id},
       success: function (data){
-      //  alert("terrasystem:"+data);
 
+        $('#editar').html('');
         $('#list').html('');
-     //   $('#list2').html('');
+        $('#list2').html('');
+
         var c = JSON.parse(data);
         $.each(c, function(index, val) {
                 var status;
@@ -180,20 +183,16 @@ function ir_para_(controller, id){
                 if (statu==1) {
                   status = '<span style="background:green; color:white">Activo</span>';
                 }else {
-                  status = '<span style="background:red; color:white>Inactivo</span>';
+                  status = '<span style="background:red; color:white">Inactivo</span>';
                 }
+               
 
-                
-
-                
-                $('#editar').append('<button  class="btn btn-primary mr" onclick="set_loja(\''+id+'\',\''+zona+'\',\''+endereco+'\',\''+contacto+'\',\''+data_i+'\',\''+data_e+'\',\''+statu+'\',\''+desc+'\',)"><i class="fa fa-edit"></i></button><button class="btn btn-primary "><i class="fa fa-gear"></i></button>');
-                $('#list').append("<li>"+zona+"</li><li>"+endereco+"</li><li>"+contacto+"</li>");
+                $('#editar').append('<button  class="btn btn-primary" onclick="set_loja(\''+id+'\',\''+zona+'\',\''+endereco+'\',\''+contacto+'\',\''+data_i+'\',\''+data_e+'\',\''+statu+'\',\''+desc+'\',)"><i class="fa fa-edit"></i></button>&nbsp;&nbsp;<button class="btn btn-primary "><i class="fa fa-gear"></i></button>');
+                $('#list').append("<li><strong><span>Zona: </span></strong>"+zona+"</li><li><strong> <span>Endereço: </span></strong>"+endereco+"</li><li> <strong><span>Contacto: </span></strong> "+contacto+"</li>");
                 $('#list2').append('<tr><th>Data Inaugoração</th><th>'+data_i+'</th></tr><tr><th>Data Encerramento</th><th>'+data_e+'</th></tr><tr><th>Estado</th><th>'+status+'</th></tr>');
                  });
       }
     });
-
-   }
 
 }
 
@@ -209,24 +208,21 @@ function set_loja(id, zona, endereco,contacto, data_i, data_e,  statu, desc) {
   $('#estado').val(statu).change();
   $('#desc').val(desc);
 
-   $("#modal_loja_info").modal({backdrop: "static"});
+  $("#modal_loja_info").modal({backdrop: "static"});
 }
 
 // editar loja form
 
-var form = $('#form_2');
+var form1 = $('#form_2');
 
-form.submit(function(event) {
-
-
-  event.preventDefault();
-
-   alert(form.serialize());
+form1.submit(function(event) {
+event.preventDefault();
+id_=$('#id_lojja').val();
 
    $.ajax({
     url: base+'loja/update_loja',
     type: "POST",
-    data: form.serialize(),
+    data: form1.serialize(),
     success: function(data){
 
       if (data==true) {
@@ -235,11 +231,15 @@ form.submit(function(event) {
 
         swal({
           title:"",
-          text: "Loja Criada com sucesso",
+          text: "Loja alterao com sucesso",
           button:false,
           timer:1000,
           type: "success",
+          showConfirmButton:false,
         });
+
+        set_info(id_);
+
         tabela_turno.ajax.reload();
         limpar();
 
@@ -248,10 +248,11 @@ form.submit(function(event) {
 
         swal({
           title:"",
-          text: "Erro na Criação da loja",
+          text: "erro em altera loja",
           button:false,
           timer:2000,
           type: "error",
+          showConfirmButton:false,
         });
       }
 

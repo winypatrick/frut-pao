@@ -44,17 +44,17 @@ $b = array();
 foreach( $res_p_ as $a) {  //aqui pra formar nosso que da inicio a formacao do nosso array 
    $b[] = $a->id_funcionario; //formando ...
 }
-/*==============================================[fim de ]==================================*/
 return $b;
-
 }
 
 else
 {
+
 return null;
-}
+  }
 
 }
+/*==============================================[fim de ]==================================*/
 
 
 public function lista_funcionario_diponivel($id_, $data, $periodo){
@@ -97,7 +97,8 @@ public function pesquisa_filtro($filtro, $id, $data, $periodo){
 
 $id_busy=$this->verificar_id_ocupado_recente($data, $periodo);
 
-$this->db->select('*');
+$this->db->select('id_user, nome, funcao');
+$this->db->distinct();  //isso dai pra permitir nao repiticao de nome e outros
 $this->db->group_start();
 $this->db->where('funcao!=', 'adim');
 $this->db->where('id_user!=', $id);
@@ -118,9 +119,9 @@ $this->db->where('funcao!=', 'adim');
 
 $this->db->group_end();
 
- if ($id_busy!=null) {
+ if ($id_busy) {
    $this->db->where_not_in('id_user', $id_busy); //e pra lista menos id pegado em sima que verificamos que dia de hoje
- }
+}
 
 $this->db->join('turno', 'id_user=id_funcionario', 'left');
 
@@ -213,8 +214,6 @@ else {
  
 }
 
-
-
 $this->db->order_by("funcao_");
 $this->db->join('funcionario', 'id_funcionario=id_user');
 $this->db->join('loja', 'id_loja=id_lojja');
@@ -225,13 +224,8 @@ return $res;
 
 public function lista_turno_detalhes(){
  $this->db->select('*');
-$this->db->group_by('data');
-$this->db->group_by('periodo');
-$this->db->group_by('zona');
-
-$this->db->order_by('data', 'desc');
-$this->db->order_by('periodo', 'desc');
-
+ $this->db->order_by('id_turno', 'desc');
+  $this->db->order_by('periodo', 'desc');
 $this->db->join('funcionario', 'id_funcionario=id_user');
 $this->db->join('loja', 'id_loja=id_lojja');
 $res=$this->db->get('turno')->result();
