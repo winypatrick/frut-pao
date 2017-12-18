@@ -3,7 +3,7 @@
 <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <link href="<?= base_url(); ?>fich_compente/14469563_595253984008889_3422939138102187882_n.png" rel="shortcut icon">
+  <link href="<?= base_url(); ?>fich_compente/favicon_1.png" rel="shortcut icon">
 <head>
 
 
@@ -29,7 +29,7 @@
   <script src="<?= base_url();?>fich_compente/bootstrap/js/jquery.js"></script>  
   <!-- Bootstrap 3.3.6 -->
 <script src="<?= base_url();?>fich_compente/bootstrap/js/bootstrap.min.js"></script>
-<script src="<?php echo base_url(); ?>fich_jquery/utilizador.js"></script> 
+<script src="<?php echo base_url(); ?>fich_jquery/utilizador.js?v=<?=rand() ?>"></script> 
 
 <!-- plugin aler SweetAlert.htm -->
 <script src="<?= base_url()?>fich_plugins/plugin_alert/sweetalert.min.js"></script>
@@ -89,7 +89,7 @@
                                 </div>
                                 <br>
 
-                                <button type="submit" class="btn btn-sm btn-primary btn-block">Login</button>
+                                <button type="submit" class="btn btn-sm btn-block " style="background: #F04E16; color: white">Login</button>
                                 <a  class="btn text-danger" style="margin-top:5px" data-toggle="modal" data-target="#modal_log" >Esqueci senha Click Aqui</a>
                                 <br>
                             </fieldset>

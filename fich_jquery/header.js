@@ -1,3 +1,6 @@
+var base='http://192.168.1.66/frut&pao/';
+//var base_url='http://localhost/frut&pao/'
+
  var feedback=$('#feed'); 
 
 //==========================================Arranque del funcao===========================================
@@ -55,6 +58,26 @@ else {
 
 }
 
+}
+
+function lagout(){
+  //alert('lagout');
+  $.post(base+'login/logout', { }, 
+   function(data) {
+    if (data=='pendente') {
+    swal({
+          title:"",
+          text:"Turno ainda pedente Termine-o primeiro!",
+          type:"info",
+          timer:3000,
+          showConfirmButton:false,
+          });
+  }
+   else{
+    window.location.href = ' ';
+    }
+
+   });
 }
 
 function muda_senha(){
@@ -118,7 +141,7 @@ function ir_para_turno(){
   confirmButtonText: "ya, concordo",
   cancelButtonClass: 'btn btn-danger',
   buttonsStyling: false,
-  imageUrl: 'http://localhost/frut&pao/fich_compente/14469563_595253984008889_3422939138102187882_n.png',
+  imageUrl: base+'fich_compente/14469563_595253984008889_3422939138102187882_n.png',
   imageWidth: 400,
   imageHeight: 400,
   showLoaderOnConfirm: true,

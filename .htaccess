@@ -4,6 +4,11 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond $1 !^(index\.php|images|robots\.txt|assets|js|uploads)  
 RewriteRule ^(.*)$ index.php/$1 [L] 
+
+php_value memory_limit 1024M
+php_value post_max_size 100M
+php_value upload_max_filesize 100M
+
 </IfModule>
 
 <IfModule !mod_rewrite.c>

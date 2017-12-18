@@ -17,6 +17,12 @@ class Turno extends CI_Controller {
 
 /*=====================================================pegando loja recente atual==========================*/
 
+public function data_atual(){
+date_default_timezone_set('Atlantic/Cape_Verde');
+$data=date('d/m/Y');
+return $data;
+}
+
 public function pega_loja(){
 
 $hostname = gethostbyaddr($_SERVER['REMOTE_ADDR']);
@@ -31,27 +37,15 @@ return $id_loja;
 public function lista_funcionario_diponivel()
 {
 
-date_default_timezone_set('Atlantic/Cape_Verde'); 
-
 $id=$this->session->userdata('userr_id');
 
-$data=date('d/m/Y');
+$data=$this->data_atual();
 
-$time=date('H') ;
-
-if ($time>=6 && $time<=14 ) {
-$periodo = 1 ;
-}
-
-else{
-$periodo = 2 ;  
-}
-
- $pega=$this->turno->lista_funcionario_diponivel($id, $data, $periodo);
+ $pega=$this->turno->lista_funcionario_diponivel($id, $data);
 
  echo json_encode($pega);
 
-	}
+}
 
   public function pesquisa_filtro()
   {
@@ -88,24 +82,36 @@ else{
    }
 
 
-  }  
+  }
+
+  public function merda(){
+   $loja_id=$this->pega_loja();
+   $data_atual=$this->data_atual();
+
+  $count_turno=$this->turno->count_turno_ativado($loja_id, $data_atual);
+
+   echo $count_turno;
+} 
 
 public function criar_turno()
 {
-
- $loja_id=$this->pega_loja();
+//date_default_timezone_set('Atlantic/Cape_Verde');
+$loja_id=$this->pega_loja();
 
 if ($loja_id!=null) {
 
  $id_recebedo=$this->input->post('id_userr');
-
  $id=$this->session->userdata('userr_id');
+ $data_atual=$this->data_atual();
 
+$count_turno=$this->turno->count_turno_ativado($loja_id, $data_atual);
 
+if ($count_turno < 2) {/*1*/
+ $pega_periodo=$this->turno->verificar_periodo($data_atual, $id);
 /*$data['funcao_']=$this->input->post('funcao');*/
-
 if ($id_recebedo==$id) {
  $data['funcao_']='Responsavel';
+
 }
 
 else{
@@ -116,8 +122,14 @@ $data['id_loja']=$loja_id;
 $data['data']=$this->input->post('data');
 $data['periodo']=$this->input->post('periodo');
 $data['id_funcionario']=$id_recebedo;
+$data['Disponivel']=1;
 
-$array_verificar = array('id_funcionario'=>$data['id_funcionario'], 'data'=>$data['data'], 'periodo'=>$data['periodo']);
+
+if ($pega_periodo) {
+
+  if ($pega_periodo==$data['periodo']) {
+
+    $array_verificar = array('id_funcionario'=>$data['id_funcionario'], 'data'=>$data['data'], 'Disponivel'=>$data['Disponivel']);
 
 //print_r($array_verificar );
 
@@ -136,6 +148,46 @@ $request=$this->turno->criar_turno($data, $array_verificar);
       echo false;
   }
  }
+
+  }
+
+
+  else{
+   echo 'never';
+  }
+
+  
+}
+
+else{
+
+$array_verificar = array('id_funcionario'=>$data['id_funcionario'], 'data'=>$data['data'], 'Disponivel'=>$data['Disponivel']);
+
+//print_r($array_verificar );
+
+$request=$this->turno->criar_turno($data, $array_verificar);
+
+  if ( $request==='') {
+      echo 'null';
+   }
+
+ else{
+     if ($request==true) {
+      echo true;
+  }
+
+    if ($request==false) {
+      echo false;
+  }
+ }
+
+}
+}  /*1*/
+
+ else {/*2*/
+  echo 'null';
+}/*2*/
+
 
 }
 
@@ -173,18 +225,17 @@ $req=$this->turno->alterar_turno($data, $id_);
 
 
 public function lista_turno() {
- date_default_timezone_set('Atlantic/Cape_Verde'); 
 
  $loja_id=$this->pega_loja();
 
 $id=$this->session->userdata('userr_id');
 
-$data=date('d/m/Y');
-$time=date('H') ;
-if ($time>=6 && $time<=14 ) { $periodo = 1 ; }
-else{ $periodo = 2 ;  }
+$data=$this->data_atual();
 
-$pega=$this->turno->lista_turno($data, $periodo,  $loja_id);
+
+
+
+$pega=$this->turno->lista_turno($data, $loja_id, $id);
 //partepe poi na datatable costumiza e fxtmb
 
  foreach ($pega as $k) {
@@ -384,7 +435,7 @@ echo json_encode($output);
 /*  ==================lista de turno loja============*/
 public function lista_turno_loja_(){
 
-$r=$this->turno->lista_turno_loja_($limit, $start);
+$r=$this->turno->lista_turno_loja_();
 echo json_encode($r);
 
 }
@@ -464,45 +515,59 @@ else{
  }
 
 
+/*==================================================[Tudo haver com fecho e turno]================================================*/
+
+ public function fecho_turno()
+{  
+ $loja_id=$this->pega_loja();
+$id=$this->session->userdata('userr_id');
+$data=$this->data_atual();
+
+$respost=$this->turno->fecho_turno($id, $loja_id, $data);
+
+echo json_encode($respost);
+
+ }
+
+ public function verifica_fecho_hora_turno()
+{
+$loja_id=$this->pega_loja();
+$id=$this->session->userdata('userr_id');
+$data=$this->data_atual();
+
+$respo=$this->turno->verifica_fecho_hora_turno($id, $loja_id, $data);
+
+echo $respo;
+
+ }
+
+  public function Relatorio()
+{
+
+$loja_id=$this->pega_loja();
+$id=$this->session->userdata('userr_id');
+
+$data['congelado']=$this->input->post('congelados');
+$data['frescos_padaria']=$this->input->post('fresco');
+$data['stock_armazem']=$this->input->post('stock');
+$data['caixa_equipamentos']=$this->input->post('caixa');
 
 
+$respo=$this->turno->Relatorio($id, $loja_id, $data);
 
- /*=======================================================================[Rascunho]=====================================================*/
-/*
-public function lista_disponivel(){
+  if ($respo==true) {
+   echo true;
+  }
 
-date_default_timezone_set('Atlantic/Cape_Verde');  //hora de Time_zone Cap verd
-//echo date('d/m/Y') ; echo date('H') ; echo date('H');
-
-$data=date('d/m/Y');
-
-$time=date('H') ;
-
-if ($time>=6 && $time<=14 ) {
-$periodo = 1 ;
-}
-
-else{
-$periodo = 0 ;  
-}
+  else
+  {
+    echo false;
+  }
 
 
-$r=$this->turno->lista_disponivel($data, $periodo);
-echo json_encode($r);
-
-//echo $data.''.$periodo ;
-}
-
-public function lm(){
-$r=$this->turno->lm();
-echo json_encode($r);
-}
-*/
+ }
 
 
-
-
-/*=======================================================================[Rascunho]=====================================================*/
 }
 
 /* End of file turno.php */

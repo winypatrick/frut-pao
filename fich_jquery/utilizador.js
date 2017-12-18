@@ -1,9 +1,6 @@
 //========================================
-//var base='http://192.168.1.86/frut&pao/';
-var base='http://localhost/frut&pao/';
-//========================================
-//alert('merda');
-
+var base='http://192.168.43.50/frut&pao/';
+//var base='http://localhost/frut&pao/';
 
 function recover() {
 

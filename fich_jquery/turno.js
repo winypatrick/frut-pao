@@ -1,16 +1,10 @@
-//========================================
-var base='http://192.168.1.68/frut&pao/';
-//var base='http://localhost/frut&pao/';
-//====================================================[Arranque]===============================================================
 
+//====================================================[Arranque]===============================================================
 $("#pesk").keyup(pesquisa()); // isso ja chama metodo automaticamente listar 
 $("#pesk_1").keyup(pesquisa_turnos());
-//ou
-//listar_funcionario_diponivel();
-//lista_turno_loja();
-defenir_permissoes();
-logo_inicio_turno();
 
+defenir_permissoes();
+//logo_inicio_turno(); automatico
 
 /*===================================================================================================================*/
 
@@ -18,10 +12,9 @@ logo_inicio_turno();
 //======================================================[delete_turno]======================================================================
 function deleta_turno(id_turno){
 
-//alert(id_turno);
+
 swal({
   title: "Pretende remove-lo de turno?",
-/*  text: "se deletares funcionario nao vai ser possivel recuperar!",*/
   type: "warning",
   showCancelButton: true,
   confirmButtonColor: "#DD6B55",
@@ -30,7 +23,6 @@ swal({
 },
 function(){
 
-  //alert('ddd');
 
 $.ajax({
           url: base+'turno/remover_turno',
@@ -207,29 +199,31 @@ function lista_turno_loja(page){
 
                    $.each(c.tabela, function(index, val) {
 
-                  if (val.data==Date_atual_ && val.periodo==periodo_ ) {
 
-                  if (val.id_loja==c.id_loja_logado) {
+
+                  if ((val.data==Date_atual_ && val.periodo==periodo_ ) && val.Disponivel==1 || (val.Disponivel==1 && val.data==Date_atual_)) {
+
+                  if (val.id_loja==c.id_loja_logado ) {
                   
-                    $('#lista_loja_turn').append('<div class="col-md-2 hvr-glow" style="text-align: center; font-size:11px; border:2px solid; border-color:#4DE21F; border-left: 0px; border-right: 0px; border-top: 0px; border-radius: 20px; margin-right: 13px; margin-top: 10px; margin-left: 12px">'+
-                  '<img src="'+base+'fich_compente/turno_.png" style="height:130px; width:100%"  class="img-rounded" alt="curso"> <div class="caption "  style="text-align: center;"> <p><strong>Loja:</strong><span >'+val.zona+'</span></p>'+
+                    $('#lista_loja_turn').append('<div class="col-md-2 hvr-glow" style="text-align: center; font-size:12px; border:2px solid; border-color:#4DE21F; border-left: 0px; border-right: 0px; border-top: 0px; border-radius: 20px; margin-right: 13px; margin-top: 10px; margin-left: 12px">'+
+                  '<img src="'+base+'fich_compente/turno_.png" style="height:130px; width:100%"  class="img-rounded" alt="curso"> <div class="caption "  style="text-align: center; "> <p><strong>Loja:</strong><span >'+val.zona+'</span></p>'+
                   '<p><strong>Data:</strong><span >'+val.data+'</span>&nbsp;&nbsp;<strong>Periodo:</strong><span >'+val.periodo+'</span></p>'+
                   ''+
-                  '<p style="float: left;" > <a class="fa fa-info-circle fa-lg btn text-info  hvr-pop" style="font-size: 17px" onclick="modal_turno(\''+val.zona+'\')"></a> </p>'+
-                  '<p style="float: right;"> <a class="fa fa-book fa-lg btn text-info  hvr-pop text-info" style="font-size: 17px"></a> </p>'+
+                  '<p style="float: left;" > <a class="fa fa-info-circle fa-lg btn text-info  hvr-pop" style="font-size: 18px" onclick="modal_turno(\''+val.zona+'\')"></a> </p>'+
+                  '<p style="float: right;"> <a class="fa fa-file-text-o fa-lg btn text-info  hvr-pop text-info" style="font-size: 15px"></a> </p>'+
                   '</div>'+
                   '</div>');
 
                   }
 
                   else{
-
-                    $('#lista_loja_turn').append('<div class="col-md-2 hvr-glow" style="text-align: center; font-size:11px; border:2px double; border-color:#161818; border-left: 0px; border-right: 0px; border-top: 0px; border-radius: 20px; margin-right: 13px; margin-top: 10px; margin-left: 12px">'+
+                    
+                    $('#lista_loja_turn').append('<div class="col-md-2 hvr-glow" style="text-align: center; font-size:12px; border:2px double; border-color:#161818; border-left: 0px; border-right: 0px; border-top: 0px; border-radius: 20px; margin-right: 13px; margin-top: 10px; margin-left: 12px">'+
                    '<img src="'+base+'fich_compente/turno_.png" style="height:130px; width:100%"  class="img-rounded" alt="curso"> <div class="caption "  style="text-align: center;"> <p><strong>Loja:</strong><span >'+val.zona+'</span></p>'+
                    '<p><strong>Data:</strong><span >'+val.data+'</span>&nbsp;&nbsp;<strong>Periodo:</strong><span >'+val.periodo+'</span></p>'+
                    ''+
-                   '<p style="float: left" > <a class="fa fa-refresh fa-spin fa-lg btn text-info  hvr-pop" style="font-size: 17px" onclick="info_turno(\''+val.zona+'\', \''+val.data+'\', \''+val.periodo+'\')"></a> </p>'+
-                   '<p style="float: right"> <a class="fa fa-book fa-lg btn text-info  hvr-pop text-info" style="font-size: 17px"></a> </p>'+
+                   '<p style="float: left" > <a class="fa fa-refresh fa-spin fa-lg btn text-info  hvr-pop" style="font-size: 18px" onclick="info_turno(\''+val.zona+'\', \''+val.data+'\', \''+val.periodo+'\')"></a> </p>'+
+                   '<p style="float: right"> <a class="fa fa-file-text-o fa-lg btn text-info  hvr-pop text-info" style="font-size: 15px"></a> </p>'+
                    '</div>'+
                    '</div>');
 
@@ -241,18 +235,34 @@ function lista_turno_loja(page){
                 
                else{
 
-                  $('#lista_loja_turn').append('<div class="col-md-2 hvr-glow" style="text-align: center; font-size:11px; border:2px double; border-color:#161818; border-left: 0px; border-right: 0px; border-top: 0px; border-radius: 20px; margin-right: 13px; margin-top: 10px; margin-left: 12px">'+
+                  if (val.congelado) {
+
+                  $('#lista_loja_turn').append('<div class="col-md-2 hvr-glow " style="text-align: center; font-size:12px; border:2px double; border-color:#161818; border-left: 0px; border-right: 0px; border-top: 0px; border-radius: 20px; margin-right: 13px; margin-top: 10px; margin-left: 12px">'+
                    '<img src="'+base+'fich_compente/turno_.png" style="height:130px; width:100%"  class="img-rounded" alt="curso"> <div class="caption "  style="text-align: center;"> <p><strong>Loja:</strong><span >'+val.zona+'</span></p>'+
                    '<p><strong>Data:</strong><span >'+val.data+'</span>&nbsp;&nbsp;<strong>Periodo:</strong><span >'+val.periodo+'</span></p>'+
                    ''+
-                   '<p style="float: left" > <a class="fa fa-info-circle fa-lg btn text-info  hvr-pop" style="font-size: 17px" onclick="info_turno(\''+val.zona+'\', \''+val.data+'\', \''+val.periodo+'\')"></a> </p>'+
-                   '<p style="float: right"> <a class="fa fa-book fa-lg btn text-info  hvr-pop text-info" style="font-size: 17px"></a> </p>'+
+                   '<p style="float: left" > <a class="fa fa-info-circle fa-lg btn text-info  hvr-pop " style="font-size: 18px" onclick="info_turno(\''+val.zona+'\', \''+val.data+'\', \''+val.periodo+'\')"></a> </p>'+
+                   '<p style="float: right"> <a class="fa fa-file-text fa-lg btn text-info  hvr-pop text-info" style="font-size: 15px" onclick="modal_pdf(\''+val.id_turno+'\')"></a> </p>'+
+                   '</div>'+
+                   '</div>');
+                  }
+
+                   else {
+
+                  $('#lista_loja_turn').append('<div class="col-md-2 hvr-glow" style="text-align: center; font-size:12px; border:2px double; border-color:#161818; border-left: 0px; border-right: 0px; border-top: 0px; border-radius: 20px; margin-right: 13px; margin-top: 10px; margin-left: 12px">'+
+                   '<img src="'+base+'fich_compente/turno_.png" style="height:130px; width:100%"  class="img-rounded" alt="curso"> <div class="caption "  style="text-align: center;"> <p><strong>Loja:</strong><span >'+val.zona+'</span></p>'+
+                   '<p><strong>Data:</strong><span >'+val.data+'</span>&nbsp;&nbsp;<strong>Periodo:</strong><span >'+val.periodo+'</span></p>'+
+                   ''+
+                   '<p style="float: left" > <a class="fa fa-info-circle fa-lg btn text-info  hvr-pop" style="font-size: 18px" onclick="info_turno(\''+val.zona+'\', \''+val.data+'\', \''+val.periodo+'\')"></a> </p>'+
+                   '<p style="float: right"> <a class="fa fa-file-text-o fa-lg btn text-info  hvr-pop text-info" style="font-size: 15px"></a> </p>'+
                    '</div>'+
                    '</div>');
 
+                   } 
+                  
+
                }
 
-               
 
                    });
 
@@ -479,13 +489,14 @@ var periodo = 2 ;
                  success: function (data){
                  // alert(data);
 
-              if (data!='null') {
+              if (data!='null' && data!='never') {
                   
                    if (data==true ) {
 
-                  $('#modal_turno').modal('show');
+                   $('#modal_turno').modal('show');
 
                    $('#modal_pick').modal('hide');
+                   
                        swal({
                         title:"",
                         text:"funcionario foi adicionado ao Turno!",
@@ -496,6 +507,8 @@ var periodo = 2 ;
                        listar_funcionario_diponivel();
                        lista_turno_loja(1);
                        tabela_turno.ajax.reload();
+
+                   
 
 
                 }
@@ -528,6 +541,17 @@ var periodo = 2 ;
                         timer:2000,
                         showConfirmButton:false,
                         });*/
+               if (data=='never') {
+                        swal({
+                        title:"",
+                        text:"Ja passou hora Indicado para adicionar funcionario no Turno!",
+                        type:"info",
+                        timer:2000, 
+                        showConfirmButton:false,
+                        }); }
+
+           
+
               }  
 
          
@@ -554,6 +578,7 @@ var periodo = 2 ;
 /*======================================================Alterar Hora/entrada/saida================================================*/
 
  function picar_hora(){
+//$('#modal_turno').modal('hide');
 
 var id_turno=$('#id_user_').val();
 var hora_entrada=$('#hora_entrada_').val();
@@ -570,7 +595,6 @@ var hora_saida=$('#hora_saida_').val();
                       if (data==true ) {
 
                      $('#modal_pick').modal('hide');
-
                        swal({
                         title:"",
                         text:"alterado Hora E/S!",
@@ -579,6 +603,11 @@ var hora_saida=$('#hora_saida_').val();
                         showConfirmButton:false,
                         });
                        tabela_turno.ajax.reload();
+
+                           $('#modal_turno').modal('hide');
+                       setTimeout(function() {
+                         $('#modal_turno').modal('show');
+                       },1100);
 
                 }
 
@@ -596,33 +625,16 @@ var hora_saida=$('#hora_saida_').val();
                        tabela_turno.ajax.reload();
 
                 }
+                //$('#modal_turno').modal('show');
  }
     
    });  
-
 }
 
 /*====================================================== pick_data================================================*/
   
    $(function (){
   var today = new Date();
-  /* $('#data_').datepicker({
-    // "setDate", new Date(),
-     language:'pt-BR', 
-     format: 'dd/mm/yyyy',
-     startDate:new Date(),
-     endDate: new Date(today.getFullYear(), today.getMonth(), today.getDate())
-   }); //pega data autal  */
-
-  /* $('#data_').bootstrapMaterialDatePicker({ 
-    format : 'DD/MM/YYYY',
-    lang : 'pt',
-    minDate : new Date(),
-    maxDate : new Date(today.getFullYear(), today.getMonth(), today.getDate()),
-    time:false
-
-  });*/
-
   $('#hora_entrada_').bootstrapMaterialDatePicker
       ({
         date: false,
@@ -675,15 +687,18 @@ $('#list_n').addClass('active');
 
                 }
                 else{
-                 
+                     swal({
+                        title:"",
+                        text:"olha ja foste incluido no Turno!",
+                        type:"info",
+                        timer:2000,
+                        showConfirmButton:false,
+                        });
                     }
                 
                    }
 
    });
-
-   
-
 }
 
 $('#list_n').click(function(event) {
@@ -792,7 +807,144 @@ error: function(){
 
 
 function relatorio(){
-   $('#modal_relatorio').modal('show');
+   //$('#modal_relatorio').modal('show');
+  // alert($('#pagina').val());
+
+
+if ($('#pagina').val()==1) {
+
+$.ajax({
+                 url: base+'turno/verifica_fecho_hora_turno',
+                 type: 'POST',
+                 success: function (count_fecho){
+                 // alert(count_fecho);
+     if (count_fecho>0) {
+          
+             swal({
+                        title:"",
+                        text:"E Preciso Pick Hora de todo Funcionario em Turno!",
+                        type:"error",
+                        timer:2000,
+                        showConfirmButton:false,
+                        });
+
+                     } 
+     else {
+
+  $('.progresso').removeClass('label-info');
+  $('.progresso').addClass('label-success'); 
+  
+  $('#recebe_corpo').html('<input type="hidden" id="pagina" value="2" name="" ><div class="col-md-12"> <div class="box">'+
+            '<div class="box-header with-border label-primary">'+
+            '<span class="box-title" style="font-size: 14px">Relatorio turno</span>'+
+            '</div><div  class="box-body" ><div class="row-fluid">'+
+            
+            '<div class="col-md-12">'+
+            '<div class="form-group">'+
+            '<label for="desc">Congelado:</label>'+
+            '<textarea class="form-control label-default" name="des1" id="des1" rows="4" style="border-radius: 10px"></textarea>'+
+            '</div></div><br>'+
+
+           '<div class="col-md-12">'+
+           ' <div class="form-group">'+
+           ' <label for="desc">Frescos/Padaria:</label>'+
+            '<textarea class="form-control label-default" name="des2" id="des2" rows="4" style="border-radius: 10px"></textarea>'+
+           ' </div></div><br>'+
+
+           '<div class="col-md-12">'+
+            '<div class="form-group">'+
+            '<label for="desc">Stock/Armazem:</label>'+
+            '<textarea class="form-control label-default" name="des3" id="des3" rows="4" style="border-radius: 10px"></textarea>'+
+            '</div> '+
+           '</div>'+
+
+           '<br>'+
+           '<div class="col-md-12">'+
+            '<div class="form-group">'+
+            '<label for="desc">Caixa/Equipamentos:</label>'+
+            '<textarea class="form-control label-default" name="des4" id="des4" rows="4" style="border-radius: 10px"></textarea>'+
+            '</div>'+
+           '</div>'+
+           '</div>'+
+           ' </div>'+
+        '</div> </div>');
+
+           }
+
+                
+                   }
+
+ });
+   }
+
+
+    else if ($('#pagina').val()==2) {
+      alert('2');
+      //alert($('#des4').val());
+
+  var congelados=$('#des1').val();
+  var fresco=$('#des2').val();
+  var stock=$('#des3').val();
+  var caixa=$('#des4').val();
+    if (congelados==='' || fresco==='' || stock==='' || caixa==='') {  /*----------------*/
+      swal({
+                        title:"",
+                        text:"Campos Vazios preenche os favor!",
+                        type:"info",
+                        timer:2000,
+                        showConfirmButton:false,
+                        });
+    }       /*----------------*/
+
+    else{  /*----------------*/
+
+     $.ajax({
+
+                 url: base+'turno/relatorio',
+                 type: 'POST',
+                 data: {'congelados': congelados, 'fresco':fresco, 'stock':stock, 'caixa':caixa},
+                 success: function (data_){
+                 //alert(data_);     
+                      if (data_==true ) {
+                      $.post(base+'turno/fecho_turno', { },  function(data) { lista_turno_loja(1); });
+                      
+                      $('.progressoo').removeClass('label-info');
+                       $('.progressoo').addClass('label-success'); 
+
+                       swal({
+                        title:"",
+                        text:"Turno Terminado com sucesso!",
+                        type:"success",
+                        timer:2000,
+                        showConfirmButton:false,
+                        });
+
+                       $('#modal_turno').modal('hide');
+
+                      
+
+
+                                      }
+
+                     else{
+                       swal({
+                        title:"",
+                        text:"Turno ainda nao foi terminado!",
+                        type:"error",
+                        timer:2000,
+                        showConfirmButton:false,
+                        });
+                                     }
+        }
+    
+   }); 
+
+    }  /*----------------*/
+
+    
+
+    }
+
 }
 
 
@@ -826,19 +978,40 @@ function  defenir_permissoes(){
                  success: function (data){
                 // alert(data);
                 if (data=='adim') {
-
                   $('#list_a').show();
-
+                  
                 }
-                else{
-
-                }
-
+                else{ $('#inicio_').show();}
               }
-
-       
-   });
+ });
 
 }
+
+
 /*====================================================[end]=======================================================*/
 
+/*================================================atualizacao automatico===========================================*/
+
+var intervalo = window.setInterval(function() {
+   listar_funcionario_diponivel();
+    merda();
+}, 3000);
+
+
+function merda(){
+  listar_funcionario_diponivel();
+}
+/*====================================================================================================================*/
+
+
+/*======================================[pdf]===============================================*/
+
+
+
+function modal_pdf(id_turno){
+  $('#modal_spre').modal('show');
+  $('#md_pdf').html('<iframe style="width: 100%; height: 370px" src="'+base+'pddf/'+id_turno+'">');
+}
+
+
+/*======================================[pdf]===============================================*/

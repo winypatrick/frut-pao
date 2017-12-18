@@ -70,13 +70,15 @@
 <!--  -->
 
 <!-- scripts para funcionario quel ir para -->
-<script src="<?php echo base_url(); ?>fich_jquery/funcionario.js"></script>
+<script src="<?php echo base_url(); ?>fich_jquery/funcionario.js?v=<?=rand() ?>"></script>
 
 <!-- scripts para funcionario quel ir para -->
-<script src="<?php echo base_url(); ?>fich_jquery/header.js"></script>
+<script src="<?php echo base_url(); ?>fich_jquery/header.js?v=<?=rand() ?>"></script>
+
+
 
 <!-- Favicon -->
-<link href="<?= base_url(); ?>fich_compente/14469563_595253984008889_3422939138102187882_n.png" rel="shortcut icon">
+<link href="<?= base_url(); ?>fich_compente/favicon_1.png" rel="shortcut icon">
 
  <title>frut&Pão</title>
 
@@ -168,7 +170,7 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="<?= base_url();?>fich_compente/dist/img/avatar.png" class="user-image" alt="User Image">
+              <img src="<?= base_url();?>fich_compente/log11.png" class="user-image" alt="User Image">
               <span class="hidden-xs">Africa Business</span>
             </a>
             <ul class="dropdown-menu">
@@ -189,7 +191,7 @@
                   <a class="btn btn-default btn-flat" data-toggle="modal" data-target="#modal_mudar_senha">Mudar Senha</a>
                 </div>
                 <div class="pull-right">
-                  <a href="<?= base_url();?>login/logout" class="btn btn-default btn-flat">Sair</a>
+                  <a class="btn btn-default btn-flat" onclick="lagout()">Sair</a>
                 </div>
               </li>
             </ul>

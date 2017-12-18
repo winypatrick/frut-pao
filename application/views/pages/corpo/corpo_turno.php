@@ -1,4 +1,4 @@
-<script src="<?php echo base_url(); ?>fich_jquery/turno.js"></script> 
+<script src="<?php echo base_url(); ?>fich_jquery/turno.js?v=<?=rand() ?>"></script> 
 
  <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -13,6 +13,7 @@
       </ol>
       <br>
     </section>
+
 
     <!-- Main content -->
     <section class="content">
@@ -84,10 +85,9 @@
           <div class="box">
             <div class="box-header with-border ">
 
-              <!-- <a type="button" id="add" class="fa fa-plus-circle btn btn-info btn-xs" style="" onclick="modal_turno()"> Novo Turno </a> -->
-              <!-- ou -->
-           <!--    <a type="button" id="add" class="btn btn-info btn-sm" style="" onclick="modal_turno()">
-           <i class="fa fa-plus-circle fa-lg"></i> Novo Turno</a> -->
+              <a type="button" id="inicio_" class="btn btn-sm label-info" onclick="logo_inicio_turno()" style="display: none;">
+              <i class="fa fa-plus-square fa-lg label-danger hvr-pulse-grow"></i></a>
+              &nbsp;
               <a type="button" id="list_n" class="btn btn-sm active"  >
               <i class=" fa fa fa-table fa-lg label-info"></i></a>
 
@@ -101,14 +101,11 @@
            <i class="fa fa-search" ></i> 
            </div>
 
-             <!-- <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-               </button> -->
-
               </div>
             </div>
             
             <!-- box-body -->
-            <div id="lista_loja_turn" class="box-body" style="padding-left: 20px">
+            <div id="lista_loja_turn" class="box-body " style="padding-left: 20px">
             
 
  </div>
@@ -117,7 +114,7 @@
 
 
             <!-- box-footer -->
-            <div id="pag_link" class="box-footer" style="text-align: center;">
+            <div id="pag_link" class="box-footer" style="text-align: center;  ">
             
 
           </div>
@@ -131,30 +128,30 @@
 
 
 <!-- ====================================================[ modal Turno ]================================================= -->
-      <div class="col-md-12">
-        <div class="col-md-12 modal fade " id="modal_turno"  >
+      <div class="col-md-12" >
+        <div class="col-md-12 modal " id="modal_turno"  >
         <div  class="modal-dialog modal-lg " style="margin-top:30px; width: 80%">
-        <div id="myModal" class="modal-content " >
+        <div id="modal_turno" class="modal-content " >
             <div class="modal-header" style="height: 9px">
                 <button type="button" class="close text-danger" data-dismiss="modal">&times;</button>
             </div>
-
+           
             <div class="modal-body">  <!-- init -->
-                <div class="row">
+      <div class="row" id="recebe_corpo">
+
+          <input type="hidden" id="pagina" value="1" name="" >
+
           <div class="col-md-12">
           <div class="box">
             <div class="box-header with-border label-primary">
-              <span class="box-title" style="font-size: 14px" >Funcionarios Disponivel</span>
+              <span class="box-title" style="font-size: 14px">Funcionarios Disponivel</span>
 
               <div class="box-tools pull-right" >
 
-           <div class=" inputWithIcon" >
+           <div class=" inputWithIcon " >
            <input  placeholder="search"  id="pesk" name="password" onkeyup="pesquisa()"  type="text" value="" style="width: 200px; height: 23px" required>
            <i class="fa fa-search" ></i> 
            </div>
-
-             <!-- <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-               </button> -->
 
               </div>
             </div>
@@ -236,10 +233,17 @@
       <!-- /.row -->
 
             </div><!--  fim -->
+  <div class="col-md-12" style="text-align: center">
+   <span class="label-success btn-lg " style="font-size: 20px; border-radius: 20px;">1</span>
+   <span class="label-info progresso " style="font-size: 5px; border: solid; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+   <span class="label-info btn-lg progresso" style="font-size: 20px; border-radius: 20px">2</span>
+   <span class="label-info progressoo" style="font-size: 5px; border: solid;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+   <span class="label-info btn-lg progressoo" style="font-size: 20px; border-radius: 20px">3</span>
+</div>
 
             <div class="modal-footer"> 
-
-            <button  class="btn btn-danger" onclick="relatorio()"> Finalizar turno </button>
+          
+            <button  class="btn btn-default" onclick="relatorio()">Avancar</button>
 
             </div>
 
@@ -251,7 +255,7 @@
 
 
 
-<!-- ====================================================[ modal informacao turno antigas ]============================================= -->
+<!-- ===============================================[ modal informacao turno antigas ]============================================= -->
         <div class="col-md-12 modal fade " id="modal_info_turno"  >
         <div  class="modal-dialog modal-xs " style="margin-top:60px; border-radius: 9px; border: solid; border-color: #BBE8EB" >
           <div id="modal_info_turno" class="modal-content" >
@@ -284,15 +288,14 @@
      </div>
      </div>
      </div>
-<!-- ====================================================[ end modal informacao de turno]================================================ -->
+<!-- =======================================[ end modal informacao de turno]================================================ -->
 
 
-     <div class="col-sm-12">
- <!--  ******************************************* modal_ cliente ********************************************* -->
-
-        <div class="col-md-12 modal fade " id="modal_pick"  >
-        <div  class="modal-dialog modal-xs">
-        <div id="myModal" class="modal-content hvr-wobble-skew" style="margin-top: 200px" >
+ <!--  ******************************************* modal_cliente ********************************************* -->
+     
+        <div class=" modal fade " id="modal_pick"  >
+        <div  class="modal-dialog modal-xs" style="margin-top: 200px">
+        <div id="modal_pick" class="modal-content " >
         <div class="modal-header label-info">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4><strong>Hora Entrada / Saida</strong> </h4>
@@ -338,78 +341,34 @@
      </div>
      </div>
  <!-- ******************************************************************************************************* -->  
-     </div>
 
-<!-- ====================================================[ modal Relatorio ]================================================= -->
-      <div class="col-md-12">
-        <div class="col-md-12 modal fade " id="modal_relatorio"  >
-        <div  class="modal-dialog modal-lg " style="margin-top:10px; width: 58%; border-radius: 10px">
-        <div id="myModal" class="modal-content " >
-           
-          <div class="box">
+ <!--pdf  -->
+      <div class="col-md-12 modal fade " id="modal_spre" >
 
-           <div class="box-header with-border label-primary">
-            <span class="box-title" style="font-size: 15px; font-weight: bold; ">Relatorio turno</span>
-            <div class="box-tools pull-right" >
-            <button type="button " class="close" data-dismiss="modal">&times;</button>
+        <div  class="modal-dialog modal-md bs-example-modal-md col-md-4 col-md-push-8" style="margin-top: 200px; width: 35%;">
+        <div id="modal_spre" class="modal-content " >
+         <div class="box">
+
+            <div class="box-header with-border label-info">
+              <span class="box-title" style="font-size: 15px; font-weight: bold; " ><strong>Relatorio de turno</strong> </span>
+              <div class="box-tools pull-right" >
+            <button type="button " class="close label-success user-image" data-dismiss="modal">&times;</button>
+
             </div>
+
             </div>
             
-            <!-- box-body -->
-            <div  class="box-body" >
-            
-            <div class="col-md-12">
-            <div class="form-group">
-            <label for="desc">Congelado:</label>
-            <textarea class="form-control label-default" name="des" id="des" rows="4" style="border-radius: 10px"></textarea>
-            </div> 
-           </div>
-
-           <br>
-
-           <div class="col-md-12">
-            <div class="form-group">
-            <label for="desc">Frescos/Padaria:</label>
-            <textarea class="form-control label-default" name="des" id="des" rows="4" style="border-radius: 10px"></textarea>
-            </div> 
-           </div>
-
-           <br>
-
-           <div class="col-md-12">
-            <div class="form-group">
-            <label for="desc">Stock/Armazem:</label>
-            <textarea class="form-control label-default" name="des" id="des" rows="4" style="border-radius: 10px"></textarea>
-            </div> 
-           </div>
-
-           <br>
-
-           <div class="col-md-12">
-            <div class="form-group">
-            <label for="desc">Caixa/Equipamentos:</label>
-            <textarea class="form-control label-default" name="des" id="des" rows="4" style="border-radius: 10px"></textarea>
-            </div> 
-           </div>
-           
-           <div class="modal-footer">
-            <button  class="btn btn-primary" onclick=""> Confirma </button>
-            </div>
+             <div id="md_pdf" class="box-body " >
 
             </div>
-           <!-- ./box-body -->
 
-
-          <!-- /.box -->
         </div>
-        <!-- /.col -->
 
-     </div>
-     </div>
-     </div>
-     </div>
-<!-- ====================================================[ modal Relatorio end]================================================= -->
+          </div>
+        </div>
 
+      </div>
+<!--pdf  -->
 
 
       <!-- Main row -->

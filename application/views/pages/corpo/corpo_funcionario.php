@@ -1,6 +1,6 @@
  
  <!-- chamado  -->
-<script src="<?php echo base_url(); ?>fich_jquery/funcionario.js"></script> 
+<script src="<?php echo base_url(); ?>fich_jquery/funcionario.js?v=<?=rand() ?>"></script> 
 
 
 

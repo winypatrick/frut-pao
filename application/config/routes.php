@@ -53,6 +53,6 @@ $route['default_controller'] = 'funcionario';
 $route['login/(:num)'] = "login/Index/$1";
 //$route['dashbord/(:num)'] = "dashbord/Index/$1";
 //$route['cadastrar/(:num)'] = "cadastrar/Index/$1";
-//$route['pddf/(:num)/(:num)/(:num)'] = "pddf/Index/$1/$2/$3"; //se tivermos 3 parametros*/
+$route['pddf/(:num)'] = "pddf/Index/$1"; //se tivermos 3 parametros*/
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

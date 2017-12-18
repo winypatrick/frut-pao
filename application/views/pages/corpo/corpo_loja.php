@@ -7,8 +7,8 @@
 }
  
 </style> 
-
-<script type="text/javascript" src="<?php echo base_url();?>/fich_jquery/loja.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.js" integrity="sha256-t3+U9BqykoMN9cqZmJ5Z53TvPv4V7S9AmjUcIWNNyxo=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="<?php echo base_url();?>/fich_jquery/loja.js?v=<?=rand() ?>"></script>
 <section class="content-header">
   <ol class="breadcrumb">
     <li><a href="<?= base_url();?>funcionario"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -56,7 +56,7 @@
          </div>
          <div class="col-md-6">
            <div id="gra" class="box">
-             <img src="<?= base_url();?>fich_compente/im.png" width="500"  height="250" alt="">
+            <canvas id="graphics" ></canvas>
            </div>
            <table class="table">
              <thead>
@@ -102,7 +102,7 @@
     </div>
   </div>
 </div>
-
+ <script type="text/javascript" src="<?php echo base_url();?>/fich_jquery/graficos.js?v=<?=rand() ?>"></script>
   <!-- Inicio do modal criar nova loja -->
   <div class="modal fade" id="modal_loja">
     <div class="modal-dialog" role="document">

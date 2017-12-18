@@ -29,13 +29,13 @@ else {
 return $loja;
 }
 
-public function verificar_id_ocupado_recente($data_, $periodo_){
+public function verificar_id_ocupado_recente($data_){
 
 /*===============================================[ contruind meu array de id de pessoas que ta na dia atual de ]==========================*/
 $this->db->select('id_funcionario');
 $this->db->distinct();
 $this->db->where('data', $data_);
-$this->db->where('periodo', $periodo_);
+$this->db->where('Disponivel', 1);
 $res_p_=$this->db->get('turno')->result();
 
 if ($res_p_) {
@@ -57,10 +57,41 @@ return null;
 /*==============================================[fim de ]==================================*/
 
 
-public function lista_funcionario_diponivel($id_, $data, $periodo){
+
+/*================================================[]===========================================*/
+public function verificar_periodo($data_, $id_){
+
+/*===============================================[ contruind meu array de id de pessoas que ta na dia atual de ]==========================*/
+$this->db->select('periodo');
+$this->db->distinct();
+$this->db->where('data', $data_);
+$this->db->where('id_funcionario', $id_);
+$this->db->where('Disponivel', 1);
+$resposta=$this->db->get('turno')->result();
+
+if ($resposta) {
+
+$b = array();  
+foreach( $resposta as $a) {  //aqui pra formar nosso que da inicio a formacao do nosso array 
+   $b[] = $a->periodo; //formando ...
+}
+return $b[0];
+}
+
+else
+{
+
+return null;
+  }
+
+}
+/*================================================[]===========================================*/
+
+
+public function lista_funcionario_diponivel($id_, $data){
 
 //$names = array(6, 5);
-$id_busy=$this->verificar_id_ocupado_recente($data, $periodo);
+$id_busy=$this->verificar_id_ocupado_recente($data);
 
 
 $this->db->select('id_user, nome, funcao');
@@ -71,10 +102,10 @@ $this->db->where('id_user!=', $id_);
 $this->db->group_start();
 $this->db->where('data!=', $data);
 $this->db->or_where('data', $data);
-$this->db->where('periodo!=', $periodo);
+$this->db->where('Disponivel!=', 1);
 
 $this->db->or_where('data', null);
-$this->db->or_where('periodo', null);
+$this->db->or_where('Disponivel', null);
 
 $this->db->group_end();
 
@@ -93,9 +124,11 @@ return $res;
 }
 
 
-public function pesquisa_filtro($filtro, $id, $data, $periodo){
+public function pesquisa_filtro($filtro, $id, $data){
 
-$id_busy=$this->verificar_id_ocupado_recente($data, $periodo);
+$id_busy=$this->verificar_id_ocupado_recente($data);
+
+
 
 $this->db->select('id_user, nome, funcao');
 $this->db->distinct();  //isso dai pra permitir nao repiticao de nome e outros
@@ -105,10 +138,10 @@ $this->db->where('id_user!=', $id);
 $this->db->group_start();
 $this->db->where('data!=', $data);
 $this->db->or_where('data', $data);
-$this->db->where('periodo!=', $periodo);
+$this->db->where('Disponivel!=', 1);
 
 $this->db->or_where('data', null);
-$this->db->or_where('periodo', null);
+$this->db->or_where('Disponivel', null);
 
 $this->db->group_end();
 
@@ -136,7 +169,23 @@ public function funcionario_y_n_turno($data, $periodo, $id){
 $this->db->select('*');
 $this->db->where('id_funcionario', $id);
 $this->db->where('data', $data);
+
+$this->db->group_start();
+
 $this->db->where('periodo', $periodo);
+$this->db->where('Disponivel', 1);
+
+$this->db->or_group_start();
+$this->db->where('periodo!=', $periodo);
+$this->db->where('Disponivel', 1);
+
+$this->db->or_group_start();
+$this->db->where('periodo', $periodo);
+$this->db->where('Disponivel', 0);
+
+$this->db->group_end();
+$this->db->group_end();
+$this->db->group_end();
 
 $res=$this->db->get('turno')->result();
 
@@ -202,11 +251,12 @@ public function remover_turno($id_turno_){
   }  
 
 
-public function lista_turno($data, $periodo, $loja_id){  //tem que listar mediante a 
+public function lista_turno($data, $loja_id, $id){  //tem que listar mediante a 
+$periodo=$this->verificar_periodo($data, $id);
+
 $this->db->select('*');
 $this->db->where('data', $data);
 $this->db->where('periodo', $periodo);
-
 if ($loja_id) {
  $this->db->where('id_loja', $loja_id);
 } 
@@ -242,16 +292,24 @@ $this->db->join('loja', 'id_loja=id_lojja');
 $this->db->order_by('funcao', 'desc');
 $res=$this->db->get('turno')->result();
 return $res;
-
 }
 
+public function pdf($id_turno){
+
+$this->db->select('*');
+$this->db->where('id_turno', $id_turno);
+$this->db->join('loja', 'id_loja=id_lojja');
+$res=$this->db->get('turno')->result();
+return $res;
+}
 
 public function lista_turno_loja_($limit, $start){   //para listar por limite
 
-$this->db->select('id_loja ,zona, data, periodo');
+$this->db->select('id_loja ,zona, data, periodo, Disponivel,  congelado, id_turno');
 $this->db->group_by('data');
 $this->db->group_by('periodo');
 $this->db->group_by('zona');
+$this->db->group_by('Disponivel');
 $this->db->order_by('data', 'desc');
 $this->db->order_by('periodo', 'desc');
 $this->db->limit($limit, $start);
@@ -297,44 +355,138 @@ $res=$this->db->get('turno')->result();
 return $res;
   }
 
+ public function elementos_contruido_turno($id, $loja_id, $data)
+{
+$periodo=$this->verificar_periodo($data, $id);
+
+$this->db->select('id_turno');
+$this->db->where('periodo', $periodo);
+$this->db->where('Disponivel', 1);
+$this->db->where('id_loja', $loja_id);
+
+$res_p_=$this->db->get('turno')->result();
+
+if ($res_p_) {
+$b = array();  
+foreach( $res_p_ as $a) {  
+   $b[] = $a->id_turno; 
+} return $b;}
+else{ return null; }
+
+}
+
+ public function fecho_turno($id, $loja_id, $data)
+{
+  $datap['Disponivel']=0; 
+
+  $id_s=$this->elementos_contruido_turno($id, $loja_id, $data);
+
+   if ($id_s) {
+   $this->db->where_in('id_turno', $id_s); //e pra lista menos id pegado em sima que verificamos que dia de hoje
+}
+
+    $resp=$this->db->update('turno', $datap);
+    
+    return $resp; 
+ } 
 
 
-/*=======================================================================[Rascunho]=====================================================*/
+public function verifica_fecho_hora_turno($id, $loja_id, $data)
+{
+  $id_s=$this->elementos_contruido_turno($id, $loja_id, $data);
 
-/*
+  $this->db->select('funcao_');
 
-public function lista_disponivel($data, $periodo){
+$this->db->group_start();
+  $this->db->where('hora_entrada', null);
+  $this->db->or_where('hora_entrada', '');
 
+  $this->db->where('hora_saida', null);
+  $this->db->or_where('hora_saida', '');
+
+$this->db->or_group_start();
+  $this->db->where('hora_entrada', null);
+  $this->db->where('hora_saida!=', null);
+
+$this->db->or_group_start();
+  $this->db->where('hora_entrada!=', null);
+  $this->db->where('hora_saida', null);
+
+  $this->db->group_end();
+  $this->db->group_end();
+  $this->db->group_end();
+
+   if ($id_s) {
+   $this->db->where_in('id_turno', $id_s); 
+    } 
+  $this->db->where('id_loja', $loja_id);  
+
+   $respp=$this->db->count_all_results('turno'); 
+
+return $respp;
+ } 
+
+
+public function Relatorio($id, $id_loja, $data)
+{
+
+$this->db->where('id_loja', $id_loja);
+$this->db->where('id_funcionario', $id);
+$this->db->where('Disponivel', 1);
+
+$resp=$this->db->update('turno', $data);
+
+if ($resp) {
+    return true;
+}
+
+else{
+    return false;
+}
+
+}
+
+/*================================[/countar quantidade de turno diacordo com resultado]===============================*/
+
+public function count_turno_ativado($loja_id, $data_atual){   
 $this->db->select('*');
 
-$this->db->where('data!=', $data);
+$this->db->where('data', $data_atual);
+$this->db->where('id_loja', $loja_id);
+$this->db->where('disponivel', 0);
 
-$this->db->or_where('data', $data);
-$this->db->where('perido!=', $periodo);
-
-$this->db->or_where('data', null);
-$this->db->or_where('perido', null);
-
-$this->db->join('turn', 'id_func=id_funcs', 'left');
-$res=$this->db->get('func')->result();
-return $res;
-
-}
-
-public function lm(){ 
-
-$this->db->select('loja, data, periodo');
 $this->db->group_by('data');
 $this->db->group_by('periodo');
-$this->db->group_by('loja');
-$res=$this->db->get('turno')->result();
-return $res;
-
+$respp=$this->db->count_all_results('turno');  
+return $respp;
 }
-*/
+/*================================[/countar quantidade de turno diacordo com resultado]===============================*/
 
 
-/*=======================================================================[Rascunho]=====================================================*/
+/*==================================================[lagout]============================================*/
+public function logout($id, $data, $loja_id)
+{
+
+$this->db->where('id_funcionario', $id);
+$this->db->where('data', $data);
+$this->db->where('id_loja', $loja_id);
+$this->db->where('Disponivel', 1);
+
+$respost=$this->db->get('turno')->result();
+ 
+ if ($respost) {
+   return true;
+ } 
+ else {
+   return false;
+ }
+ 
+
+  }
+/*==================================================[]============================================*/
+
+
+
 }
 
 /* End of file model_turno.php */

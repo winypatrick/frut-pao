@@ -1,4 +1,4 @@
-var base='http://192.168.1.68/frut&pao/';
+
 
 $("#add").click(function(){
   //limpar campos

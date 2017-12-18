@@ -69,7 +69,7 @@ define ('K_PATH_IMAGES', dirname(__FILE__) . '/');
  * Deafult image logo used be the default Header() method.
  * Please set here your own logo or an empty string to disable it.
  */
-define ('PDF_HEADER_LOGO', 'Logotipo.png');
+define ('PDF_HEADER_LOGO', 'frut&pao.png');
 
 /**
  * Header logo image width in user units.
@@ -89,7 +89,7 @@ define ('K_BLANK_IMAGE', '_blank.png');
 /**
  * Page format.
  */
-define ('PDF_PAGE_FORMAT', 'A1');
+define ('PDF_PAGE_FORMAT', 'A4');
 
 /**
  * Page orientation (P=portrait, L=landscape).
@@ -109,12 +109,12 @@ define ('PDF_AUTHOR', 'TCPDF');
 /**
  * Header title. titulo
  */
-define ('PDF_HEADER_TITLE', 'Escola de Condução Skolanela');
+define ('PDF_HEADER_TITLE', 'RECURSOS HUMANOS FRUT&PÃO');
 
 /**
  * Header description string. areaa de cabecalho
  */
-define ('PDF_HEADER_STRING', "Local:  Santiago, Praia->Safende, Tel: 264 40 22, Movel: 918 31 47 | 936 86 48 (play)  E-mail: skolanela@gmal.com, NIF: 266946380");
+define ('PDF_HEADER_STRING', " lll");
 
 /**
  * Document unit of measure [pt=point, mm=millimeter, cm=centimeter, in=inch].

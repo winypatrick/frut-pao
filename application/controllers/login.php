@@ -6,6 +6,8 @@ class Login extends CI_Controller {
      function __construct(){
 		parent::__construct();
 		$this->load->model('model_login', 'op_log');
+
+    $this->load->model('model_turno', 'turno');
 }	
 	public function index($indice=null)
 	{   
@@ -75,14 +77,30 @@ public function acesso(){
   }
 }
 
+public function pega_loja(){
+$hostname = gethostbyaddr($_SERVER['REMOTE_ADDR']);
+$id_loja=$this->turno->pega_loja($hostname);
+return $id_loja;
+}
 
-//sair de 
 public function logout()
   {
+     $loja_id=$this->pega_loja();
+     date_default_timezone_set('Atlantic/Cape_Verde'); 
+    $id=$this->session->userdata('userr_id');
+    $data=date('d/m/Y');
 
+    $verifica=$this->turno->logout($id, $data, $loja_id);
+
+    if ($verifica==true) {
+      echo 'pendente';
+    } 
+
+   else {
     $this->session->sess_destroy();
     redirect('login');
-
+    }
+    
   }
 
 /*public function merda(){
