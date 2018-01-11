@@ -1,4 +1,6 @@
 
+
+
 //====================================================[Arranque]===============================================================
 $("#pesk").keyup(pesquisa()); // isso ja chama metodo automaticamente listar 
 $("#pesk_1").keyup(pesquisa_turnos());
@@ -171,18 +173,10 @@ listar_funcionario_diponivel();
 /*===========================================================================List - loja por turno e paginacao===================================*/
 function lista_turno_loja(page){
 
+                     moment.locale('pt-BR');
+                     var Date_atual_=moment().format('L');
+                     
                      var dt= new Date();
-                    
-                    if (dt.getDate()<10)
-                     {
-                       var format_dia='0'+dt.getDate();
-                     } 
-                     else {
-                       var format_dia=dt.getDate();
-                     }
-
-
-                     var Date_atual_=format_dia+"/"+(dt.getMonth()+1)+"/"+dt.getFullYear();
                      var time = dt.getHours();
                     if (time>=6 && time<=14 ) {var periodo_ = 1 ; }
                     else{ var periodo_ = 2 ; }
@@ -241,10 +235,33 @@ function lista_turno_loja(page){
                    '<img src="'+base+'fich_compente/turno_.png" style="height:130px; width:100%"  class="img-rounded" alt="curso"> <div class="caption "  style="text-align: center;"> <p><strong>Loja:</strong><span >'+val.zona+'</span></p>'+
                    '<p><strong>Data:</strong><span >'+val.data+'</span>&nbsp;&nbsp;<strong>Periodo:</strong><span >'+val.periodo+'</span></p>'+
                    ''+
-                   '<p style="float: left" > <a class="fa fa-info-circle fa-lg btn text-info  hvr-pop " style="font-size: 18px" onclick="info_turno(\''+val.zona+'\', \''+val.data+'\', \''+val.periodo+'\')"></a> </p>'+
-                   '<p style="float: right"> <a class="fa fa-file-text fa-lg btn text-info  hvr-pop text-info" style="font-size: 15px" onclick="modal_pdf(\''+val.id_turno+'\')"></a> </p>'+
+                   '<p style="float: left" > <a class="fa fa-info-circle fa-lg btn text-info  hvr-pop " style="font-size: 18px" onclick="info_turno(\''+val.zona+'\', \''+val.data+'\', \''+val.periodo+'\', \''+val.id_turno+'\')"></a> </p>'+
+                   '<p style="float: right" id="merda_">'+
+                   '<li class="dropdown" style="list-style-type:none; float: right">'+
+                   '<a class="fa fa-file-text fa-lg btn text-info  hvr-pop text-info dropdown-toggle" data-toggle="dropdown" style="font-size: 15px;'+
+                   'margin-left: 20px" ></a>'+
+                   '<ul class="dropdown-menu" style="background: transparent; border: 0px; margin-top: 8px">'+
+                   '<li class="user-footer" style="text-align: left;">'+
+                   '<p style="text-align: left" >'+
+                   ' <a class="fa fa-eye btn-group fa-lg text-primary label-default hvr-pulse" data-toggle="tooltip" data-placement="top" data-animation="true" title="Visualizar'+
+                   ' relatorio do turno" style="font-size: 20px; border:2px solid; border-radius: 9px; border-color: #48E6EC"></a>'+
+                   ' &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+
+                   '<a class=" fa fa-print btn-group fa-lg text-primary label-default hvr-pulse" data-toggle="tooltip" data-placement="top" title="Imprimir relatorio do turno" '+
+                   'style="font-size: 19px; border:2px solid; border-radius: 7px; border-color: #48E6EC" onclick="modal_pdf(\''+val.id_turno+'\')"></a>'+
+                   '</p></li></ul></li>'+
+                   '</p>'+
                    '</div>'+
                    '</div>');
+
+   /*==============[animacao para Tooltips]============*/
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip();
+    $('[data-toggle="tooltip"]').on('shown.bs.tooltip', function () {
+    // alert('merda');
+        $('.tooltip').addClass('animated swing');
+    })
+});
+  /*==============[animacao para Tooltips]============*/
                   }
 
                    else {
@@ -343,15 +360,17 @@ lista_turno_loja(1);
 
 
 /*===============================================[info turno]===========================================================*/
-function info_turno(zona, data, periodo){
+function info_turno(zona, data, periodo, id_turno){
  // alert('sinalizador'+data);
+//alert(id_turno);
 
    $('#titulo_info_turno').html(+periodo+'° Turno &nbsp;&nbsp;'+zona+'&nbsp;&nbsp;'+data);
+
   
   $.ajax({
                  url: base+'turno/info_turno',
                  type: 'POST',
-                 data:{'zona': zona, 'data': data, 'periodo': periodo},
+                 data:{'zona': zona, 'data': data, 'periodo': periodo, 'id_turno': id_turno},
 
                  success: function (data_){
              
@@ -361,6 +380,19 @@ function info_turno(zona, data, periodo){
                     $.each(c.data, function(index, val) {
                    //alert(val);// sinalizador
                    $('#adiciona_funcionario').append(val);
+
+                    });
+
+                    $('#fecho_de_conta').html('');
+                    $.each(c.conta, function(index, val) {
+
+                    if (val.q_box1) {
+                       $('#fecho_de_conta').html('<span class=" text-primary">(<strong>Area Finaceira</strong>)</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[<strong>Caixa 1:&nbsp;</strong>'+val.q_box1+'$00] &nbsp; [<strong>Caixa 2:&nbsp;</strong>'+val.q_box2+'$00] &nbsp; [<strong>N° Pão Vendido/Sobrado:&nbsp;</strong>'+val.n_pao_vendida+'/'+val.n_pao_sobrado+'<strong>]</strong>');
+                    }
+                    
+                    else{
+                       $('#fecho_de_conta').html();
+                    }
 
                     });
 
@@ -453,39 +485,11 @@ error: function(){
    //====================================================================[Adicionar Turno]================================================
  function pick_turno(id_, nome){
 
- var dt= new Date();
-
- if (dt.getDate()<10)
-                     {
-                       var format_dia='0'+dt.getDate();
-                     } 
-                     else {
-                       var format_dia=dt.getDate();
-                     }
-
-var Data_atual=format_dia+"/"+(dt.getMonth()+1)+"/"+dt.getFullYear();
-
-
-var time = dt.getHours();
-
-
-if (time>=6 && time<=14 ) {
-var periodo = 1 ;
-}
-
-
-else{
-var periodo = 2 ;
-}
-
-
-//alert(periodo);
-
  $.ajax({
 
                  url: base+'turno/criar_turno',
                  type: 'POST',
-                 data: {'nome': nome, 'data':Data_atual, 'periodo':periodo, 'id_userr':id_},
+                 data: {'nome': nome, 'id_userr':id_},
                  success: function (data){
                  // alert(data);
 
@@ -905,31 +909,39 @@ $.ajax({
                  data: {'congelados': congelados, 'fresco':fresco, 'stock':stock, 'caixa':caixa},
                  success: function (data_){
                  //alert(data_);     
-                      if (data_==true ) {
-                      $.post(base+'turno/fecho_turno', { },  function(data) { lista_turno_loja(1); });
-                      
-                      $('.progressoo').removeClass('label-info');
-                       $('.progressoo').addClass('label-success'); 
+     if (data_==true ) {
 
-                       swal({
-                        title:"",
-                        text:"Turno Terminado com sucesso!",
-                        type:"success",
-                        timer:2000,
-                        showConfirmButton:false,
-                        });
+        $('.progressoo').removeClass('label-info');
+        $('.progressoo').addClass('label-success'); 
+        
+        $('#button_').css({'background': '#F5550F'});
+        $('#button_').html('Termine');
 
-                       $('#modal_turno').modal('hide');
+      $('#recebe_corpo').html('<input type="hidden" id="pagina" value="3" name="" ><div class="col-md-12"> <div class="box">'+
+          '<div class="box-header with-border" style="background: #1F1B1B">'+
+            '<span class="box-title" style="font-size: 14px; color: #FFFFFF">Fechamento de Caixa</span>'+
+            '</div><div  class="box-body row-fluid" style="height: 100px;">'+
+            '<div class="col-md-3"><div class="form-group"><label for="dt">Quantia Feita Caixa 1:</label><div class="input-group ">'+
+            '<input type="text" class="form-control" id="box1"><div class="input-group-addon">$00</div></div></div></div>'+
 
-                      
+            '<div class="col-md-3"><div class="form-group"><label for="dt">Quantia Feita Caixa 2:</label><div class="input-group " >'+
+            '<input type="text" class="form-control" id="box2" ><div class="input-group-addon">$00</div></div></div></div>'+
 
+            '<div class="col-md-3"> <div class="form-group"> <label for="dt">N° PÃO Vendido:</label>'+
+            '<div class="input-group" ><input type="number" class="form-control" id="n_pao_vendido"></div></div></div>'+
 
-                                      }
+            '<div class="col-md-3"><div class="form-group" ><label for="dt">N° PÃO SObrado:</label><div class="input-group id" >'+
+            '<input type="number" class="form-control" id="n_pao_sobrado"></div></div> </div></div></div></div>');   
+
+            $('#box1').number(true);
+            $('#box2').number(true);          
+   }
+
 
                      else{
                        swal({
                         title:"",
-                        text:"Turno ainda nao foi terminado!",
+                        text:" relatorio feito sem sucesso!",
                         type:"error",
                         timer:2000,
                         showConfirmButton:false,
@@ -943,6 +955,68 @@ $.ajax({
 
     
 
+    }
+
+    else if ($('#pagina').val()==3) {
+    alert('3');
+    
+  var quantia_caixa1=$('#box1').val();
+  var quantia_caixa2=$('#box2').val();
+  var n_pao_vendido=$('#n_pao_vendido').val();
+  var n_pao_sobrado=$('#n_pao_sobrado').val();
+
+    if (quantia_caixa1==='' || quantia_caixa2==='' || n_pao_vendido==='' || n_pao_sobrado==='') {  /*----------------*/
+      swal({
+                        title:"",
+                        text:"Campos Vazios preenche os favor!",
+                        type:"info",
+                        timer:2000,
+                        showConfirmButton:false,
+                        });
+    }
+
+    else{
+
+       $.ajax({
+
+                 url: base+'turno/fechamento_conta',
+                 type: 'POST',
+                 data: {'q_box1': quantia_caixa1, 'q_box2':quantia_caixa2, 'n_pao_vendida':n_pao_vendido, 'n_pao_sobrado':n_pao_sobrado},
+                 success: function (data_){
+                // alert(data_);     
+                   if (data_==true ) {
+
+                       $.post(base+'turno/fecho_turno', { },  function(data) { lista_turno_loja(1); });
+
+                        swal({
+                        title:"",
+                        text:"Turno Terminado com sucesso!",
+                        type:"success",
+                        timer:2000,
+                        showConfirmButton:false,
+                        });
+
+                       $('#modal_turno').modal('hide');
+
+                                    }
+                   else{
+
+                                     swal({
+                                      title:"",
+                                      text:" Deu erro no fechamento de contas !",
+                                      type:"error",
+                                      timer:2000,
+                                      showConfirmButton:false,
+                                      });
+                                                   }
+                      }
+    
+   }); 
+
+
+    }  
+        
+     
     }
 
 }
@@ -1015,3 +1089,8 @@ function modal_pdf(id_turno){
 
 
 /*======================================[pdf]===============================================*/
+
+
+
+
+  

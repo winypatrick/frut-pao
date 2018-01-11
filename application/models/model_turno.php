@@ -7,6 +7,12 @@ class Model_turno extends CI_Model {
 		parent::__construct();
 }	
 
+public function data_atual(){
+date_default_timezone_set('Atlantic/Cape_Verde');
+$data=date('d/m/Y');
+return $data;
+}
+
   public function pega_loja($hostname){
 
 $this->db->select('id_lojja, zona, hostmane');
@@ -294,6 +300,17 @@ $res=$this->db->get('turno')->result();
 return $res;
 }
 
+public function info_conta($id_turno){
+
+$this->db->select(' q_box1, q_box2, n_pao_vendida, n_pao_sobrado ');
+$this->db->where('id_turno', $id_turno);
+$this->db->join('loja', 'id_loja=id_lojja');
+$respost=$this->db->get('turno')->result();
+return $respost;
+
+}
+
+
 public function pdf($id_turno){
 
 $this->db->select('*');
@@ -419,7 +436,9 @@ $this->db->or_group_start();
    if ($id_s) {
    $this->db->where_in('id_turno', $id_s); 
     } 
-  $this->db->where('id_loja', $loja_id);  
+  $this->db->where('id_loja', $loja_id);
+
+  $this->db->where('data', $data);  
 
    $respp=$this->db->count_all_results('turno'); 
 
@@ -428,6 +447,25 @@ return $respp;
 
 
 public function Relatorio($id, $id_loja, $data)
+{
+
+$this->db->where('id_loja', $id_loja);
+$this->db->where('id_funcionario', $id);
+$this->db->where('Disponivel', 1);
+
+$resp=$this->db->update('turno', $data);
+
+if ($resp) {
+    return true;
+}
+
+else{
+    return false;
+}
+
+}
+
+public function fechamento_conta($id, $id_loja, $data)
 {
 
 $this->db->where('id_loja', $id_loja);

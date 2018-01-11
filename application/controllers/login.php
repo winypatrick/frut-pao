@@ -5,9 +5,9 @@ class Login extends CI_Controller {
 
      function __construct(){
 		parent::__construct();
-		$this->load->model('model_login', 'op_log');
+		$this->load->model('model_login', 'op_log')
+                ->model('model_turno', 'turno');
 
-    $this->load->model('model_turno', 'turno');
 }	
 	public function index($indice=null)
 	{   
@@ -85,10 +85,9 @@ return $id_loja;
 
 public function logout()
   {
-     $loja_id=$this->pega_loja();
-     date_default_timezone_set('Atlantic/Cape_Verde'); 
+    $loja_id=$this->pega_loja();
     $id=$this->session->userdata('userr_id');
-    $data=date('d/m/Y');
+    $data=$this->turno->data_atual();
 
     $verifica=$this->turno->logout($id, $data, $loja_id);
 
@@ -100,7 +99,6 @@ public function logout()
     $this->session->sess_destroy();
     redirect('login');
     }
-    
   }
 
 /*public function merda(){

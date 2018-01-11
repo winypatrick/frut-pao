@@ -17,11 +17,7 @@ class Turno extends CI_Controller {
 
 /*=====================================================pegando loja recente atual==========================*/
 
-public function data_atual(){
-date_default_timezone_set('Atlantic/Cape_Verde');
-$data=date('d/m/Y');
-return $data;
-}
+
 
 public function pega_loja(){
 
@@ -39,7 +35,7 @@ public function lista_funcionario_diponivel()
 
 $id=$this->session->userdata('userr_id');
 
-$data=$this->data_atual();
+$data=$this->turno->data_atual();
 
  $pega=$this->turno->lista_funcionario_diponivel($id, $data);
 
@@ -49,9 +45,9 @@ $data=$this->data_atual();
 
   public function pesquisa_filtro()
   {
-date_default_timezone_set('Atlantic/Cape_Verde'); 
+
 $id=$this->session->userdata('userr_id');
-$data=date('d/m/Y');
+$data=$this->turno->data_atual();
 $time=date('H') ;
 
 if ($time>=6 && $time<=14 ) {$periodo = 1 ;}
@@ -86,7 +82,7 @@ else{
 
   public function merda(){
    $loja_id=$this->pega_loja();
-   $data_atual=$this->data_atual();
+   $data_atual=$this->turno->data_atual();
 
   $count_turno=$this->turno->count_turno_ativado($loja_id, $data_atual);
 
@@ -102,7 +98,7 @@ if ($loja_id!=null) {
 
  $id_recebedo=$this->input->post('id_userr');
  $id=$this->session->userdata('userr_id');
- $data_atual=$this->data_atual();
+ $data_atual=$this->turno->data_atual();
 
 $count_turno=$this->turno->count_turno_ativado($loja_id, $data_atual);
 
@@ -119,8 +115,13 @@ else{
 }
 
 $data['id_loja']=$loja_id;
-$data['data']=$this->input->post('data');
-$data['periodo']=$this->input->post('periodo');
+$data['data']=$this->turno->data_atual();
+
+$time=date('H') ;
+if ($time>=6 && $time<=14 ) {$periodo = 1 ;}
+else{$periodo = 2 ; }  
+
+$data['periodo']=$periodo;
 $data['id_funcionario']=$id_recebedo;
 $data['Disponivel']=1;
 
@@ -230,7 +231,7 @@ public function lista_turno() {
 
 $id=$this->session->userdata('userr_id');
 
-$data=$this->data_atual();
+$data=$this->turno->data_atual();
 
 
 
@@ -336,9 +337,12 @@ $data['zona']=$this->input->post('zona');
 $data['data']=$this->input->post('data');
 $data['periodo']=$this->input->post('periodo');
 
+$id_turno=$this->input->post('id_turno');
+
 $pacote = array('zona'=>$data['zona'], 'data'=>$data['data'], 'periodo'=>$data['periodo']);
 
 $retorno=$this->turno->info_turno($pacote);
+
 
  foreach ($retorno as $k) {
 
@@ -358,7 +362,7 @@ $nome_p=explode(" ", $k->nome);
  if ($k->funcao_=='Responsavel') {
 
   $r[]='<div class="col-md-4 "><div class="box " style="border-radius: 4px">'.
-'<div class="box-header with-border" style="background: #EE620D">'.
+'<div class="box-header with-border " style="background: #EE620D">'.
 '<span class="box-title" style="font-size: 12px">'.$name.' <strong>(R)</strong>'.'</span>'.
 '<div class="box-tools pull-right"><button type="button" class="btn btn-box-tool" data-toggle="collapse" data-target="#'.$k->id_funcionario.'">'.
 '<i class="fa fa-angle-double-down fa-lg hvr-hang"></i></button></div></div><div class="box-body collapse label-default" id="'.$k->id_funcionario.'" >'.
@@ -376,15 +380,22 @@ $nome_p=explode(" ", $k->nome);
   
  }
  
-
-  
-
-
        $dados []=$r;
       
      }
+/*----------isso e so pra ver se conta do turno------------*/
+if ($id_turno) {
+  $output = array(
+  'data' => $dados,
+  'conta' => $this->turno->info_conta($id_turno)
+);
+}
 
- $output = array('data' => $dados); 
+
+else{
+  $output = array('data' => $dados);   
+}
+/*-----------------------*/
 
  echo json_encode($output);
 
@@ -392,10 +403,7 @@ $nome_p=explode(" ", $k->nome);
 
  public function pega_info_logado()  //pega id_user loagdo
 {
-
- date_default_timezone_set('Atlantic/Cape_Verde'); 
-
-$data=date('d/m/Y');
+$data=$this->turno->data_atual();
 $time=date('H') ;
 if ($time>=6 && $time<=14 ) { $periodo = 1 ; }
 else{ $periodo = 2 ;  }
@@ -521,7 +529,7 @@ else{
 {  
  $loja_id=$this->pega_loja();
 $id=$this->session->userdata('userr_id');
-$data=$this->data_atual();
+$data=$this->turno->data_atual();
 
 $respost=$this->turno->fecho_turno($id, $loja_id, $data);
 
@@ -533,7 +541,7 @@ echo json_encode($respost);
 {
 $loja_id=$this->pega_loja();
 $id=$this->session->userdata('userr_id');
-$data=$this->data_atual();
+$data=$this->turno->data_atual();
 
 $respo=$this->turno->verifica_fecho_hora_turno($id, $loja_id, $data);
 
@@ -556,6 +564,32 @@ $data['caixa_equipamentos']=$this->input->post('caixa');
 $respo=$this->turno->Relatorio($id, $loja_id, $data);
 
   if ($respo==true) {
+   echo true;
+  }
+
+  else
+  {
+    echo false;
+  }
+
+
+ }
+
+public function fechamento_conta()
+{
+
+$loja_id=$this->pega_loja();
+$id=$this->session->userdata('userr_id');
+
+$data['q_box1']=$this->input->post('q_box1');
+$data['q_box2']=$this->input->post('q_box2');
+$data['n_pao_vendida']=$this->input->post('n_pao_vendida');
+$data['n_pao_sobrado']=$this->input->post('n_pao_sobrado');
+
+
+$repos=$this->turno->fechamento_conta($id, $loja_id, $data);
+
+  if ($repos==true) {
    echo true;
   }
 

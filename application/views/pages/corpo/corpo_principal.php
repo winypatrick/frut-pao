@@ -1,6 +1,4 @@
 
-
-
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper" >
     <!-- Content Header (Page header) -->
@@ -56,13 +54,11 @@
            <p>
               Porém, já vimos que existe um método 'toString' da classe Arrays que retorna uma String com os elementos de um Array. Vamos usar esse método parar exibir todos os elementos do ArrayList, que transformamos em Array através do método 'toArray()':
               Arrays.toString( bandas.toArray() );
-
+          
               Vamos adicionar a segunda banda, "Beatles" e imprimir, usando o mesmo método.
               Note que quando usamos 'add', sempre adicionamos o elemento pro fim da ArrayList.
               Confirme isso agora, vendo que a banda "Iron Maiden" ficará depois de "Beatles".
            </p>
-
-
             </div>
            <!-- ./box-body -->
 
@@ -129,6 +125,7 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+
 
 
 

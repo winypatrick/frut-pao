@@ -17,68 +17,6 @@
 
     <!-- Main content -->
     <section class="content">
-   <!-- Info boxes -->
-    <!--   <div class="row">
-    
-     <div class="col-md-3 col-sm-6 col-xs-12">
-        <div class="info-box  hvr-grow">
-          <span class="info-box-icon bg-yellow"><i class="fa fa-users"></i></span>
-    
-          <div class="info-box-content">
-            <span class="info-box-text">Funcionarios</span>
-            <span class="info-box-number">20</span>
-          </div>
-          /.info-box-content
-        </div>
-        /.info-box
-      </div>
-      /.col
-      <div class="col-md-3 col-sm-6 col-xs-12">
-        <div class="info-box  hvr-grow">
-          <span class="info-box-icon bg-red"><i class="fa fa-cubes"></i></span>
-    
-          <div class="info-box-content">
-            <span class="info-box-text">Armazem </span>
-            <span class="info-box-number">41,410</span>
-          </div>
-          /.info-box-content
-        </div>
-        /.info-box
-      </div>
-      /.col
-    
-      fix for small devices only
-      <div class="clearfix visible-sm-block"></div>
-    
-      <div class="col-md-3 col-sm-6 col-xs-12">
-        <div class="info-box  hvr-grow">
-          <span class="info-box-icon bg-green"><i class="fa fa-shopping-cart"></i></span>
-    
-          <div class="info-box-content">
-            <span class="info-box-text">vendas</span>
-            <span class="info-box-number">760</span>
-          </div>
-          /.info-box-content
-        </div>
-        /.info-box
-      </div>
-      /.col
-      
-       <div class="col-md-3 col-sm-6 col-xs-12">
-        <div class="info-box  hvr-grow">
-          <span class="info-box-icon bg-aqua"><i class="fa fa-book"></i></span>
-    
-          <div class="info-box-content">
-            <span class="info-box-text">Relatorios</span>
-            <span class="info-box-number">90</span>
-          </div>
-          /.info-box-content
-        </div>
-        /.info-box
-      </div>
-      /.col
-    </div>
-    /.row -->
 
          <div class="row">
           <div class="col-md-12">
@@ -94,6 +32,7 @@
                <a type="button" id="list_a" class="btn btn-sm" style="display: none;" >
               <i class=" fa fa-list fa-lg label-info"></i></a>
 
+
               <div class="box-tools pull-right" >
 
            <div class=" inputWithIcon " id="pacote_pesk_1">
@@ -108,7 +47,7 @@
             <div id="lista_loja_turn" class="box-body " style="padding-left: 20px">
             
 
- </div>
+           </div>
 
            <!-- ./box-body -->
 
@@ -130,7 +69,7 @@
 <!-- ====================================================[ modal Turno ]================================================= -->
       <div class="col-md-12" >
         <div class="col-md-12 modal " id="modal_turno"  >
-        <div  class="modal-dialog modal-lg " style="margin-top:30px; width: 80%">
+        <div  class="modal-dialog modal-lg" style="margin-top:30px; width: 80%">
         <div id="modal_turno" class="modal-content " >
             <div class="modal-header" style="height: 9px">
                 <button type="button" class="close text-danger" data-dismiss="modal">&times;</button>
@@ -243,7 +182,7 @@
 
             <div class="modal-footer"> 
           
-            <button  class="btn btn-default" onclick="relatorio()">Avancar</button>
+            <button  class="btn btn-default" onclick="relatorio()" id="button_">Avancar</button>
 
             </div>
 
@@ -261,7 +200,7 @@
           <div id="modal_info_turno" class="modal-content" >
 
    
-          <div class="box">
+          <div class="box " style="overflow: auto;">
             <div class="box-header with-border label-info">
               <span class="box-title" style="font-size: 15px; font-weight: bold; " id="titulo_info_turno"></span>
 
@@ -273,17 +212,21 @@
 
             </div>
             
-            <div id="adiciona_funcionario" class="box-body" style="height: 160px;  ">
+            <div id="adiciona_funcionario" class="box-body" style="height: 160px; ">
 
 
-            </div>
+           </div>
+
+          <div class="box-footer" >
+            
+          </div>
 
         </div>
 
 
-            <div class="modal-footer"> 
-           
-               </div> 
+            <div class="modal-footer label-default" > 
+             <span style="font-size: 13px; " class=" hvr-underline-from-center" id="fecho_de_conta"></span>
+            </div> 
 
      </div>
      </div>
@@ -412,5 +355,4 @@
       <!-- /.row -->
     </section>
     <!-- /.content -->
-
 

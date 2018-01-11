@@ -1,5 +1,5 @@
-var base='http://192.168.1.66/frut&pao/';
-//var base_url='http://localhost/frut&pao/'
+//var base='http://192.168.1.66/frut&pao/';
+var base='http://localhost/frut&pao/'
 
  var feedback=$('#feed'); 
 
@@ -138,10 +138,10 @@ function ir_para_turno(){
 /*  text: "Quer iniciar logo turno ",*/
   showCancelButton: true,
   confirmButtonColor: "#1BBD39",
-  confirmButtonText: "ya, concordo",
+  confirmButtonText: "Sim, concordo",
   cancelButtonClass: 'btn btn-danger',
   buttonsStyling: false,
-  imageUrl: base+'fich_compente/14469563_595253984008889_3422939138102187882_n.png',
+  imageUrl: base+'fich_compente/favicon_1.png',
   imageWidth: 400,
   imageHeight: 400,
   showLoaderOnConfirm: true,
@@ -208,3 +208,5 @@ function  abrir_ou_nao_ir_para_turno(){
    });
 
 }
+
+

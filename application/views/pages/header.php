@@ -22,6 +22,10 @@
 <link href="<?= base_url();?>fich_compente/bootstrap/css/campo_pesquisa.css" rel="stylesheet" >
 <!-- ======================================================================================================== -->
 
+<!-- animacao de tooltips -->
+<link href="<?= base_url();?>fich_compente/bootstrap/css/tooltips.min.css" rel="stylesheet" >
+<!-- end -->
+
   <script src="<?= base_url();?>fich_compente/bootstrap/js/jquery.js"></script>  
   <!-- Bootstrap 3.3.6 -->
 <script src="<?= base_url();?>fich_compente/bootstrap/js/bootstrap.min.js"></script>
@@ -64,6 +68,9 @@
 <link rel="stylesheet" type="text/css" href="<?= base_url()?>fich_plugins/plugin_alert/sweetalert.css">
 <!--  -->   
 
+<!-- format number -->
+<script src="<?= base_url()?>fich_plugins/plugin_numberformat/jquery.number.js"></script>
+<!--  -->  
 
 <!-- styless para datatable-->
 <link rel="stylesheet" href="<?= base_url();?>fich_compente/bootstrap/css/corpo_a.css">

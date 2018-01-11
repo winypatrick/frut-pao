@@ -103,7 +103,7 @@ public function lista_funcionario(){
      $r= array();
 
        if ($id_logados==$k->id_user) {
-         $r[]='<span style="background: #0FEBC9; font-size: 18px; font-weight: bold;">&nbsp;</span><span >'.$k->nome.'</span>'.'<a  style="float:right; margin-right:10px" class="fa fa-info-circle btn" onclick="set_funcionario(\''.$k->id_user.'\', \''.$k->n_bi.'\', \''.$k->n_nif.'\', \''.$k->data_nascimento.'\',  \''.$k->sexo.'\', \''.$k->data_entrada.'\', \''.$k->data_saida.'\', \''.$k->descricao.'\')" ></a>';
+         $r[]='<span style="background: #0FEBC9; font-size: 18px; font-weight: bold;">&nbsp;</span><span >'.$k->nome.' <strong>(tu)</strong></span>'.'<a  style="float:right; margin-right:10px" class="fa fa-info-circle btn" onclick="set_funcionario(\''.$k->id_user.'\', \''.$k->n_bi.'\', \''.$k->n_nif.'\', \''.$k->data_nascimento.'\',  \''.$k->sexo.'\', \''.$k->data_entrada.'\', \''.$k->data_saida.'\', \''.$k->descricao.'\')" ></a>';
         } 
 
         else{
